@@ -20,6 +20,7 @@
     <jstlVersion>1.2</jstlVersion>
     <servletApiVersion>3.1.0</servletApiVersion>
   </properties>
+  
   <dependencies>
     <!--junit 测试开始
     <dependency>
@@ -29,7 +30,7 @@
       <scope>test</scope>
     </dependency>
     junit 测试结束-->
-
+    
     <!--Slf4j + Log4j日志依赖 开始-->
     <dependency>
       <groupId>org.slf4j</groupId>
@@ -178,14 +179,19 @@
         </configuration>
       </plugin>
       <plugin>
-        <groupId>org.apache.tomcat.maven</groupId>
-        <artifactId>tomcat7-maven-plugin</artifactId>
-        <version>2.2</version>
-        <configuration>
-          <port>8080</port>
-          <charset>${project.build.sourceEncoding}</charset>
-          <server>tomcat7</server>
-        </configuration>
+      	<groupId>org.eclipse.jetty</groupId>
+      	<artifactId>jetty-maven-plugin</artifactId>
+      	<version>9.3.7.v20160115</version>
+      	<configuration>
+		    <httpConnector>
+		        <port>3366</port>
+		        <host>localhost</host>
+		    </httpConnector>
+		    <scanIntervalSeconds>1</scanIntervalSeconds>
+		    <webAppConfig>
+	           <defaultsDescriptor>src/main/resources/webdefault.xml</defaultsDescriptor>
+	        </webAppConfig>
+		</configuration>
       </plugin>
     </plugins>
   </build>

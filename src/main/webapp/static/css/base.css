@@ -1,0 +1,24 @@
+body {
+    background: #fefefe;
+}
+
+.footer {
+    background-color: #fff;
+}
+
+.footer{
+	font-size: 0;
+}
+
+.footer-hd{
+	overflow: hidden;
+	width: 960px;
+	margin: 0 auto;
+}
+
+.footer-hd h3 {
+}
+.footer-hd p {}
+.footer-hd a {}
+.footer-hd b {}
+.footer-hd em {}

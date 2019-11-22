@@ -20,3 +20,5 @@ flush privileges;
 
 quit
 ```
+
+mvn jetty:run
