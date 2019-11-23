@@ -1,33 +1,59 @@
 package com.shop.business.model;
 
 public class User {
-	public Long userId;
-	
-	public String userName;
-	
-	public String pwd;
+	public Long id;
+	public String name;
+	public String password;
+	public String email;
+	public String address;
+	public String postelcode;
 
-	public Long getUserId() {
-		return userId;
+	public Long getId() {
+		return id;
 	}
 
-	public void setUserId(Long userId) {
-		this.userId = userId;
+	public void setId(Long id) {
+		this.id = id;
 	}
 
-	public String getUserName() {
-		return userName;
+	public String getName() {
+		return name;
 	}
 
-	public void setUserName(String userName) {
-		this.userName = userName;
+	public void setName(String name) {
+		this.name = name;
 	}
 
-	public String getPwd() {
-		return pwd;
+	public String getPassword() {
+		return password;
 	}
 
-	public void setPwd(String pwd) {
-		this.pwd = pwd;
+	public void setPassword(String password) {
+		this.password = password;
 	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public String getAddress() {
+		return address;
+	}
+
+	public void setAddress(String address) {
+		this.address = address;
+	}
+
+	public String getPostelcode() {
+		return postelcode;
+	}
+
+	public void setPostelcode(String postelcode) {
+		this.postelcode = postelcode;
+	}
+
 }

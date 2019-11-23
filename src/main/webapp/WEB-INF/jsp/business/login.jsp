@@ -10,14 +10,15 @@
 		<form class="login__form__main">
 			<h3>欢迎登录</h3>
 			<div class="form-group">
-				<label for="username">用户名</label>
-				<input type="text" class="form-control" id="username" name="username" placeholder="请输入用户名">
+				<label for="username">用户名/邮箱</label>
+				<input type="text" class="form-control" id="username" name="username" placeholder="请输入用户名/邮箱">
 			</div>
 			<div class="form-group">
 				<label for="password">密码</label>
 				<input type="password" class="form-control" id="password" name="password" placeholder="请输入密码">
 			</div>
-			<button type="submit" class="center-block btn btn-submit">提交</button>
+			<p class=text-danger></p>
+			<button id="submit" type="button" class="center-block btn btn-submit">提交</button>
 			<p class="help-block clearfix">
 				<a href="/shop/resetpwd.html">忘记密码</a>
 				<a href="/shop/register.html">注册</a>
@@ -28,19 +29,34 @@
 
 <script>
 	$(function() {
-		/* 验证码 显示  */
-		shop.code();
-		/* 监控页面上如果有enter键按下  */
-		$(document).keydown(function(e) {
-			if (e.keyCode == 13) {
-				/* 如果被按下就执行验证码验证 ，防止用户在验证码输入不对的情况下，进行登陆   */
-				$("#login_code_input").blur();
+		var name = $('#username');
+		var pwd = $('#password');
+		var error = $('.text-danger');
+		var submit = $('#submit');
+		
+		submit.click(function(e) {
+			if (name.val() === '') {
+				error.html('用户名/邮箱不能为空');
+				return;
 			}
-		});
-		/* 按下登陆按钮时执行登陆操作  */
-		$("#submit").click(function(e) {
-			/* 登陆操作，如果登陆失败，会显示圆括号里的文字 ，反之不会  */
-			shop.login('用户名或者密码错误');
+			if (pwd.val() === '') {
+				error.html('密码不能为空');
+				return;
+			}
+			
+			submit.attr('disabled', true);
+			$.post('/shop/login.do', {
+				username: $('#username').val(),
+				password: $('#password').val(),
+			}).done(function (res) {
+				if (res.code === 0) {
+					location.href = '/shop/index.html';
+				} else {
+					error.html(res.msg);	
+				}
+			}).complete(function() {
+				submit.attr('disabled', false);
+			});
 		});
 	});
 </script>
