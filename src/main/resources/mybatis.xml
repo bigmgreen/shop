@@ -5,7 +5,7 @@
 	<properties resource="db.properties" />
 	
 	<typeAliases>
-		<typeAlias type="com.shop.business.model.User" alias="User" />
+		<typeAlias type="com.shop.model.User" alias="User" />
 	</typeAliases>
 	
 	<environments default="development">
@@ -21,6 +21,6 @@
 	</environments>
 	
 	<mappers>
-		<mapper resource="com/shop/business/mapper/UserDao.xml" />
+		<mapper resource="com/shop/mapper/UserDao.xml" />
 	</mappers>
 </configuration> 

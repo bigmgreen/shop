@@ -22,7 +22,8 @@ public class IndexController {
 	 * @return
 	 */
 	@RequestMapping("/index")
-	public String userinfo(Model model) {
+	public String index(Model model) {
+		
 		return Utils.getBusinessUrl("index");
 	}
 }

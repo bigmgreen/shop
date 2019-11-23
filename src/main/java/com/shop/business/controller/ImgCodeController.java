@@ -22,6 +22,12 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.shop.utils.Code;
 
+/**
+ * 图片验证码的生成与校验
+ * 
+ * @author Administrator
+ *
+ */
 @Controller
 @RequestMapping("/shop")
 public class ImgCodeController extends HttpServlet {

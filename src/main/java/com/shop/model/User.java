@@ -1,4 +1,4 @@
-package com.shop.business.model;
+package com.shop.model;
 
 public class User {
 	public Long id;

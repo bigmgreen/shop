@@ -1,8 +1,8 @@
-package com.shop.business.dao;
+package com.shop.dao;
 
 import java.util.List;
 
-import com.shop.business.model.User;
+import com.shop.model.User;
 
 /**
  * 用户操作

@@ -1,7 +1,7 @@
 package com.shop.utils;
 
 import org.apache.ibatis.session.SqlSession;
-import com.shop.business.dao.*;
+import com.shop.dao.*;
 
 /**
  * service父类 用于获取 各种dao

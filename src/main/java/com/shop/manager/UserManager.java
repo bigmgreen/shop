@@ -1,4 +1,4 @@
-package com.shop.business.manager;
+package com.shop.manager;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -9,13 +9,13 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.shop.business.model.User;
+import com.shop.model.User;
 import com.shop.utils.Utils;
 
 @Component
 public class UserManager {
 	@Autowired
-	private com.shop.business.service.UserService userService;
+	private com.shop.service.UserService userService;
 
 	/**
 	 * 登录操作
@@ -179,7 +179,7 @@ public class UserManager {
 		}
 		return user_validate;
 	}
-	
+
 	/**
 	 * 通过姓名获得用户
 	 * 
@@ -190,7 +190,7 @@ public class UserManager {
 	public User getUserByName(String name) {
 		return userService.getUserByName(name);
 	}
-	
+
 	/**
 	 * 通过邮箱获得用户
 	 * 

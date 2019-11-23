@@ -11,13 +11,13 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.shop.business.manager.UserManager;
-import com.shop.business.model.User;
+import com.shop.manager.UserManager;
+import com.shop.model.User;
 import com.shop.utils.Code;
 import com.shop.utils.Utils;
 
 /**
- * 处理业务端用户登录/注册/密码重置
+ * 处理业务端用户登录/注册/密码重置/用户信息更新
  * 
  * @author Administrator
  *
@@ -41,7 +41,7 @@ public class UserController {
 	}
 
 	/**
-	 * 用户登录
+	 * 用户登录页面
 	 * 
 	 * @return
 	 */
@@ -69,7 +69,7 @@ public class UserController {
 	}
 
 	/**
-	 * 用户注册
+	 * 用户注册页面
 	 * 
 	 * @return
 	 */
@@ -116,7 +116,7 @@ public class UserController {
 	}
 
 	/**
-	 * 用户密码重置
+	 * 用户密码重置页面
 	 * 
 	 * @return
 	 */
@@ -164,7 +164,7 @@ public class UserController {
 	}
 
 	/**
-	 * 用户信息
+	 * 用户信息页面
 	 * 
 	 * @return
 	 */

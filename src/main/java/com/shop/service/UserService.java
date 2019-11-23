@@ -1,9 +1,9 @@
-package com.shop.business.service;
+package com.shop.service;
 
 import java.util.List;
 import org.springframework.stereotype.Service;
 
-import com.shop.business.model.User;
+import com.shop.model.User;
 import com.shop.utils.BaseService;
 
 /**
