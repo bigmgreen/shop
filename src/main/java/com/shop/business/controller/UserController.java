@@ -3,7 +3,6 @@ package com.shop.business.controller;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -19,6 +18,18 @@ import com.shop.utils.Utils;
 @Controller
 @RequestMapping("/shop")
 public class UserController {
+	
+	/**
+	 * 用户信息
+	 * @return
+	 */
+//	@RequestMapping("/login/{name}")
+	@RequestMapping("/userinfo")
+	public String userinfo(Model model) {
+//		public String login(@PathVariable("name") String name) {
+		model.addAttribute("title", "用户信息 | ");
+		return Utils.getBusinessUrl("userinfo");
+	}
 	
 	/**
 	 * 用户登录
@@ -45,8 +56,20 @@ public class UserController {
 	 * @return
 	 */
 	@RequestMapping("/resetpwd")
-	public String resetPwd() {
+	public String resetPwd(Model model) {
+		model.addAttribute("title", "密码重置 | ");
 		return Utils.getBusinessUrl("reset-pwd");
+	}
+	
+	/**
+	 * 用户信息更新
+	 * @return
+	 */
+	@RequestMapping(value="/userinfo.do", method=RequestMethod.POST)
+	public String userinfoDo(@RequestParam("userinfo") String userinfo, Model model) {
+		// TODO: 返回上一个页面
+		model.addAttribute("userName", "zx");
+		return Utils.getBusinessUrl("index");
 	}
 	
 	/**

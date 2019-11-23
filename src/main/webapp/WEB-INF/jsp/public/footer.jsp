@@ -1,8 +1,8 @@
 <%@ page pageEncoding="UTF-8" contentType="text/html;charset=UTF-8"%>
 <%@ include file="./taglibs.jsp"%>
 
-<div class="footer">
-	<div class="footer-hd">
+<footer class="footer">
+	<div class="footer-hd block">
         <h3>友情链接</h3>
 		<p>
             <a href="http://www.alibabagroup.com/cn/global/home">阿里巴巴集团</a><b>|</b>
@@ -34,8 +34,8 @@
             <a href="https://www.mybank.cn/">网商银行</a><b>|</b>
             <a href="https://www.taobao.tw">淘宝台湾</a>
 		</p>
-        <em>© 2003-现在 gougou.com 版权所有</em>
+        <p><em>© 2003-现在 gougou.com 版权所有</em></p>
 	</div>
-</div>
+</footer>
 </body>
 </html>

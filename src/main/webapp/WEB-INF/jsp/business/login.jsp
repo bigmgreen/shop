@@ -1,40 +1,31 @@
-<!-- 登陆页面 	shop/index.jsp中使用 -->
 <%@ page pageEncoding="UTF-8" contentType="text/html;charset=UTF-8"%>
 <%@ include file="../public/header.jsp"%>
 
-<div id="content" class="login_position" style="height: 250px;">
-	<div id="twitter" style="padding-top: 3%;">
-		<form onsubmit="return false;">
-			<div id='name' class='outerDiv' style="left: 50%;">
-				<label for="name" style="padding-left: 15%;"> 姓名:</label> <input
-					id="login_input_name" type="text" name="name" required
-					placeholder="用户名或者邮箱" />
+<link href="/static/css/login.css" rel="stylesheet" type="text/css"
+	media="all" />
+
+<div class="login">
+	<div class="login__bg"></div>
+	<div class="login__form block">
+		<form class="login__form__main">
+			<h3>欢迎登录</h3>
+			<div class="form-group">
+				<label for="username">用户名</label>
+				<input type="text" class="form-control" id="username" name="username" placeholder="请输入用户名">
 			</div>
-			<div class='clearfix'></div>
-			<div id='password' class='outerDiv'>
-				<label for="number" style="padding-left: 15%;"> 密码:</label> <input
-					id="login_input_psd" type="password" name="password" required />
+			<div class="form-group">
+				<label for="password">密码</label>
+				<input type="password" class="form-control" id="password" name="password" placeholder="请输入密码">
 			</div>
-			<div class='clearfix'></div>
-			<div id='code' class='outerDiv'>
-				<label for="code" style="padding-left: 15%;"> 验证码:</label> <input
-					id="login_code_input" onclick="shop.clear();" type="text"
-					name="code" required onblur="shop.checkCode($(this), '验证码填写错误')" />
-				<div class='message_register' id='emailDiv'>
-					<img style="cursor: pointer;" id="code_img" class="lazyOwl" src=""
-						alt="Lazy Owl Image" title="点击更换" onclick="shop.code();">
-				</div>
-			</div>
-			<div id="error_div_before" class='clearfix'></div>
-			<div id='submit' class='outerDiv' style="padding-left: 15%;">
-				<input type="submit" value="登录" onsubmit="return false;" />
-			</div>
-			<div class='clearfix'></div>
+			<button type="submit" class="center-block btn btn-submit">提交</button>
+			<p class="help-block clearfix">
+				<a href="/shop/resetpwd.html">忘记密码</a>
+				<a href="/shop/register.html">注册</a>
+			</p>
 		</form>
-		<div class="clearfix"></div>
 	</div>
 </div>
-<div style="margin: 25px auto"></div>
+
 <script>
 	$(function() {
 		/* 验证码 显示  */

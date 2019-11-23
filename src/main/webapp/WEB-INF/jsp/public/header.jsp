@@ -14,7 +14,7 @@
 <meta name="keywords" content="购购,网上购物,C2C,在线交易,交易市场,网上交易,交易市场,网上买" />
 <meta name="description" content="购购网 - 亚洲较大的网上交易平台，提供各类服饰、美容、家居、数码、话费/点卡充值… 数亿优质商品，同时提供担保交易(先收货后付款)等安全交易保障服务，并由商家提供退货承诺、破损补寄等消费者保障服务，让你安心享受网上购物乐趣！" />
 
-<title>购购网 - 购！我喜欢</title>
+<title><c:out value="${title}"></c:out>购购网 - 购！我喜欢</title>
 
 <link href="/static/css/reset.css" rel="stylesheet" type="text/css" media="all" />
 <link href="/static/lib/bootstrap-3.3.7/css/bootstrap.min.css" rel="stylesheet" type="text/css" media="all" />
@@ -25,3 +25,41 @@
 
 </head>
 <body>
+
+<header>
+	<div class="top">
+		<div class="top__main block">
+			<div class="top__left">
+				<a href="/shop/login.html"><b>亲，请登录</b></a>
+				<a href="/shop/register.html">免费注册</a>
+			</div>
+			<div class="top__right">
+				<a href="#">个人中心</a>
+				<a href="#"><span class="glyphicon glyphicon-shopping-cart"></span>购物车</a>
+			</div>
+		</div>
+	</div>
+	
+	<div class="search">
+		<div class="search__main block">
+			<a class="search__logo" href="/shop/index"><img src="/static/img/logo.png" /></a>
+			<form class="search__form" action="/" method="post">
+				<div class="search__form__input">
+					<span class="glyphicon glyphicon-search"></span>
+					<input type="text" placeholder="请输入搜索文字" maxlength="50" />
+					<button class="search__form__btn" type="submit">搜索</button>
+				</div>
+			</form>
+		</div>
+	</div>
+	
+	<div class="nav">
+		<div class="block">
+			<a href="#">首页</a>
+			<a href="#">男裤</a>
+			<a href="#">女裤</a>
+			<a href="#">男鞋</a>
+			<a href="#">女鞋</a>
+		</div>
+	</div>
+</header>

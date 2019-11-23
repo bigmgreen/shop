@@ -1,0 +1,28 @@
+.userinfo {
+	width: 100%;
+}
+
+.userinfo__form {
+	position: relative;
+	z-index: 999;
+	background: #fff;
+}
+
+.userinfo__form__main {
+    padding: 25px 25px 23px;
+    color: #6c6c6c;
+    margin: 0 auto;
+    border-radius: 6px;
+    height: 100%;
+    width: 500px;
+}
+
+.form-control{
+	height: auto;
+}
+
+.btn-submit{
+	margin-top: 30px;
+	width: 100%;
+}
+

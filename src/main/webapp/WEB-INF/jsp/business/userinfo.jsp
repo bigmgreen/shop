@@ -32,18 +32,12 @@
 			</div>
 			<div class="row">
 				<div class="form-group">
-					<label for="password">密码</label>
-					<input type="password" class="form-control" id="password" name="password" placeholder="请输入密码">
+					<label for="address">地址</label>
+					<input type="text" class="form-control" id="address" name="address" placeholder="请输入地址">
 				</div>
 			</div>
 			<div class="row">
-				<div class="form-group">
-					<label for="confirmpassword">确认密码</label>
-					<input type="password" class="form-control" id="confirmpassword" name="confirmpassword" placeholder="请确认密码">
-				</div>
-			</div>
-			<div class="row">
-				<button type="button" class="center-block btn btn-submit">注册</button>
+				<button type="button" class="center-block btn btn-submit">更新</button>
 			</div>
 		</form>
 	</div>
