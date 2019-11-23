@@ -18,6 +18,57 @@ public class UserManager {
 	private com.shop.business.service.UserService userService;
 
 	/**
+	 * 登录操作
+	 * 
+	 * @param user
+	 *            登录用户
+	 * 
+	 * @return 3 成功 2 后台报错
+	 */
+	public boolean login(User user, HttpServletRequest request, HttpServletResponse response) {
+		User user_validate = getUserByNameOrEmail(user);
+		if (user_validate != null) {
+			if (user.getPassword().equals(user_validate.getPassword())) {
+				request.getSession().setAttribute("name", user_validate.getName());
+				request.getSession().setAttribute("id", user.getId());
+
+				request.getSession().setAttribute(user_validate.getId() + "", user_validate.getName());
+				Cookie cookie = new Cookie("userId", user_validate.getId() + "");
+				cookie.setPath("/");
+				response.addCookie(cookie);
+				return true;
+			}
+		}
+		return false;
+	}
+
+	/**
+	 * 注册操作
+	 * 
+	 * @param user
+	 *            注册用户
+	 * 
+	 * @return 1 成功 2 后台报错 3 用户重名 4 邮箱重复
+	 */
+	public boolean register(User user, HttpServletRequest request, HttpServletResponse response) {
+		try {
+			userService.register(user);
+			request.getSession().setAttribute("name", user.getName());
+			request.getSession().setAttribute("id", user.getId());
+
+			request.getSession().setAttribute(user.getId() + "", user.getName());
+			Cookie cookie = new Cookie("userId", user.getId() + "");
+			cookie.setPath("/");
+			response.addCookie(cookie);
+
+			return true;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return false;
+	}
+
+	/**
 	 * 获取所有用户
 	 * 
 	 * @param user
@@ -27,7 +78,7 @@ public class UserManager {
 	public List<User> getAllUser() {
 		return userService.getAllUser();
 	}
-	
+
 	/**
 	 * 获取所有用户
 	 * 
@@ -62,8 +113,7 @@ public class UserManager {
 			String cookieName = null;
 			for (Cookie c : cookies) {
 				if ("userId".equals(c.getName())) {
-					cookieName = (String) request.getSession().getAttribute(
-							c.getValue());
+					cookieName = (String) request.getSession().getAttribute(c.getValue());
 					break;
 				}
 			}
@@ -75,94 +125,25 @@ public class UserManager {
 	}
 
 	/**
-	 * 注册操作
-	 * 
-	 * @param user
-	 *            注册用户
-	 * 
-	 * @return 1 成功 2 后台报错 3 用户重名 4 邮箱重复
-	 */
-	public int register(User user, HttpServletRequest request,
-			HttpServletResponse response) {
-		int flag = 1;
-		flag = validate_name(user.getName(), flag);
-		flag = validate_name(user.getEmail(), flag);
-		try {
-			userService.register(user);
-			user = userService.getUserByName(user.getName());
-			request.getSession()
-					.setAttribute(user.getId() + "", user.getName());
-			Cookie cookie = new Cookie("userId", user.getId() + "");
-			cookie.setPath("/");
-			response.addCookie(cookie);
-		} catch (Exception e) {
-			flag = 2;
-		}
-		return flag;
-	}
-
-	/**
 	 * 姓名的重复验证
-	 * 
+	 *
 	 * @param user
 	 *            被验证的用户
 	 * @param flag
 	 * @return
 	 */
-	public int validate_name(String name, int flag) {
-		User user_name = userService.getUserByName(name);
-		if (user_name != null) {
-			return flag = 3;
-		}
-		return flag;
+	public boolean validate_name(String name) {
+		return null != userService.getUserByName(name);
 	}
 
 	/**
 	 * 邮箱的重复验证
 	 * 
-	 * @param user
-	 *            被验证的用户
-	 * @param flag
+	 * @param email
 	 * @return
 	 */
-	public int validate_email(String email, int flag) {
-		User user_email = userService.getUserByEmail(email);
-		if (user_email != null) {
-			return flag = 4;
-		}
-		return flag;
-	}
-	
-	/**
-	 * 姓名的重复验证
-	 * 
-	 * @param user
-	 *            被验证的用户
-	 * @param flag
-	 * @return
-	 */
-	public int validate_name(long id, String name, int flag) {
-		User user_name = userService.getUserByName(name);
-		if (user_name != null && user_name.getId() != id) {
-			return flag = 3;
-		}
-		return flag;
-	}
-
-	/**
-	 * 邮箱的重复验证
-	 * 
-	 * @param user
-	 *            被验证的用户
-	 * @param flag
-	 * @return
-	 */
-	public int validate_email(long id, String email, int flag) {
-		User user_email = userService.getUserByEmail(email);
-		if (user_email != null && user_email.getId() != id) {
-			return flag = 4;
-		}
-		return flag;
+	public boolean validate_email(String email) {
+		return null != userService.getUserByEmail(email);
 	}
 
 	/**
@@ -198,31 +179,27 @@ public class UserManager {
 		}
 		return user_validate;
 	}
-
+	
 	/**
-	 * 登陆操作
+	 * 通过姓名获得用户
 	 * 
 	 * @param user
-	 *            登陆用户
-	 * 
-	 * @return 3 成功 2 后台报错
+	 *            验证用户
+	 * @return
 	 */
-	public int login(User user, HttpServletRequest request,
-			HttpServletResponse response) {
-		User user_validate = getUserByNameOrEmail(user);
-		if (user_validate != null) {
-			if (user.getPassword().equals(user_validate.getPassword())) {
-				request.getSession().setAttribute("name", user_validate.getName());
-				request.getSession().setAttribute("id", user_validate.getName());
-				
-				request.getSession().setAttribute(user_validate.getId() + "", user_validate.getName());
-				Cookie cookie = new Cookie("userId", user_validate.getId() + "");
-				cookie.setPath("/");
-				response.addCookie(cookie);
-				return 3;
-			}
-		}
-		return 2;
+	public User getUserByName(String name) {
+		return userService.getUserByName(name);
+	}
+	
+	/**
+	 * 通过邮箱获得用户
+	 * 
+	 * @param user
+	 *            验证用户
+	 * @return
+	 */
+	public User getUserByEmail(String email) {
+		return userService.getUserByEmail(email);
 	}
 
 	/**

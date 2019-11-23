@@ -39,11 +39,11 @@
 			    </c:when>
 			    <c:otherwise>
 			    	<div class="top__left">
-				    	<a href="/shop/userinfo.html"><b>您好：<c:out value="${name}"></c:out></b></a>
+				    	<a href="/shop/userinfo.user"><b>您好：<c:out value="${name}"></c:out></b></a>
 				    	<a href="/shop/userlogout.user">退出</a>
 			    	</div>
 			    	<div class="top__right">
-						<a href="/shop/userinfo.html">个人中心</a>
+						<a href="/shop/userinfo.user">个人中心</a>
 						<a href="#"><span class="glyphicon glyphicon-shopping-cart"></span>购物车</a>
 					</div>
 			    </c:otherwise>

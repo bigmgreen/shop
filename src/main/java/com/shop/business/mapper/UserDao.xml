@@ -67,7 +67,8 @@
 	</delete>
 	<insert id="insert" parameterType="User">
 		insert into user (id,
-		name, password,
+		name,
+		password,
 		email)
 		values (#{id,jdbcType=BIGINT},
 		#{name,jdbcType=NVARCHAR},

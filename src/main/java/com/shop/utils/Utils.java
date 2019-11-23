@@ -21,8 +21,6 @@ public class Utils {
 	public static int PAGE_SIZE = 6;
 	/** 会话工厂 */
 	private static SqlSessionFactory sessionFactory = null;
-	/** 配置文件地址 */
-	private static String resource = "mybatis.xml";
 
 	public static SqlSessionFactory getsqlSessionFactory() {
 		try {
@@ -35,15 +33,6 @@ public class Utils {
 		
 		return sessionFactory;
 	}
-
-	/** 初始化会话工厂--》项目启动整个周期内只加载一次 */
-//	static {
-//		try {
-//			sessionFactory = new SqlSessionFactoryBuilder().build(Resources.getResourceAsReader(resource));
-//		} catch (IOException e) {
-//			e.printStackTrace();
-//		}
-//	}
 
 	/***
 	 * 获取 sqlSession
@@ -84,7 +73,7 @@ public class Utils {
 	public static String getBusinessUrl(String path) {
 		return "business/" + path;
 	}
-
+	
 	/**
 	 * 返回管理系统的 URL
 	 * 
