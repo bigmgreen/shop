@@ -48,7 +48,9 @@
 		set
 		name=#{name},
 		password=#{password},
-		email=#{email}
+		email=#{email},
+		address=#{address},
+		postelcode=#{postelcode}
 		where id=#{id}
 	</update>
 	<update id="address" parameterType="User">

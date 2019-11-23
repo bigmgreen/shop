@@ -153,7 +153,7 @@ public class UserController {
 	}
 
 	/**
-	 * 用户信息
+	 * 用户退出
 	 * 
 	 * @return
 	 */
@@ -169,8 +169,12 @@ public class UserController {
 	 * @return
 	 */
 	@RequestMapping("/userinfo")
-	public String userinfo(Model model) {
+	public String userinfo(HttpServletRequest request, Model model) {
 		model.addAttribute("title", "用户信息 | ");
+
+		User user = userManager.getUser(request);
+		model.addAttribute("user", user);
+
 		return Utils.getBusinessUrl("userinfo");
 	}
 
@@ -180,9 +184,24 @@ public class UserController {
 	 * @return
 	 */
 	@RequestMapping(value = "/userinfo.do", method = RequestMethod.POST)
-	public String userinfoDo(@RequestParam("userinfo") String userinfo, Model model) {
-		// TODO: 返回上一个页面
-		model.addAttribute("userName", "zx");
-		return Utils.getBusinessUrl("index");
+	@ResponseBody
+	public Code userinfoDo(@RequestParam("postcode") String postcode, @RequestParam("address") String address,
+			HttpServletRequest request, HttpServletResponse response, Model model) {
+
+		Code code = new Code();
+		User user = userManager.getUser(request);
+
+		if (null != user) {
+			user.setPostelcode(postcode);
+			user.setAddress(address);
+
+			userManager.updateUser(user);
+			userManager.login(user, request, response);
+			code.setCode(0);
+		} else {
+			code.setCode(-1);
+			code.setMsg("登录超时，请重新登录");
+		}
+		return code;
 	}
 }
