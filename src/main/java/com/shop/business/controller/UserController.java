@@ -35,6 +35,17 @@ public class UserController {
 	 * 
 	 * @return
 	 */
+	@RequestMapping("/userlogout.user")
+	public String userlogout(HttpServletRequest request, HttpServletResponse response, Model model) {
+		userManager.userEixt(request, response);
+		return Utils.getBusinessUrl("login");
+	}
+
+	/**
+	 * 用户信息
+	 * 
+	 * @return
+	 */
 	@RequestMapping("/userinfo")
 	public String userinfo(Model model) {
 		model.addAttribute("title", "用户信息 | ");
@@ -47,7 +58,8 @@ public class UserController {
 	 * @return
 	 */
 	@RequestMapping("/login")
-	public String login() {
+	public String login(Model model) {
+		model.addAttribute("title", "用户登录 | ");
 		return Utils.getBusinessUrl("login");
 	}
 
@@ -64,16 +76,16 @@ public class UserController {
 		user.setName(username);
 		user.setEmail(username);
 		user.setPassword(password);
-		
+
 		Code code = new Code();
-		
+
 		if (0 == userManager.validateLogin(user)) {
 			userManager.login(user, request, response);
 			code.setCode(0);
 			code.setMsg("登录成功");
 			return code;
 		}
-		
+
 		code.setCode(-1);
 		code.setMsg("用户名或者密码错误");
 		return code;

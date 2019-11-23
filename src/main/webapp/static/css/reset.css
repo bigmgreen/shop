@@ -68,3 +68,8 @@ a {
 a:hover {
 	color: #f43636
 }
+
+button:focus,
+button:active {
+	outline: none;
+}

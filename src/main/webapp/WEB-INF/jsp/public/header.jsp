@@ -29,25 +29,36 @@
 <header>
 	<div class="top">
 		<div class="top__main block">
-			<div class="top__left">
-				<a href="/shop/login.html"><b>亲，请登录</b></a>
-				<a href="/shop/register.html">免费注册</a>
-			</div>
-			<div class="top__right">
-				<a href="#">个人中心</a>
-				<a href="#"><span class="glyphicon glyphicon-shopping-cart"></span>购物车</a>
-			</div>
+			<% String name = (String)request.getSession().getAttribute("name"); %>
+			<c:choose>
+			    <c:when test="${name == null}">
+				    <div class="top__right">
+						<a href="/shop/login.html"><b>亲，请登录</b></a>
+						<a href="/shop/register.html">免费注册</a>
+					</div>
+			    </c:when>
+			    <c:otherwise>
+			    	<div class="top__left">
+				    	<a href="/shop/userinfo.html"><b>您好：<c:out value="${name}"></c:out></b></a>
+				    	<a href="/shop/userlogout.user">退出</a>
+			    	</div>
+			    	<div class="top__right">
+						<a href="/shop/userinfo.html">个人中心</a>
+						<a href="#"><span class="glyphicon glyphicon-shopping-cart"></span>购物车</a>
+					</div>
+			    </c:otherwise>
+			</c:choose>
 		</div>
 	</div>
 	
 	<div class="search">
 		<div class="search__main block">
-			<a class="search__logo" href="/shop/index"><img src="/static/img/logo.png" /></a>
-			<form class="search__form" action="/" method="post">
+			<a class="search__logo" href="/shop/index.html"><img src="/static/img/logo.png" /></a>
+			<form class="search__form" onsubmit="return false;">
 				<div class="search__form__input">
 					<span class="glyphicon glyphicon-search"></span>
 					<input type="text" placeholder="请输入搜索文字" maxlength="50" />
-					<button class="search__form__btn" type="submit">搜索</button>
+					<button class="search__form__btn" type="button">搜索</button>
 				</div>
 			</form>
 		</div>
@@ -55,7 +66,7 @@
 	
 	<div class="nav">
 		<div class="block">
-			<a href="#">首页</a>
+			<a href="/shop/index.html">首页</a>
 			<a href="#">男裤</a>
 			<a href="#">女裤</a>
 			<a href="#">男鞋</a>

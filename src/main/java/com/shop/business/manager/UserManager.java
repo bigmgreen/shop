@@ -211,9 +211,11 @@ public class UserManager {
 			HttpServletResponse response) {
 		User user_validate = getUserByNameOrEmail(user);
 		if (user_validate != null) {
-			if (user_validate.getPassword().equals(user.getPassword())) {
-				request.getSession().setAttribute(user_validate.getId() + "",
-						user_validate.getName());
+			if (user.getPassword().equals(user_validate.getPassword())) {
+				request.getSession().setAttribute("name", user_validate.getName());
+				request.getSession().setAttribute("id", user_validate.getName());
+				
+				request.getSession().setAttribute(user_validate.getId() + "", user_validate.getName());
 				Cookie cookie = new Cookie("userId", user_validate.getId() + "");
 				cookie.setPath("/");
 				response.addCookie(cookie);
@@ -238,6 +240,8 @@ public class UserManager {
 			if (cookies != null) {
 				for (Cookie c : cookies) {
 					if ("userId".equals(c.getName())) {
+						request.getSession().removeAttribute("name");
+						request.getSession().removeAttribute("id");
 						request.getSession().setAttribute(c.getValue(), "");
 						break;
 					}
