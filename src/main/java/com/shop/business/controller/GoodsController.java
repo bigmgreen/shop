@@ -49,7 +49,7 @@ public class GoodsController {
 	 * @return
 	 */
 	@RequestMapping("/list")
-	public String list(@RequestParam(defaultValue = "1") int pageIndex, @RequestParam String kw, Model model) {
+	public String list(@RequestParam(defaultValue = "1") int pageIndex, @RequestParam(defaultValue = "") String kw, Model model) {
 		model.addAttribute("list", goodsManager.getGoodsList(pageIndex, kw));
 
 		return Utils.getBusinessUrl("list");

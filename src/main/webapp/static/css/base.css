@@ -190,3 +190,14 @@ footer .footer-hd em {
 	color: #fff;
 	opacity: .5;
 }
+
+.pagination>li>a, .pagination>li>span {
+	color: #3d3d3d;
+}
+
+.pagination>.active>a:hover,
+.pagination>.active>a {
+	border-color: #f40;
+	background: #f40;
+	color: #fff;
+}

@@ -1,0 +1,239 @@
+.detail {
+	background-color: #fff;
+	border-right: 1px solid #E8E8E8;
+	margin: 10px auto;
+	padding-bottom: 10px;
+}
+
+.detail__preview {
+	float: left;
+	width: 430px;
+	padding-top: 20px;
+	padding-left: 20px;
+	padding-bottom: 10px;
+}
+
+.detail__preview__img {
+	display: block;
+	width: 400px;
+	height: 270px;
+}
+
+.detail__preview__imgs {
+	overflow: hidden;
+	margin-top: 15px;
+	padding-bottom: 2px;
+}
+
+.detail__preview__imgs img {
+	display: block;
+	float: left;
+	width: 40px;
+	height: 27px;
+	margin-right: 12px;
+	cursor: pointer;
+	border: 2px solid #fff;
+}
+
+.detail__preview__imgs img.active, .detail__preview__imgs img:hover {
+	border-color: #f40;
+}
+
+.detail__info {
+	width: 500px;
+	padding-left: 20px;
+	padding-top: 40px;
+	float: left;
+}
+
+.detail__info__title {
+	min-height: 21px;
+	_height: 21px;
+	font-size: 16px;
+	font-weight: 700;
+	line-height: 21px;
+	color: #3C3C3C;
+}
+
+.detail__info__price {
+	margin-right: 5px;
+	vertical-align: baseline;
+	font-size: 16px;
+	font-weight: 700;
+	font-family: Tahoma, Arial, Helvetica, sans-serif;
+	color: #F40;
+}
+
+.detail__info__price b {
+	font-size: 26px;
+}
+
+.detail__info__price small {
+	color: #999;
+	font-size: 12px;
+	text-decoration: line-through;
+	margin-left: 5px;
+	font-weight: 300;
+}
+
+.detail__info__item {
+	margin-bottom: 20px;
+}
+
+.detail__info__item__main {
+	display: inline-block;
+	vertical-align: middle;
+}
+
+.detail__info__item__main span.active, .detail__info__item__main span:hover
+	{
+	padding: 2px 5px;
+	border: 2px solid #F40;
+}
+
+.detail__info__item__main span {
+	cursor: pointer;
+	position: relative;
+	vertical-align: middle;
+	line-height: 20px;
+	background: #FFF;
+	display: inline-block;
+	white-space: nowrap;
+	text-decoration: none;
+	padding: 3px 6px;
+	text-align: center;
+	border: 1px solid #DCDCDC;
+	background: #FFF;
+	margin-right: 5px;
+}
+
+.detail__info__name {
+	margin-right: 5px;
+	width: 55px;
+	color: #6C6C6C;
+}
+
+.detail__info__count {
+	margin-bottom: 30px;
+}
+
+.detail__info__count__input {
+	width: 124px;
+	height: 28px;
+	line-height: 28px;
+	position: relative;
+	overflow: hidden;
+	display: inline-block;
+	vertical-align: middle;
+}
+
+.detail__info__count__input input {
+	width: 48px;
+	height: 26px;
+	font-size: 16px;
+	line-height: 26px;
+	text-align: center;
+	color: #666;
+	border: 1px solid #CCC;
+	outline: 0;
+	background: #FFF;
+	float: left;
+}
+
+.detail__info__count__input--del, .detail__info__count__input--add {
+	color: #333;
+	font-weight: 700;
+	background-color: #ededed;
+	cursor: pointer;
+	display: block;
+	width: 26px;
+	height: 26px;
+	border: 1px solid #ccc;
+	line-height: 26px;
+	padding: 0;
+	vertical-align: top;
+	overflow: hidden;
+	text-align: center;
+	overflow: hidden;
+	float: left;
+	display: block;
+}
+
+.detail__info__btns {
+	overflow: hidden;
+}
+
+.detail__info__btns__btn {
+	height: 38px;
+	text-align: center;
+	font-family: "Hiragino Sans GB", "microsoft yahei", sans-serif;
+	font-size: 16px;
+	line-height: 38px;
+	border-width: 1px;
+	border-style: solid;
+	border-radius: 2px;
+	display: block;
+	float: left;
+	cursor: pointer;
+}
+
+.detail__info__btns__btn:nth-child(1), .commentadd {
+	margin-right: 9px;
+	color: #E5511D;
+	border-color: #F0CAB6;
+	background: #FFE4D0;
+	cursor: pointer;
+	width: 134px;
+}
+
+.detail__info__btns__btn:nth-child(2) {
+	width: 180px;
+	margin-right: 9px;
+	color: #FFF;
+	border-color: #F40;
+	background: #F40;
+}
+
+.detail__info__tip {
+	font-size: 12px;
+	color: #999;
+	margin-bottom: 10px;
+	margin-top: 10px;
+}
+
+.detail .glyphicon-shopping-cart {
+	position: relative;
+	top: 2px;
+	margin-right: 2px;
+}
+
+.commentadd-main {
+	background-color: #fff;
+}
+
+.commentadd-main textarea {
+	width: 80%;
+	display: block;
+	margin: 0 auto;
+	height: 100px;
+	border-radius: 10px;
+	padding: 20px;
+	float: left;
+	resize: none;
+}
+
+.commentadd {
+	display: block;
+	float: left;
+	width: 20%;
+	line-height: 100px;
+	height: 100px;
+	text-align: center;
+	font-family: "Hiragino Sans GB", "microsoft yahei", sans-serif;
+	font-size: 16px;
+	border-width: 1px;
+	border-style: solid;
+	border-radius: 2px;
+	cursor: pointer;
+	margin-right: 0;
+}

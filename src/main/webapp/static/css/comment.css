@@ -1,0 +1,37 @@
+.comments{
+	background-color: #fff;
+	margin: 10px auto;
+}
+
+.comments__item{
+	overflow: hidden;
+	padding: 20px;
+	border-bottom: 1px solid #eee;
+	display: block;
+	color: #333;
+}
+
+.comments__item__author{
+	width: 50px;
+	text-align: center;
+	display: block;
+}
+
+.comments__item__content{
+	line-height: 25px;
+	width: 870px;
+	display: block;
+}
+.comments__item__date{
+	display: block;
+	float: right;
+}
+.comments__item__date em{
+	cursor: pointer;
+	margin-left: 5px;
+}
+.comments__more{
+	text-align: center;
+	line-height: 50px;
+	display: block;
+}
