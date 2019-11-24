@@ -201,3 +201,39 @@ footer .footer-hd em {
 	background: #f40;
 	color: #fff;
 }
+
+.empty {
+	height: 200px;
+	position: relative;
+}
+
+.empty i {
+	position: absolute;
+	text-align: center;
+	color: #ccccd0;
+	left: 50%;
+	width: 84px;
+	line-height: 200px;
+	font-size: 18px;
+	margin-left: -42px;
+	font-style: normal;
+	top: 0;
+}
+
+.empty i:before, .empty i:after {
+	content: ' ';
+	position: absolute;
+	height: 0;
+	line-height: 0;
+	border-top: 1px solid #e6e6e6;
+	width: 60px;
+	top: 50%;
+}
+
+.empty i:before {
+	left: -70px;
+}
+
+.empty i:after {
+	right: -70px;
+}

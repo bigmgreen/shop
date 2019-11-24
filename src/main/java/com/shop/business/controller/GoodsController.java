@@ -69,4 +69,18 @@ public class GoodsController {
 
 		return Utils.getBusinessUrl("detail");
 	}
+	
+	/**
+	 * 查询当前用户的购物车情况
+	 * 
+	 * @param id
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping("/carlist")
+	public String carList(Model model) {
+		model.addAttribute("title", "我的购物车 | ");
+		
+		return Utils.getBusinessUrl("carlist");
+	}
 }
