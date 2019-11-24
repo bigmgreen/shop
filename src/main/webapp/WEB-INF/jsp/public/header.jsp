@@ -45,7 +45,7 @@
 			    	<div class="top__right">
 						<a href="/shop/userinfo.user">个人中心</a>
 						<a href="#"><span class="glyphicon glyphicon-shopping-cart"></span>购物车</a>
-						<a href="#">我的订单</a>
+						<a href="/shop/orders.user">我的订单</a>
 					</div>
 			    </c:otherwise>
 			</c:choose>
