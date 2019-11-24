@@ -30,12 +30,12 @@ public class GoodsController {
 	 * @return
 	 */
 	@RequestMapping("/index")
-	public String index(@RequestParam(defaultValue = "1") int pageIndex, Model model) {
-		if (1 == pageIndex) {
-			model.addAttribute("banner", goodsManager.getBanners());
-		}
+	public String index(Model model) {
+		model.addAttribute("banner", goodsManager.getBanners());
 
-		model.addAttribute("list", goodsManager.getIndexList(pageIndex));
+		model.addAttribute("hotlist", goodsManager.getHotList());
+
+		model.addAttribute("list", goodsManager.getIndexList());
 
 		return Utils.getBusinessUrl("index");
 	}
@@ -49,7 +49,8 @@ public class GoodsController {
 	 * @return
 	 */
 	@RequestMapping("/list")
-	public String list(@RequestParam(defaultValue = "1") int pageIndex, @RequestParam(defaultValue = "") String kw, Model model) {
+	public String list(@RequestParam(defaultValue = "1") int pageIndex, @RequestParam(defaultValue = "") String kw,
+			Model model) {
 		model.addAttribute("list", goodsManager.getGoodsList(pageIndex, kw));
 
 		return Utils.getBusinessUrl("list");
@@ -69,7 +70,7 @@ public class GoodsController {
 
 		return Utils.getBusinessUrl("detail");
 	}
-	
+
 	/**
 	 * 查询当前用户的购物车情况
 	 * 
@@ -80,7 +81,7 @@ public class GoodsController {
 	@RequestMapping("/carlist")
 	public String carList(Model model) {
 		model.addAttribute("title", "我的购物车 | ");
-		
+
 		return Utils.getBusinessUrl("carlist");
 	}
 }

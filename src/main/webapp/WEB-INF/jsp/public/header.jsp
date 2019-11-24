@@ -55,11 +55,11 @@
 	<div class="search">
 		<div class="search__main block">
 			<a class="search__logo" href="/shop/index.html"><img src="/static/img/logo.png" /></a>
-			<form class="search__form" onsubmit="return false;">
+			<form class="search__form" action="/shop/list.html" >
 				<div class="search__form__input">
 					<span class="glyphicon glyphicon-search"></span>
-					<input type="text" placeholder="请输入搜索文字" maxlength="50" />
-					<button class="search__form__btn" type="button">搜索</button>
+					<input type="text" placeholder="请输入搜索文字" name="kw" maxlength="50" />
+					<button class="search__form__btn" type="submit">搜索</button>
 				</div>
 			</form>
 		</div>

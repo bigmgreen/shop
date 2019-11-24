@@ -1,5 +1,6 @@
 package com.shop.manager;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,25 +15,41 @@ public class GoodsManager {
 	private GoodsService goodsService;
 
 	/**
-	 * 获取首页数据
-	 * 
-	 * @param pageIndex
-	 * @return
-	 */
-	@SuppressWarnings("rawtypes")
-	public List getIndexList(int pageIndex) {
-		return goodsService.getGoodsListByType(0, 30, 0);
-	}
-
-	/**
 	 * 获取焦点图数据
 	 * 
 	 * @return
 	 */
 	@SuppressWarnings("rawtypes")
 	public List getBanners() {
+		return goodsService.getBanners();
+	}
 
-		return null;
+	/**
+	 * 获取推荐列表
+	 * 
+	 * @return
+	 */
+	@SuppressWarnings("rawtypes")
+	public List getHotList() {
+		return goodsService.getHotGoods();
+	}
+
+	/**
+	 * 获取首页数据
+	 * 
+	 * @return
+	 */
+	@SuppressWarnings({ "rawtypes", "unchecked" })
+	public List getIndexList() {
+		List list = new ArrayList();
+
+		// type 1,2,3,4 分别依次是男装，女装，男鞋，女鞋 首页拿出前四条即可
+		list.addAll(goodsService.getGoodsListByType(1, 4));
+		list.addAll(goodsService.getGoodsListByType(2, 4));
+		list.addAll(goodsService.getGoodsListByType(3, 4));
+		list.addAll(goodsService.getGoodsListByType(4, 4));
+
+		return list;
 	}
 
 	/**

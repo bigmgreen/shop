@@ -10,12 +10,20 @@ import com.shop.dao.*;
  * 
  */
 public class BaseService {
-	/** 会话 */
 	protected SqlSession session;
 
-	/** 获取userDao */
 	protected UserDao getUserDao() {
 		session = Utils.openSqlSession();
 		return session.getMapper(UserDao.class);
+	}
+	
+	protected BannerDao getBannerDao() {
+		session = Utils.openSqlSession();
+		return session.getMapper(BannerDao.class);
+	}
+	
+	protected GoodsDao getGoodsDao() {
+		session = Utils.openSqlSession();
+		return session.getMapper(GoodsDao.class);
 	}
 }

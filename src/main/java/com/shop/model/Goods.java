@@ -2,11 +2,29 @@ package com.shop.model;
 
 public class Goods {
 	public Long id;
-	public String name;
-	public String password;
-	public String email;
-	public String address;
-	public String postelcode;
+	public String imgurl;
+	public String title;
+	public Integer ispost;
+	public Integer type;
+	public Integer price;
+	public Integer oldprice;
+	public Integer salecount;
+
+	public Integer getOldprice() {
+		return oldprice;
+	}
+
+	public void setOldprice(Integer oldprice) {
+		this.oldprice = oldprice;
+	}
+
+	public Integer getType() {
+		return type;
+	}
+
+	public void setType(Integer type) {
+		this.type = type;
+	}
 
 	public Long getId() {
 		return id;
@@ -16,44 +34,44 @@ public class Goods {
 		this.id = id;
 	}
 
-	public String getName() {
-		return name;
+	public String getImgurl() {
+		return imgurl;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setImgurl(String imgurl) {
+		this.imgurl = imgurl;
 	}
 
-	public String getPassword() {
-		return password;
+	public String getTitle() {
+		return title;
 	}
 
-	public void setPassword(String password) {
-		this.password = password;
+	public void setTitle(String title) {
+		this.title = title;
 	}
 
-	public String getEmail() {
-		return email;
+	public Integer getIspost() {
+		return ispost;
 	}
 
-	public void setEmail(String email) {
-		this.email = email;
+	public void setIspost(Integer ispost) {
+		this.ispost = ispost;
 	}
 
-	public String getAddress() {
-		return address;
+	public Integer getPrice() {
+		return price;
 	}
 
-	public void setAddress(String address) {
-		this.address = address;
+	public void setPrice(Integer price) {
+		this.price = price;
 	}
 
-	public String getPostelcode() {
-		return postelcode;
+	public Integer getSalecount() {
+		return salecount;
 	}
 
-	public void setPostelcode(String postelcode) {
-		this.postelcode = postelcode;
+	public void setSalecount(Integer salecount) {
+		this.salecount = salecount;
 	}
 
 }

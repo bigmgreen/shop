@@ -7,25 +7,24 @@
 	<div class="banner">
 		<div class="carousel slide" id="carousel" data-ride="carousel">
 		  <ol class="carousel-indicators">
-		    <li data-target="#carousel" data-slide-to="0" class="active"></li>
-		    <li data-target="#carousel" data-slide-to="1"></li>
-		    <li data-target="#carousel" data-slide-to="2"></li>
+		  	<c:forEach items="${banner}" var="item" varStatus="status">
+			    <li 
+				    data-target="#carousel" 
+				    data-slide-to="${status.index}" 
+				    class="<c:if test="${status.index == 0}">active</c:if>"
+			    ></li>
+		    </c:forEach>
 		  </ol>
-		
 
 		  <div class="carousel-inner" role="listbox">
-		    <div class="item active">
-		      <img src="//img.alicdn.com/tfs/TB1vbTkna61gK0jSZFlXXXDKFXa-520-280.jpg_q90_.webp">
-		      <div class="carousel-caption"></div>
-		    </div>
-		    <div class="item">
-		      <img src="https://img.alicdn.com/simba/img/TB15q1AmYY1gK0jSZTESutDQVXa.jpg">
-		      <div class="carousel-caption"></div>
-		    </div>
-		    <div class="item">
-		      <img src="https://img.alicdn.com/simba/img/TB1XBHlhHvpK1RjSZFqSuwXUVXa.jpg">
-		      <div class="carousel-caption"></div>
-		    </div>
+		    <c:forEach items="${banner}" var="item" varStatus="status">
+		    	<a 
+		    		href='/shop/detail.html?id=<c:out value="${item.goodsid }"></c:out>' 
+		    		class="item <c:if test="${status.index == 0}">active</c:if>"
+		    	>
+			      <img src='<c:out value="${item.imgurl }"></c:out>'>
+			    </a>
+		    </c:forEach>
 		  </div>
 		
 		  <a class="left carousel-control" href="#carousel" role="button" data-slide="prev">
@@ -39,27 +38,18 @@
 		</div>
 	</div>
 	<div class="goods--small__list">
-		<a href="#" class="goods--small">
-			<img src="//img.alicdn.com/bao/uploaded/i1/106802831/TB2bMLgtFXXXXc6XXXXXXXXXXXX_!!106802831.jpg_180x180q90.jpg_.webp" />
-			<span>冬宽松休闲外套大毛领连帽工装棉服男潮外套</span>
-			<em><i>￥</i>289</em>
-		</a>
-		<a href="#" class="goods--small">
-			<img src="//img.alicdn.com/bao/uploaded/i1/106802831/TB2bMLgtFXXXXc6XXXXXXXXXXXX_!!106802831.jpg_180x180q90.jpg_.webp" />
-			<span>冬宽松休闲外套大毛领连帽工装棉服男潮外套</span>
-			<em><i>￥</i>289</em>
-		</a>
+		<c:forEach items="${hotlist}" var="item" varStatus="status">
+	    	<a href='/shop/detail.html?id=<c:out value="${item.id }"></c:out>' class="goods--small">
+				<img src="<c:out value="${item.imgurl }"></c:out>" />
+				<span><c:out value="${item.title }"></c:out></span>
+				<em><i>￥</i><c:out value="${item.price }"></c:out></em>
+			</a>
+	    </c:forEach>
 	</div>
 </div>
 
 <%@ include file="./public/goods-list.jsp"%>
 
-<div class="end"><i>END</i></div>
-
-<script>
-	$(function() {
-		
-	});
-</script>
+<c:if test="${list != null}"><div class="end"><i>END</i></div></c:if>
 
 <%@ include file="../public/footer.jsp"%>
