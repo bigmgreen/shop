@@ -9,7 +9,7 @@
 			<a href='/shop/detail.html?id=<c:out value="${item.id }"></c:out>' class="item">
 				<img src="<c:out value="${item.imgurl }"></c:out>" />
 				<span class="item__title">
-					<img src="/static/img/goods/icon-baoyou.png" alt="" />
+					<c:if test="${item.ispost eq 1}"><img src="/static/img/goods/icon-baoyou.png" alt="" /></c:if>
 					<c:out value="${item.title }"></c:out>
 				</span>
 				<span class="item__price">

@@ -47,4 +47,12 @@ public interface GoodsDao {
 	 * @return
 	 */
 	public int getGoodsCountBykw(String kw);
+
+	/**
+	 * 通过商品id获取商品详情
+	 * 
+	 * @param id
+	 * @return
+	 */
+	public Goods getGoodsById(@Param("id") long id);
 }

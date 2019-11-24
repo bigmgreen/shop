@@ -3,12 +3,63 @@ package com.shop.model;
 public class Goods {
 	public Long id;
 	public String imgurl;
+	public String imgs;
+	public String sizes;
+	public String colors;
 	public String title;
 	public Integer ispost;
 	public Integer type;
 	public Integer price;
 	public Integer oldprice;
 	public Integer salecount;
+	public Integer count;
+
+	public Integer getCount() {
+		return count;
+	}
+
+	public void setCount(Integer count) {
+		this.count = count;
+	}
+
+	/**
+	 * 需要把长字符串转为数组
+	 * 
+	 * @return
+	 */
+	public String[] getImgs() {
+		return imgs.split(";");
+	}
+
+	/**
+	 * 需要把长字符串转为数组
+	 * 
+	 * @return
+	 */
+	public String[] getSizes() {
+		return sizes.split(",");
+	}
+
+	public void setSizes(String sizes) {
+		this.sizes = sizes;
+	}
+
+	/**
+	 * 需要把长字符串转为数组
+	 * 
+	 * @return
+	 */
+	public String[] getColors() {
+		return colors.split(",");
+	}
+
+	public void setColors(String colors) {
+		this.colors = colors;
+	}
+
+	public void setImgs(String imgs) {
+		this.imgs = imgs;
+	}
 
 	public Integer getOldprice() {
 		return oldprice;

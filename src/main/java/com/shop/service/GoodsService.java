@@ -3,6 +3,7 @@ package com.shop.service;
 import java.util.List;
 import org.springframework.stereotype.Service;
 
+import com.shop.model.Goods;
 import com.shop.utils.BaseService;
 
 /**
@@ -83,6 +84,19 @@ public class GoodsService extends BaseService {
 
 		session.close();
 		return pageCount;
+	}
+
+	/**
+	 * 通过商品id获取商品详情
+	 * 
+	 * @param id
+	 * @return
+	 */
+	public Goods getGoodsById(long id) {
+		Goods goods = getGoodsDao().getGoodsById(id);
+		
+		session.close();
+		return goods;
 	}
 
 }

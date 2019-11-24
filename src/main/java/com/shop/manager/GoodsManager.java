@@ -97,8 +97,7 @@ public class GoodsManager {
 	 * @return
 	 */
 	public Goods getGoodsById(long id) {
-		// TODO 自动生成的方法存根
-		return null;
+		return goodsService.getGoodsById(id);
 	}
 
 	/**

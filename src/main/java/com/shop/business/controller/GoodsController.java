@@ -1,16 +1,14 @@
 package com.shop.business.controller;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.shop.manager.GoodsManager;
+import com.shop.utils.Code;
 import com.shop.utils.Utils;
 
 /**
@@ -63,7 +61,7 @@ public class GoodsController {
 
 		return Utils.getBusinessUrl("list");
 	}
-	
+
 	/**
 	 * 商品信息
 	 * 
@@ -77,6 +75,26 @@ public class GoodsController {
 		model.addAttribute("comments", goodsManager.getGoodsCommentsById(id));
 
 		return Utils.getBusinessUrl("detail");
+	}
+
+	/**
+	 * 购买商品
+	 * @param goodsid
+	 * @param count
+	 * @param color
+	 * @param size
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping("/buy.user")
+	@ResponseBody
+	public Code buy(@RequestParam long goodsid, @RequestParam int count, @RequestParam String color,
+			@RequestParam String size, Model model) {
+		Code code = new Code();
+		
+		code.setCode(0);
+
+		return code;
 	}
 
 	/**

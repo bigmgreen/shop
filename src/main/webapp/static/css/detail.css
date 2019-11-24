@@ -17,6 +17,8 @@
 	display: block;
 	width: 400px;
 	height: 270px;
+	-webkit-object-fit: cover;
+	object-fit: cover;
 }
 
 .detail__preview__imgs {
@@ -33,6 +35,8 @@
 	margin-right: 12px;
 	cursor: pointer;
 	border: 2px solid #fff;
+	-webkit-object-fit: cover;
+	object-fit: cover;
 }
 
 .detail__preview__imgs img.active, .detail__preview__imgs img:hover {
@@ -115,6 +119,8 @@
 
 .detail__info__count {
 	margin-bottom: 30px;
+	-webkit-user-select: none;
+	user-select: none;
 }
 
 .detail__info__count__input {
