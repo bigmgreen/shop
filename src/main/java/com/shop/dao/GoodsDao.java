@@ -28,4 +28,23 @@ public interface GoodsDao {
 	 * @return
 	 */
 	public List<Goods> getGoodsListByType(@Param("type") int type, @Param("pageSize") int pageSize);
+
+	/**
+	 * 根据搜索的条件显示结果集
+	 * 
+	 * @param pageIndex
+	 * @param pageIndex
+	 * @param kw
+	 * @return
+	 */
+	@SuppressWarnings("rawtypes")
+	public List getGoodsListBykw(@Param("kw") String kw, @Param("start") int start, @Param("end") int end);
+
+	/**
+	 * 根据搜索的条件显示结果集长度
+	 * 
+	 * @param kw
+	 * @return
+	 */
+	public int getGoodsCountBykw(String kw);
 }

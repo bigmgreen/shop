@@ -118,3 +118,25 @@
 .end i:after {
 	right: -70px;
 }
+
+h3 {
+	position: relative;
+	line-height: 50px;
+	font-size: 20px;
+	color: #FF5500;
+	background-color: #fff;
+	padding: 0 10px;
+	margin: 10px auto 0;
+}
+
+h3:before {
+	content: "";
+	position: relative;
+	float: left;
+	top: 14px;
+	width: 4px;
+	height: 16px;
+	background: #ff242d;
+	background: linear-gradient(to bottom, #ff7436, #ff0000);
+	margin-right: 7px;
+}

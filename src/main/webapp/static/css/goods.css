@@ -5,27 +5,6 @@
 	margin: 5px auto;
 }
 
-.list h3 {
-	position: relative;
-	height: 22px;
-	line-height: 22px;
-	margin: 17px 18px;
-	font-size: 20px;
-	color: #FF5500;
-}
-
-.list h3:before {
-	content: "";
-	position: relative;
-	float: left;
-	top: 2px;
-	width: 4px;
-	height: 16px;
-	background: #ff242d;
-	background: linear-gradient(to bottom, #ff7436, #ff0000);
-	margin-right: 7px;
-}
-
 .list .item {
 	display: block;
 	float: left;

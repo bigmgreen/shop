@@ -9,4 +9,12 @@
 		resultType="Goods">
 		select * from goods where type=#{type} limit #{pageSize}
 	</select>
+	<select id="getGoodsListBykw"
+		resultType="Goods">
+		select * from goods where title like "%"#{kw,jdbcType=VARCHAR}"%" limit #{start},#{end}
+	</select>
+	<select id="getGoodsCountBykw"
+		resultType="java.lang.Integer">
+		select count(1) from goods where title like "%"#{kw,jdbcType=VARCHAR}"%"
+	</select>
 </mapper>

@@ -1,7 +1,9 @@
 package com.shop.manager;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -31,7 +33,11 @@ public class GoodsManager {
 	 */
 	@SuppressWarnings("rawtypes")
 	public List getHotList() {
-		return goodsService.getHotGoods();
+		List list = goodsService.getHotGoods();
+		if (null == list || (null != list && list.size() == 0)) {
+			return null;
+		}
+		return list;
 	}
 
 	/**
@@ -49,6 +55,10 @@ public class GoodsManager {
 		list.addAll(goodsService.getGoodsListByType(3, 4));
 		list.addAll(goodsService.getGoodsListByType(4, 4));
 
+		if (null == list || (null != list && list.size() == 0)) {
+			return null;
+		}
+
 		return list;
 	}
 
@@ -59,10 +69,25 @@ public class GoodsManager {
 	 * @param kw
 	 * @return
 	 */
-	@SuppressWarnings("rawtypes")
-	public List getGoodsList(int pageIndex, String kw) {
-		// TODO 自动生成的方法存根
-		return null;
+	@SuppressWarnings({ "rawtypes" })
+	public List getGoodsList(String kw, int pageIndex, int pageSize) {
+		List list = goodsService.getGoodsListBykw(kw, pageIndex, pageSize);
+
+		if (null == list || (null != list && list.size() == 0)) {
+			list = null;
+		}
+
+		return list;
+	}
+
+	/**
+	 * 根据搜索的条件显示结果集个数
+	 * 
+	 * @param kw
+	 * @return
+	 */
+	public int getGoodsCountBykw(String kw) {
+		return goodsService.getGoodsCountBykw(kw);
 	}
 
 	/**

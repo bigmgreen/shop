@@ -1,8 +1,12 @@
 package com.shop.business.controller;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -49,13 +53,17 @@ public class GoodsController {
 	 * @return
 	 */
 	@RequestMapping("/list")
-	public String list(@RequestParam(defaultValue = "1") int pageIndex, @RequestParam(defaultValue = "") String kw,
-			Model model) {
-		model.addAttribute("list", goodsManager.getGoodsList(pageIndex, kw));
+	public String list(@RequestParam(defaultValue = "1") int pageIndex, @RequestParam(defaultValue = "8") int pageSize,
+			@RequestParam(defaultValue = "") String kw, Model model) {
+		model.addAttribute("kw", kw);
+		model.addAttribute("list", goodsManager.getGoodsList(kw, pageIndex, pageSize));
+		model.addAttribute("pageCount", (goodsManager.getGoodsCountBykw(kw) + pageSize - 1) / pageSize);
+		model.addAttribute("pageIndex", pageIndex);
+		model.addAttribute("pageSize", pageSize);
 
 		return Utils.getBusinessUrl("list");
 	}
-
+	
 	/**
 	 * 商品信息
 	 * 

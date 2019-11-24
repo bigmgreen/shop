@@ -5,7 +5,6 @@
 
 <c:if test="${list != null}">
 	<div class="list block">
-		<h3>热卖单品<a class="more pull-right" href="/shop/list.html">更多&gt;&gt;</a></h3>
 		<c:forEach items="${list}" var="item" varStatus="status">
 			<a href='/shop/detail.html?id=<c:out value="${item.id }"></c:out>' class="item">
 				<img src="<c:out value="${item.imgurl }"></c:out>" />

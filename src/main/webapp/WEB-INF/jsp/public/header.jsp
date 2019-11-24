@@ -58,7 +58,7 @@
 			<form class="search__form" action="/shop/list.html" >
 				<div class="search__form__input">
 					<span class="glyphicon glyphicon-search"></span>
-					<input type="text" placeholder="请输入搜索文字" name="kw" maxlength="50" />
+					<input type="text" placeholder="请输入搜索文字" name="kw" value='<c:out value="${kw}"></c:out>' maxlength="50" />
 					<button class="search__form__btn" type="submit">搜索</button>
 				</div>
 			</form>

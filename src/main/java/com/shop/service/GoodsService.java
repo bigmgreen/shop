@@ -1,12 +1,8 @@
 package com.shop.service;
 
-import java.util.ArrayList;
 import java.util.List;
 import org.springframework.stereotype.Service;
 
-import com.shop.dao.BannerDao;
-import com.shop.model.Goods;
-import com.shop.model.User;
 import com.shop.utils.BaseService;
 
 /**
@@ -25,7 +21,10 @@ public class GoodsService extends BaseService {
 	 */
 	@SuppressWarnings("rawtypes")
 	public List getBanners() {
-		return getBannerDao().getBanner();
+		List list = getBannerDao().getBanner();
+
+		session.close();
+		return list;
 	}
 
 	/**
@@ -35,7 +34,10 @@ public class GoodsService extends BaseService {
 	 */
 	@SuppressWarnings("rawtypes")
 	public List getHotGoods() {
-		return getGoodsDao().getHotGoods();
+		List list = getGoodsDao().getHotGoods();
+
+		session.close();
+		return list;
 	}
 
 	/**
@@ -46,8 +48,41 @@ public class GoodsService extends BaseService {
 	 * @param pageIndex
 	 * @return
 	 */
-	public List<Goods> getGoodsListByType(int type, int pageSize) {
-		return getGoodsDao().getGoodsListByType(type, pageSize);
+	@SuppressWarnings("rawtypes")
+	public List getGoodsListByType(int type, int pageSize) {
+		List list = getGoodsDao().getGoodsListByType(type, pageSize);
+
+		session.close();
+		return list;
+	}
+
+	/**
+	 * 根据搜索的条件显示结果集
+	 * 
+	 * @param pageIndex
+	 * @param pageIndex
+	 * @param kw
+	 * @return
+	 */
+	@SuppressWarnings("rawtypes")
+	public List getGoodsListBykw(String kw, int pageIndex, int pageSize) {
+		List list = getGoodsDao().getGoodsListBykw(kw, (pageIndex - 1) * pageSize, pageSize);
+
+		session.close();
+		return list;
+	}
+
+	/**
+	 * 根据搜索的条件显示结果集长度
+	 * 
+	 * @param kw
+	 * @return
+	 */
+	public int getGoodsCountBykw(String kw) {
+		int pageCount = getGoodsDao().getGoodsCountBykw(kw);
+
+		session.close();
+		return pageCount;
 	}
 
 }

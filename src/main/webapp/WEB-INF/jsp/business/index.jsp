@@ -48,6 +48,10 @@
 	</div>
 </div>
 
+<div class="block">
+	<h3>热卖单品<a class="more pull-right" href="/shop/list.html">更多&gt;&gt;</a></h3>
+</div>
+
 <%@ include file="./public/goods-list.jsp"%>
 
 <c:if test="${list != null}"><div class="end"><i>END</i></div></c:if>
