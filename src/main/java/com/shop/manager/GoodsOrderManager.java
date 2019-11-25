@@ -86,4 +86,36 @@ public class GoodsOrderManager {
 	public int getOrderCount(long userid) {
 		return goodsOrderService.getOrderCount(userid);
 	}
+
+	/**
+	 * 根据id更新当前用户的订单
+	 * 
+	 * @param id
+	 * @return
+	 */
+	public boolean updateOrder(long id) {
+		try {
+			goodsOrderService.updateOrder(id);
+			return true;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return false;
+	}
+
+	/**
+	 * 根据id删除当前用户的订单
+	 * 
+	 * @param id
+	 * @return
+	 */
+	public boolean delOrder(long id) {
+		try {
+			goodsOrderService.delOrder(id);
+			return true;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return false;
+	}
 }
