@@ -25,7 +25,7 @@
 					<div class="orders__list__item--head">
 						<div class="orders__list__item--head__date"><c:out value="${item.date }"></c:out></div>
 						<div class="orders__list__item--head__number">订单号: <c:out value="${item.ordercode }"></c:out></div>
-						<c:if test="${item.type == 3 }"><div class="orders__list__item--head__del">删除</div></c:if>
+						<c:if test="${item.type == 3 }"><div class="orders__list__item--head__del" data-id="<c:out value="${item.id }"></c:out>">删除</div></c:if>
 					</div>
 					<div class="orders__list__item__main">
 						<img class="orders__list__item__main__img" src="//img.alicdn.com/imgextra/i2/3485517560/O1CN01mmDQGw25iWpCMKsot_!!3485517560.jpg_80x80.jpg" />
@@ -39,7 +39,7 @@
 						<c:if test="${item.type == 2 }">
 							<span class="orders__list__item__main__status">已发货</span>
 							<span class="orders__list__item__main__do">
-								<span class="orders__list__item__main__do__btn">确认收货</span>
+								<span class="orders__list__item__main__do__btn" data-id="<c:out value="${item.id }"></c:out>">确认收货</span>
 							</span>
 						</c:if>
 						<c:if test="${item.type == 3 }">
@@ -68,9 +68,71 @@
 	</div>
 </c:if>
 
+<div class="modal fade" id="goodsModal" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">提示</h4>
+      </div>
+      <div class="modal-body">确认收货？</div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+        <button type="button" class="btn btn-primary">确认</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="delModal" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">提示</h4>
+      </div>
+      <div class="modal-body">确认删除这条订单？</div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+        <button type="button" class="btn btn-primary">确认</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 <script>
 	$(function() {
+		$('.orders__list__item__main__do__btn').click(function(){
+			$('#goodsModal').find('.btn-primary').attr('data-id', $(this).data('id'));
+			$('#goodsModal').modal();
+		});
 		
+		$('#goodsModal').find('.btn-primary').click(function() {
+			$.post('/shop/orderupdate.user', {
+				id: $(this).attr('data-id')
+			}).done(function (res) {
+				if (res.code === 0) {
+					location.reload();
+				}
+			}).complete(function (res) {
+				complete(res, $(self));
+			});
+		});
+		
+		$('.orders__list__item--head__del').click(function(){
+			$('#delModal').find('.btn-primary').attr('data-id', $(this).data('id'));
+			$('#delModal').modal();
+		});
+		
+		$('#delModal').find('.btn-primary').click(function() {
+			$.post('/shop/orderdel.user', {
+				id: $(this).attr('data-id')
+			}).done(function (res) {
+				if (res.code === 0) {
+					location.reload();
+				}
+			}).complete(function (res) {
+				complete(res, $(self));
+			});
+		});
 	});
 </script>
 

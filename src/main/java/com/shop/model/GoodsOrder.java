@@ -1,5 +1,7 @@
 package com.shop.model;
 
+import java.util.Calendar;
+
 public class GoodsOrder {
 	public Long id;
 	public Long goodsid;
@@ -13,7 +15,7 @@ public class GoodsOrder {
 	public String color;
 	public String size;
 	public Integer type;
-	public Long date;
+	public String date;
 
 	public String getUsername() {
 		return username;
@@ -47,11 +49,11 @@ public class GoodsOrder {
 		this.imgurl = imgurl;
 	}
 
-	public Long getDate() {
+	public String getDate() {
 		return date;
 	}
 
-	public void setDate(Long date) {
+	public void setDate(String date) {
 		this.date = date;
 	}
 

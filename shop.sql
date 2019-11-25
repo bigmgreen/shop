@@ -11,7 +11,7 @@
  Target Server Version : 80016
  File Encoding         : 65001
 
- Date: 25/11/2019 07:13:25
+ Date: 26/11/2019 07:25:34
 */
 
 SET NAMES utf8mb4;
@@ -42,7 +42,7 @@ CREATE TABLE `banner`  (
   `goodsid` int(11) NULL DEFAULT NULL,
   `imgurl` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 4 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of banner
@@ -69,7 +69,7 @@ CREATE TABLE `goods`  (
   `count` int(11) NULL DEFAULT NULL,
   `sizes` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 13 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of goods
@@ -88,16 +88,33 @@ INSERT INTO `goods` VALUES (11, '//img.alicdn.com/bao/uploaded/i1/106802831/TB2b
 INSERT INTO `goods` VALUES (12, '//img.alicdn.com/bao/uploaded/i1/106802831/TB2bMLgtFXXXXc6XXXXXXXXXXXX_!!106802831.jpg_180x180q90.jpg_.webp', '冬宽松休闲外套大毛领连帽工装棉服男潮外套', 0000000001, 0000000236, 0000000599, 0000000366, 4, '//img.alicdn.com/imgextra/i1/2010921214/O1CN01z7GoGc1Kq3OhP1T6J_!!2010921214-0-pixelsss.jpg_60x60q90.jpg;//img.alicdn.com/imgextra/i4/2010921214/O1CN01AihXRJ1Kq3O9k60sl_!!2010921214.jpg_60x60q90.jpg;//img.alicdn.com/imgextra/i1/2010921214/O1CN01ib1mns1Kq3O8gq5Kw_!!2010921214.jpg_60x60q90.jpg;//img.alicdn.com/imgextra/i3/2010921214/O1CN01sX17ja1Kq3O9k6HVG_!!2010921214.jpg_60x60q90.jpg;//img.alicdn.com/imgextra/i4/2010921214/O1CN01vXNy4X1Kq3O3BdrZ6_!!2010921214.jpg_60x60q90.jpg', '黑,白,红,绿,蓝,紫', 568, 'S,M,L,XL,2XL,3XL');
 
 -- ----------------------------
--- Table structure for t_test
+-- Table structure for goods_order
 -- ----------------------------
-DROP TABLE IF EXISTS `t_test`;
-CREATE TABLE `t_test`  (
+DROP TABLE IF EXISTS `goods_order`;
+CREATE TABLE `goods_order`  (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `description` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
-  `gtm_create` datetime(0) NULL DEFAULT NULL,
-  `gtm_modified` datetime(0) NULL DEFAULT NULL,
+  `goodsid` int(11) NULL DEFAULT NULL,
+  `userid` int(11) NULL DEFAULT NULL,
+  `count` int(11) NULL DEFAULT NULL,
+  `color` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `size` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `type` int(255) NULL DEFAULT NULL,
+  `ordercode` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `imgurl` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `title` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `price` int(10) NULL DEFAULT NULL,
+  `username` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `date` varbinary(255) NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of goods_order
+-- ----------------------------
+INSERT INTO `goods_order` VALUES (5, 1, 5, 1, '黑', 'S', 1, 'a6eb1e0544c4496d8d9daa40a4baa5dc', '//img.alicdn.com/bao/uploaded/i1/106802831/TB2bMLgtFXXXXc6XXXXXXXXXXXX_!!106802831.jpg_180x180q90.jpg_.webp', '冬宽松休闲外套大毛领连帽工装棉服男潮外套', 239, 'b@163.com', 0x32303139C4EA3131D4C23236C8D537CAB132B7D63439C3EB);
+INSERT INTO `goods_order` VALUES (6, 1, 5, 1, '黑', 'S', 1, 'c6128051c975429fadd553c3afb929a1', '//img.alicdn.com/bao/uploaded/i1/106802831/TB2bMLgtFXXXXc6XXXXXXXXXXXX_!!106802831.jpg_180x180q90.jpg_.webp', '冬宽松休闲外套大毛领连帽工装棉服男潮外套', 239, 'b@163.com', 0x32303139C4EA3131D4C23236C8D537CAB132B7D63439C3EB);
+INSERT INTO `goods_order` VALUES (7, 1, 5, 1, '黑', 'S', 3, '73c855c44c3745ceb5154b46b1fd1577', '//img.alicdn.com/bao/uploaded/i1/106802831/TB2bMLgtFXXXXc6XXXXXXXXXXXX_!!106802831.jpg_180x180q90.jpg_.webp', '冬宽松休闲外套大毛领连帽工装棉服男潮外套', 239, 'b@163.com', 0x32303139C4EA3131D4C23236C8D537CAB132B7D63439C3EB);
+INSERT INTO `goods_order` VALUES (8, 1, 5, 1, '黑', 'S', 2, '3a6d8f141fd2450d9c1c356f46fdb2fc', '//img.alicdn.com/bao/uploaded/i1/106802831/TB2bMLgtFXXXXc6XXXXXXXXXXXX_!!106802831.jpg_180x180q90.jpg_.webp', '冬宽松休闲外套大毛领连帽工装棉服男潮外套', 239, 'b@163.com', 0x32303139C4EA3131D4C23236C8D537CAB132B7D63439C3EB);
 
 -- ----------------------------
 -- Table structure for user
@@ -118,6 +135,6 @@ CREATE TABLE `user`  (
 -- ----------------------------
 INSERT INTO `user` VALUES (1, 'zx', '123456', NULL, NULL, NULL);
 INSERT INTO `user` VALUES (4, 'zxx', '111', 'b@163.com', '333', '336666');
-INSERT INTO `user` VALUES (5, 'b@163.com', '111', 'bb@163.com', NULL, NULL);
+INSERT INTO `user` VALUES (5, 'b@163.com', '111', 'bb@163.com', '45245254', '7245254');
 
 SET FOREIGN_KEY_CHECKS = 1;

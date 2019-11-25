@@ -60,4 +60,20 @@ public interface GoodsOrderDao {
 	 * @return
 	 */
 	public int getOrderCount(@Param("userid") long userid);
+
+	/**
+	 * 根据id更新当前用户的订单
+	 * 
+	 * @param id
+	 * @return
+	 */
+	public void updateOrder(long id);
+
+	/**
+	 * 根据id删除当前用户的订单
+	 * 
+	 * @param id
+	 * @return
+	 */
+	public void delOrder(long id);
 }

@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import com.shop.model.Goods;
 import com.shop.model.GoodsOrder;
 import com.shop.utils.BaseService;
+import com.shop.utils.Utils;
 
 /**
  * 商品业务处理类
@@ -36,14 +37,14 @@ public class GoodsOrderService extends BaseService {
 		goodsOrder.setUserid(userid);
 		goodsOrder.setOrdercode(UUID.randomUUID().toString().replaceAll("-", ""));
 		goodsOrder.setType(1); // 1待发货 2待收货
-		goodsOrder.setDate(System.currentTimeMillis());
-		
+		goodsOrder.setDate(Utils.getDateDesc());
+
 		Goods goods = getGoodsDao().getGoodsById(goodsid);
-		
+
 		goodsOrder.setPrice(goods.getPrice());
 		goodsOrder.setImgurl(goods.getImgurl());
 		goodsOrder.setTitle(goods.getTitle());
-		
+
 		goodsOrder.setUsername(getUserDao().getUser(userid).getName());
 
 		getGoodsOrderDao().addOrder(goodsOrder);
@@ -111,6 +112,32 @@ public class GoodsOrderService extends BaseService {
 		session.close();
 
 		return list;
+	}
+
+	/**
+	 * 根据id更新当前用户的订单
+	 * 
+	 * @param id
+	 * @return
+	 */
+	public void updateOrder(long id) {
+		getGoodsOrderDao().updateOrder(id);
+
+		session.commit();
+		session.close();
+	}
+
+	/**
+	 * 根据id删除当前用户的订单
+	 * 
+	 * @param id
+	 * @return
+	 */
+	public void delOrder(long id) {
+		getGoodsOrderDao().delOrder(id);
+
+		session.commit();
+		session.close();
 	}
 
 }

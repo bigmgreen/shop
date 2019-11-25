@@ -9,10 +9,10 @@
 			(#{goodsid}, #{count}, #{color}, #{size}, #{userid}, #{ordercode}, #{date}, #{type}, #{username}, #{title}, #{price}, #{imgurl})
 	</insert>
 	<select id="getOrderByType" resultType="GoodsOrder">
-		select * from goods_order where type = #{type} and userid=#{userid} limit #{start},#{end}
+		select * from goods_order where type = #{type} and userid=#{userid} order by date DESC limit #{start},#{end}
 	</select>
 	<select id="getAllOrder" resultType="GoodsOrder">
-		select * from goods_order where userid=#{userid} limit #{start},#{end}
+		select * from goods_order where userid=#{userid} order by date DESC limit #{start},#{end}
 	</select>
 	<select id="getOrderCountByType" resultType="java.lang.Integer">
 		select count(1) from goods_order where type = #{type} and userid=#{userid}
