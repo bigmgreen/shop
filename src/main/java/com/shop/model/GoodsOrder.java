@@ -2,11 +2,58 @@ package com.shop.model;
 
 public class GoodsOrder {
 	public Long id;
-	public String name;
-	public String password;
-	public String email;
-	public String address;
-	public String postelcode;
+	public Long goodsid;
+	public Long userid;
+	public String username;
+	public String ordercode;
+	public String title;
+	public String imgurl;
+	public Integer price;
+	public Integer count;
+	public String color;
+	public String size;
+	public Integer type;
+	public Long date;
+
+	public String getUsername() {
+		return username;
+	}
+
+	public Integer getPrice() {
+		return price;
+	}
+
+	public void setPrice(Integer price) {
+		this.price = price;
+	}
+
+	public void setUsername(String username) {
+		this.username = username;
+	}
+
+	public String getTitle() {
+		return title;
+	}
+
+	public void setTitle(String title) {
+		this.title = title;
+	}
+
+	public String getImgurl() {
+		return imgurl;
+	}
+
+	public void setImgurl(String imgurl) {
+		this.imgurl = imgurl;
+	}
+
+	public Long getDate() {
+		return date;
+	}
+
+	public void setDate(Long date) {
+		this.date = date;
+	}
 
 	public Long getId() {
 		return id;
@@ -16,44 +63,60 @@ public class GoodsOrder {
 		this.id = id;
 	}
 
-	public String getName() {
-		return name;
+	public Long getGoodsid() {
+		return goodsid;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setGoodsid(Long goodsid) {
+		this.goodsid = goodsid;
 	}
 
-	public String getPassword() {
-		return password;
+	public String getOrdercode() {
+		return ordercode;
 	}
 
-	public void setPassword(String password) {
-		this.password = password;
+	public void setOrdercode(String ordercode) {
+		this.ordercode = ordercode;
 	}
 
-	public String getEmail() {
-		return email;
+	public Integer getCount() {
+		return count;
 	}
 
-	public void setEmail(String email) {
-		this.email = email;
+	public void setCount(Integer count) {
+		this.count = count;
 	}
 
-	public String getAddress() {
-		return address;
+	public Integer getType() {
+		return type;
 	}
 
-	public void setAddress(String address) {
-		this.address = address;
+	public void setType(Integer type) {
+		this.type = type;
 	}
 
-	public String getPostelcode() {
-		return postelcode;
+	public Long getUserid() {
+		return userid;
 	}
 
-	public void setPostelcode(String postelcode) {
-		this.postelcode = postelcode;
+	public void setUserid(Long userid) {
+		this.userid = userid;
+	}
+
+	public String getColor() {
+		return color;
+	}
+
+	public void setColor(String color) {
+		this.color = color;
+	}
+
+	public String getSize() {
+		return size;
+	}
+
+	public void setSize(String size) {
+		this.size = size;
 	}
 
 }

@@ -21,10 +21,12 @@ public class LoginFilter extends OncePerRequestFilter {
 		// 从session中获取登录者实体
 		Cookie[] cookies = request.getCookies();
 		Cookie cookie = null;
-		for (Cookie c : cookies) {
-			if ("userId".equals(c.getName())) {
-				cookie = c;
-				break;
+		if (null != cookies) {			
+			for (Cookie c : cookies) {
+				if ("userId".equals(c.getName())) {
+					cookie = c;
+					break;
+				}
 			}
 		}
 		if (cookie == null) {

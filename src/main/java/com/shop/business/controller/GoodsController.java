@@ -1,13 +1,22 @@
 package com.shop.business.controller;
 
+import java.util.HashMap;
+import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.shop.manager.GoodsManager;
+import com.shop.manager.UserManager;
+import com.shop.model.Goods;
+import com.shop.model.User;
 import com.shop.utils.Code;
 import com.shop.utils.Utils;
 
@@ -24,8 +33,11 @@ public class GoodsController {
 	@Autowired
 	private GoodsManager goodsManager;
 
+	@Autowired
+	private UserManager userManager;
+
 	/**
-	 * 首页信息
+	 * 首页页面信息
 	 * 
 	 * @param pageIndex
 	 * @param model
@@ -43,7 +55,7 @@ public class GoodsController {
 	}
 
 	/**
-	 * 搜索列表信息
+	 * 搜索列表页面信息
 	 * 
 	 * @param pageIndex
 	 * @param kw
@@ -63,7 +75,7 @@ public class GoodsController {
 	}
 
 	/**
-	 * 商品信息
+	 * 商品页面信息
 	 * 
 	 * @param id
 	 * @param model
@@ -78,7 +90,35 @@ public class GoodsController {
 	}
 
 	/**
-	 * 购买商品
+	 * 判断支付信息
+	 * 
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping("/getpay")
+	@ResponseBody
+	public Code getpay(HttpServletRequest request) {
+		Code code = new Code();
+
+		User user = userManager.getUser(request);
+		boolean status = true;
+		if (null == user.getAddress() || null == user.getPostelcode()) {
+			status = false;
+		}
+		
+		if (status) {
+			code.setCode(0);
+		} else {
+			code.setCode(-1);
+			code.setMsg("支付信息不完整，请先完善支付信息");
+		}
+
+		return code;
+	}
+
+	/**
+	 * 支付页面信息
+	 * 
 	 * @param goodsid
 	 * @param count
 	 * @param color
@@ -86,15 +126,17 @@ public class GoodsController {
 	 * @param model
 	 * @return
 	 */
-	@RequestMapping("/buy.user")
-	@ResponseBody
-	public Code buy(@RequestParam long goodsid, @RequestParam int count, @RequestParam String color,
+	@RequestMapping("/pay")
+	public String pay(@RequestParam long goodsid, @RequestParam int count, @RequestParam String color,
 			@RequestParam String size, Model model) {
-		Code code = new Code();
-		
-		code.setCode(0);
+		model.addAttribute("title", "支付 | ");
+		// TODO: 加 token
+		model.addAttribute("goods", goodsManager.getGoodsById(goodsid));
+		model.addAttribute("count", count);
+		model.addAttribute("color", color);
+		model.addAttribute("size", size);
 
-		return code;
+		return Utils.getBusinessUrl("pay");
 	}
 
 	/**

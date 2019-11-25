@@ -52,29 +52,15 @@
 	<span class="commentadd">添加评论</span>
 </div>
 
-<div class="modal fade" id="loginModal" tabindex="-1">
+<div class="modal fade" id="payModal" tabindex="-1">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
         <h4 class="modal-title">提示</h4>
       </div>
-      <div class="modal-body">您没有登录或登录超时，请重新登录~</div>
+      <div class="modal-body">支付信息不完整，请先完善支付信息~</div>
       <div class="modal-footer">
-        <a href="/shop/login.html" class="btn btn-primary">去登录</a>
-      </div>
-    </div>
-  </div>
-</div>
-
-<div class="modal fade" id="buyModal" tabindex="-1">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h4 class="modal-title">提示</h4>
-      </div>
-      <div class="modal-body">下单成功！店家正在发货中...<br>可到【我的订单】查看最新订单情况~</div>
-      <div class="modal-footer">
-        <a href="/shop/orders.user" class="btn btn-primary">查订单</a>
+        <a href="/shop/userinfo.user" class="btn btn-primary">去完善</a>
       </div>
     </div>
   </div>
@@ -94,33 +80,9 @@
   </div>
 </div>
 
-<div class="modal fade" id="errorModal" tabindex="-1">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h4 class="modal-title">提示</h4>
-      </div>
-      <div class="modal-body">系统维护中，请稍后重试~</div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-primary" data-dismiss="modal">关闭</button>
-      </div>
-    </div>
-  </div>
-</div>
-
 <%@ include file="./public/comment-list.jsp"%>
 
 <script>
-	function complete(res, btn) {
-		if (res.status !== 200) {
-			$('#errorModal').modal();
-		} else if (res.responseText.indexOf('欢迎登录') !== -1) {
-			$('#loginModal').modal();
-		}
-		
-		btn.attr('disabled', false);
-	}
-	
 	$(function() {
 		var count = $('#goodsCount');
 		$('.detail__info__count__input--del').click(function () {
@@ -168,14 +130,15 @@
 		$('#buy').click(function(){
 			$(this).attr('disabled', true);
 			var self = this;
-			$.post('/shop/buy.user', {
-				goodsid: '${goods.id}',
-				count: count.val(),
-				color: $('[data-colors]').attr('data-color'),
-				size: $('[data-sizes]').attr('data-sizes')
-			}).done(function (res) {
+			$.post('/shop/getpay.user').done(function (res) {
 				if (res.code === 0) {
-					$('#buyModal').modal();
+					var goodsid = '<c:out value="${goods.id}"></c:out>';
+					var counts = count.val();
+					var color = $('[data-colors]').attr('data-color');
+					var size = $('[data-sizes]').attr('data-sizes');
+					location.href = '/shop/pay.user?goodsid='+goodsid+'&count='+counts+'&color='+color+'&size='+size;
+				} else if (res.code === -1) {
+					$('#payModal').modal();
 				}
 			}).complete(function (res) {
 				complete(res, $(self));
@@ -185,14 +148,22 @@
 		$('#car').click(function(){
 			$(this).attr('disabled', true);
 			var self = this;
-			$.post('/shop/addcar.user', {
-				goodsid: '${goods.id}',
-				count: count.val(),
-				color: $('[data-colors]').attr('data-color'),
-				size: $('[data-sizes]').attr('data-sizes')
-			}).done(function (res) {
+			$.post('/shop/getpay.user').done(function (res) {
 				if (res.code === 0) {
-					$('#carModal').modal();
+					$.post('/shop/addcar.user', {
+						goodsid: '<c:out value="${goods.id}"></c:out>',
+						count: count.val(),
+						color: $('[data-colors]').attr('data-color'),
+						size: $('[data-sizes]').attr('data-sizes')
+					}).done(function (res) {
+						if (res.code === 0) {
+							$('#carModal').modal();
+						}
+					}).complete(function (res) {
+						complete(res, $(self));
+					});
+				} else if (res.code === -1) {
+					$('#payModal').modal();
 				}
 			}).complete(function (res) {
 				complete(res, $(self));

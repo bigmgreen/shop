@@ -1,0 +1,121 @@
+.pay {
+	margin: 10px auto;
+}
+
+.pay__list {
+	margin-top: 10px;
+}
+
+.pay__list__head {
+	padding-top: 10px;
+	padding-bottom: 10px;
+	background-color: #f5f5f5;
+	border-bottom: 1px solid #e8e8e8;
+	overflow: hidden;
+}
+
+.pay__list__head span {
+	float: left;
+	display: block;
+	text-align: center;
+	width: 100px;
+}
+
+.pay__list__head span:nth-child(3) {
+	position: relative;
+	left: 20px;
+}
+
+.pay__list__head span:nth-child(1) {
+	width: 720px;
+}
+
+.pay__list__item {
+	padding: 10px;
+	border-bottom: 1px solid #e8e8e8;
+	background-color: #fff;
+	margin-bottom: 10px;
+}
+
+.pay__list__item__main {
+	overflow: hidden;
+}
+
+.pay__list__item__main__img {
+	display: block;
+	float: left;
+	width: 80px;
+	height: 80px;
+	margin-right: 10px;
+}
+
+.pay__list__item__main__title {
+	width: 400px;
+	display: block;
+	float: left;
+	padding: 0 10px;
+}
+
+.pay__list__item__main__desc {
+	display: block;
+	float: left;
+	width: 240px;
+	padding: 0 10px;
+	color: #999;
+}
+
+.pay__list__item__main__count {
+	padding: 0 10px;
+	width: 60px;
+	text-align: center;
+	display: block;
+	float: left;
+}
+
+.pay__list__item__main__price {
+	padding: 0 10px;
+	width: 150px;
+	text-align: center;
+	display: block;
+	float: left;
+	position: relative;
+	left: 10px;
+}
+
+.pay-warp {
+	height: 50px;
+	overflow: hidden;
+	background: #e5e5e5;
+	line-height: 50px;
+	margin-bottom: 20px;
+}
+
+.pay__txt {
+	padding-left: 10px;
+	font-size: 14px;
+	color: #666;
+}
+.pay__txt b{
+	color: #f40;
+	font-weight: 700;
+	font-size: 16px;
+	padding: 0 4px;
+}
+
+.pay__btn {
+	float: right;
+	background: #B0B0B0;
+	color: #fff;
+	border-left: 1px solid #e7e7e7;
+	width: 119px;
+	cursor: not-allowed;
+	text-decoration: none;
+	text-align: center;
+	outline: none;
+	border: 0;
+}
+
+.pay__btn.active{
+	cursor: pointer;
+	background-color: #f40;
+}

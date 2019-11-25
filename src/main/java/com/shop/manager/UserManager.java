@@ -10,12 +10,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.shop.model.User;
+import com.shop.service.UserService;
 import com.shop.utils.Utils;
 
 @Component
 public class UserManager {
 	@Autowired
-	private com.shop.service.UserService userService;
+	private UserService userService;
 
 	/**
 	 * 登录操作

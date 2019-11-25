@@ -10,7 +10,7 @@
 	background-color: #fff;
 }
 
-.orders__tab__a {
+a.orders__tab__a {
 	float: left;
 	width: 100px;
 	cursor: pointer;
@@ -21,6 +21,8 @@
 	position: relative;
 	z-index: 1;
 	position: relative;
+	text-decoration: none;
+	color: #666;
 }
 
 .orders__tab__a.active, .orders__tab__a:hover {
