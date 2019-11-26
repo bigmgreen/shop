@@ -1,5 +1,7 @@
 package com.shop.service;
 
+import java.sql.Timestamp;
+import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
@@ -8,7 +10,6 @@ import org.springframework.stereotype.Service;
 import com.shop.model.Goods;
 import com.shop.model.GoodsOrder;
 import com.shop.utils.BaseService;
-import com.shop.utils.Utils;
 
 /**
  * 商品业务处理类
@@ -36,8 +37,10 @@ public class GoodsOrderService extends BaseService {
 		goodsOrder.setSize(size);
 		goodsOrder.setUserid(userid);
 		goodsOrder.setOrdercode(UUID.randomUUID().toString().replaceAll("-", ""));
-		goodsOrder.setType(1); // 1待发货 2待收货
-		goodsOrder.setDate(Utils.getDateDesc());
+		goodsOrder.setType(1); // 1待发货 2待收货 3 已收货
+		
+		Date date = new Date();
+		goodsOrder.setDate(new Timestamp(date.getTime()));
 
 		Goods goods = getGoodsDao().getGoodsById(goodsid);
 

@@ -1,6 +1,6 @@
 package com.shop.model;
 
-import java.util.Calendar;
+import java.sql.Timestamp;
 
 public class GoodsOrder {
 	public Long id;
@@ -15,7 +15,7 @@ public class GoodsOrder {
 	public String color;
 	public String size;
 	public Integer type;
-	public String date;
+	public Timestamp date;
 
 	public String getUsername() {
 		return username;
@@ -49,20 +49,20 @@ public class GoodsOrder {
 		this.imgurl = imgurl;
 	}
 
-	public String getDate() {
-		return date;
-	}
-
-	public void setDate(String date) {
-		this.date = date;
-	}
-
 	public Long getId() {
 		return id;
 	}
 
 	public void setId(Long id) {
 		this.id = id;
+	}
+
+	public Timestamp getDate() {
+		return date;
+	}
+
+	public void setDate(Timestamp date) {
+		this.date = date;
 	}
 
 	public Long getGoodsid() {

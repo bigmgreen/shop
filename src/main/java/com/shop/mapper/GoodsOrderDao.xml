@@ -20,4 +20,10 @@
 	<select id="getOrderCount" resultType="java.lang.Integer">
 		select count(1) from goods_order where userid=#{userid}
 	</select>
+	<update id="updateOrder"  parameterType="java.lang.Long">
+		update goods_order set type=3 where id=#{id}
+	</update>
+	<delete id="delOrder" parameterType="java.lang.Long">
+		delete from goods_order where id=#{id}
+	</delete>
 </mapper>

@@ -1,21 +1,16 @@
 package com.shop.business.controller;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.shop.manager.GoodsManager;
 import com.shop.manager.UserManager;
-import com.shop.model.Goods;
 import com.shop.model.User;
 import com.shop.utils.Code;
 import com.shop.utils.Utils;
@@ -105,7 +100,7 @@ public class GoodsController {
 		if (null == user.getAddress() || null == user.getPostelcode()) {
 			status = false;
 		}
-		
+
 		if (status) {
 			code.setCode(0);
 		} else {

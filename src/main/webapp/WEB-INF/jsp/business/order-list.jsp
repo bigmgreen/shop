@@ -14,7 +14,6 @@
 		
 		<div class="orders__list">
 			<div class="orders__list__head">
-				<span>订单详情</span>
 				<span>收货人</span>
 				<span>金额</span>
 				<span>状态</span>
@@ -23,7 +22,7 @@
 			<c:forEach items="${list}" var="item" varStatus="status">
 		    	<div class="orders__list__item">
 					<div class="orders__list__item--head">
-						<div class="orders__list__item--head__date"><c:out value="${item.date }"></c:out></div>
+						<div class="orders__list__item--head__date"><fmt:formatDate pattern="yyyy-MM-dd HH:mm:ss" value="${item.date }" type="both"/></div>
 						<div class="orders__list__item--head__number">订单号: <c:out value="${item.ordercode }"></c:out></div>
 						<c:if test="${item.type == 3 }"><div class="orders__list__item--head__del" data-id="<c:out value="${item.id }"></c:out>">删除</div></c:if>
 					</div>

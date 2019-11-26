@@ -1,7 +1,6 @@
 package com.shop.utils;
 
 import java.io.IOException;
-import java.util.Calendar;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
@@ -85,22 +84,4 @@ public class Utils {
 		return "admin/" + path;
 	}
 
-	/**
-	 * 获取日期字符串
-	 * 
-	 * @return
-	 */
-	public static String getDateDesc() {
-		// 输入毫秒数，转化为日期，用calendar方法；
-		Calendar calendar = Calendar.getInstance();
-		calendar.setTimeInMillis(System.currentTimeMillis());
-		int year = calendar.get(Calendar.YEAR);
-		int month = calendar.get(Calendar.MONTH);
-		int day = calendar.get(Calendar.DAY_OF_MONTH);
-		int hour = calendar.get(Calendar.HOUR_OF_DAY);// 24小时制
-		int minute = calendar.get(Calendar.MINUTE);
-		int second = calendar.get(Calendar.SECOND);
-
-		return year + "年" + (month + 1) + "月" + day + "日" + hour + "时" + minute + "分" + second + "秒";
-	}
 }

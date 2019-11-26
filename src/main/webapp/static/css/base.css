@@ -200,6 +200,7 @@ footer .footer-hd em {
 	border-color: #f40;
 	background: #f40;
 	color: #fff;
+	cursor: pointer;
 }
 
 .empty {
