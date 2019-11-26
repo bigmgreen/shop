@@ -3,15 +3,14 @@
 
 <link href="/static/css/order-list.css" rel="stylesheet" type="text/css" media="all" />
 
-<c:if test="${list != null}">
-	<div class="orders block">
-		<div class="orders__tab clearfix">
-			<a href="/shop/orders.user?type=0&pageIndex=1" class="orders__tab__a <c:if test="${type == 0}">active</c:if>">所有订单</a>
-			<a href="/shop/orders.user?type=1&pageIndex=1" class="orders__tab__a <c:if test="${type == 1}">active</c:if>">待发货</a>
-			<a href="/shop/orders.user?type=2&pageIndex=1" class="orders__tab__a <c:if test="${type == 2}">active</c:if>">待收货</a>
-			<a href="/shop/orders.user?type=3&pageIndex=1" class="orders__tab__a <c:if test="${type == 3}">active</c:if>">已收货</a>
-		</div>
-		
+<div class="orders block">
+	<div class="orders__tab clearfix">
+		<a href="/shop/orders.user?type=0&pageIndex=1" class="orders__tab__a <c:if test="${type == 0}">active</c:if>">所有订单</a>
+		<a href="/shop/orders.user?type=1&pageIndex=1" class="orders__tab__a <c:if test="${type == 1}">active</c:if>">待发货</a>
+		<a href="/shop/orders.user?type=2&pageIndex=1" class="orders__tab__a <c:if test="${type == 2}">active</c:if>">待收货</a>
+		<a href="/shop/orders.user?type=3&pageIndex=1" class="orders__tab__a <c:if test="${type == 3}">active</c:if>">已收货</a>
+	</div>
+	<c:if test="${list != null}">
 		<div class="orders__list">
 			<div class="orders__list__head">
 				<span>收货人</span>
@@ -48,8 +47,8 @@
 				</div>
 	    	</c:forEach>
 		</div>
-	</div>
-</c:if>
+	</c:if>
+</div>
 
 <c:if test="${list == null}"><p class="empty"><i>暂无数据</i></p></c:if>
 

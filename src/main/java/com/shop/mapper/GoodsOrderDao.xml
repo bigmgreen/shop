@@ -12,7 +12,7 @@
 		select * from goods_order where type = #{type} and userid=#{userid} order by date DESC limit #{start},#{end}
 	</select>
 	<select id="getAllOrder" resultType="GoodsOrderOrCar">
-		select * from goods_order where userid=#{userid} order by date DESC limit #{start},#{end}
+		select * from goods_order where type != -1 and userid=#{userid} order by date DESC limit #{start},#{end}
 	</select>
 	<select id="getOrderCountByType" resultType="java.lang.Integer">
 		select count(1) from goods_order where type = #{type} and userid=#{userid}
@@ -23,7 +23,7 @@
 	<update id="updateOrder"  parameterType="java.lang.Long">
 		update goods_order set type=3 where id=#{id}
 	</update>
-	<delete id="delOrder" parameterType="java.lang.Long">
-		delete from goods_order where id=#{id}
-	</delete>
+	<update id="delOrder" parameterType="java.lang.Long">
+		update goods_order set type=-1 where id=#{id}
+	</update>
 </mapper>

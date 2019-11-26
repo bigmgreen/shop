@@ -37,27 +37,37 @@
 		delete from goods_car where id=#{id}
 	</delete>
 	
-	<del id="selectByids" resultType="GoodsOrderOrCar">
-		select * from goods_car where
-		<foreach collection="ids" item="id" index="index" separator="UNION ALL">
+	<delete id="delByids" parameterType="java.lang.String">
+		delete from goods_car where id in
+		<foreach collection="ids" item="id" index="index" open="(" separator="," close=")">
 			#{id}
 		</foreach>
-	</del>
+	</delete>
 	
-	<select id="delByids" resultType="GoodsOrderOrCar">
-		select * from goods_car where
-		<foreach collection="ids" item="id" index="index" separator="UNION ALL">
-			#{id}
-		</foreach>
+	<select id="selectByids" resultType="GoodsOrderOrCar">
+		select * from goods_car where id in
+		<foreach item="id" index="index" collection="ids" open="(" separator="," close=")">#{id}</foreach>
 	</select>
 	
 	<insert id="inserts" parameterType="java.util.List">
 		insert into goods_order
 			(goodsid, count, color,size,userid,ordercode,date,type,username,title,price,imgurl)
 		values
-		<foreach collection="list" item="item" index="index"
-			separator="UNION ALL">
-			(#{goodsid}, #{count}, #{color}, #{size}, #{userid}, #{ordercode}, #{date}, #{type}, #{username}, #{title}, #{price}, #{imgurl})
+		<foreach collection="list" item="item" index="index" separator=",">
+			(
+				#{item.goodsid}, 
+				#{item.count}, 
+				#{item.color}, 
+				#{item.size}, 
+				#{item.userid}, 
+				#{item.ordercode}, 
+				#{item.date}, 
+				#{item.type}, 
+				#{item.username}, 
+				#{item.title}, 
+				#{item.price}, 
+				#{item.imgurl}
+			)
 		</foreach>
 	</insert>
 </mapper>

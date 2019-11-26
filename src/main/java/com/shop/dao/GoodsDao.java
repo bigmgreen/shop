@@ -96,7 +96,7 @@ public interface GoodsDao {
 	 * @param ids
 	 * @return
 	 */
-	public void delByids(String[] ids);
+	public void delByids(@Param("ids") String[] ids);
 
 	/**
 	 * 批量查找
@@ -105,7 +105,7 @@ public interface GoodsDao {
 	 * @return
 	 */
 	@SuppressWarnings("rawtypes")
-	public List selectByids(String[] ids);
+	public List selectByids(@Param("ids") String[] ids);
 
 	/**
 	 * 批量插入
@@ -113,6 +113,6 @@ public interface GoodsDao {
 	 * @param list
 	 */
 	@SuppressWarnings("rawtypes")
-	public void inserts(List list);
+	public void inserts(@Param("list") List list);
 
 }
