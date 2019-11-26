@@ -5,6 +5,7 @@ import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
 import com.shop.model.Goods;
+import com.shop.model.GoodsOrderOrCar;
 
 /**
  * 商品实体类
@@ -55,4 +56,63 @@ public interface GoodsDao {
 	 * @return
 	 */
 	public Goods getGoodsById(@Param("id") long id);
+
+	/**
+	 * 添加购物车
+	 * 
+	 * @param goodsOrderOrCar
+	 */
+	public void addCar(GoodsOrderOrCar goodsOrderOrCar);
+
+	/**
+	 * 查询当前用户的购物车情况
+	 * 
+	 * @param userid
+	 * @param i
+	 * @param pageSize
+	 * @return
+	 */
+	@SuppressWarnings("rawtypes")
+	public List getAllCar(@Param("userid") long userid, @Param("start") int start, @Param("end") int end);
+
+	/**
+	 * 查询当前用户的购物车总数
+	 * 
+	 * @param userid
+	 * @return
+	 */
+	public int getCarCount(@Param("userid") long userid);
+
+	/**
+	 * 根据id删除当前用户的购物车记录
+	 * 
+	 * @param id
+	 */
+	public void delCar(@Param("id") long id);
+
+	/**
+	 * 批量删除
+	 * 
+	 * @param ids
+	 * @return
+	 */
+	public void delByids(String[] ids);
+
+	/**
+	 * 批量查找
+	 * 
+	 * @param ids
+	 * @return
+	 */
+	@SuppressWarnings("rawtypes")
+	public List selectByids(String[] ids);
+
+	/**
+	 * 批量插入
+	 * 
+	 * @param list
+	 */
+	@SuppressWarnings("rawtypes")
+	public void inserts(List list);
+
 }

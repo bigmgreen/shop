@@ -8,7 +8,7 @@
 		<typeAlias type="com.shop.model.User" alias="User" />
 		<typeAlias type="com.shop.model.Banner" alias="Banner" />
 		<typeAlias type="com.shop.model.Goods" alias="Goods" />
-		<typeAlias type="com.shop.model.GoodsOrder" alias="GoodsOrder" />
+		<typeAlias type="com.shop.model.GoodsOrderOrCar" alias="GoodsOrderOrCar" />
 	</typeAliases>
 	
 	<environments default="development">

@@ -4,7 +4,7 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
 
-import com.shop.model.GoodsOrder;
+import com.shop.model.GoodsOrderOrCar;
 
 /**
  * 订单实体类
@@ -16,9 +16,9 @@ public interface GoodsOrderDao {
 	/**
 	 * 生成订单
 	 * 
-	 * @param goodsOrder
+	 * @param goodsOrderOrCar
 	 */
-	public void addOrder(GoodsOrder goodsOrder);
+	public void addOrder(GoodsOrderOrCar goodsOrderOrCar);
 
 	/**
 	 * 获取某一类订单

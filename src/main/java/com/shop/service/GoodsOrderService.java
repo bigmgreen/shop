@@ -8,7 +8,7 @@ import java.util.UUID;
 import org.springframework.stereotype.Service;
 
 import com.shop.model.Goods;
-import com.shop.model.GoodsOrder;
+import com.shop.model.GoodsOrderOrCar;
 import com.shop.utils.BaseService;
 
 /**
@@ -30,27 +30,27 @@ public class GoodsOrderService extends BaseService {
 	 * @return
 	 */
 	public void addOrder(long goodsid, long userid, int count, String color, String size) {
-		GoodsOrder goodsOrder = new GoodsOrder();
-		goodsOrder.setGoodsid(goodsid);
-		goodsOrder.setCount(count);
-		goodsOrder.setColor(color);
-		goodsOrder.setSize(size);
-		goodsOrder.setUserid(userid);
-		goodsOrder.setOrdercode(UUID.randomUUID().toString().replaceAll("-", ""));
-		goodsOrder.setType(1); // 1待发货 2待收货 3 已收货
+		GoodsOrderOrCar goodsOrderOrCar = new GoodsOrderOrCar();
+		goodsOrderOrCar.setGoodsid(goodsid);
+		goodsOrderOrCar.setCount(count);
+		goodsOrderOrCar.setColor(color);
+		goodsOrderOrCar.setSize(size);
+		goodsOrderOrCar.setUserid(userid);
+		goodsOrderOrCar.setOrdercode(UUID.randomUUID().toString().replaceAll("-", ""));
+		goodsOrderOrCar.setType(1); // 1待发货 2待收货 3 已收货
 		
 		Date date = new Date();
-		goodsOrder.setDate(new Timestamp(date.getTime()));
+		goodsOrderOrCar.setDate(new Timestamp(date.getTime()));
 
 		Goods goods = getGoodsDao().getGoodsById(goodsid);
 
-		goodsOrder.setPrice(goods.getPrice());
-		goodsOrder.setImgurl(goods.getImgurl());
-		goodsOrder.setTitle(goods.getTitle());
+		goodsOrderOrCar.setPrice(goods.getPrice());
+		goodsOrderOrCar.setImgurl(goods.getImgurl());
+		goodsOrderOrCar.setTitle(goods.getTitle());
 
-		goodsOrder.setUsername(getUserDao().getUser(userid).getName());
+		goodsOrderOrCar.setUsername(getUserDao().getUser(userid).getName());
 
-		getGoodsOrderDao().addOrder(goodsOrder);
+		getGoodsOrderDao().addOrder(goodsOrderOrCar);
 		session.commit();
 		session.close();
 	}

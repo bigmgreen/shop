@@ -2,16 +2,16 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.shop.dao.GoodsOrderDao">
-	<insert id="addOrder" parameterType="GoodsOrder">
+	<insert id="addOrder" parameterType="GoodsOrderOrCar">
 		insert into goods_order
 			(goodsid, count, color,size,userid,ordercode,date,type,username,title,price,imgurl)
 		values
 			(#{goodsid}, #{count}, #{color}, #{size}, #{userid}, #{ordercode}, #{date}, #{type}, #{username}, #{title}, #{price}, #{imgurl})
 	</insert>
-	<select id="getOrderByType" resultType="GoodsOrder">
+	<select id="getOrderByType" resultType="GoodsOrderOrCar">
 		select * from goods_order where type = #{type} and userid=#{userid} order by date DESC limit #{start},#{end}
 	</select>
-	<select id="getAllOrder" resultType="GoodsOrder">
+	<select id="getAllOrder" resultType="GoodsOrderOrCar">
 		select * from goods_order where userid=#{userid} order by date DESC limit #{start},#{end}
 	</select>
 	<select id="getOrderCountByType" resultType="java.lang.Integer">

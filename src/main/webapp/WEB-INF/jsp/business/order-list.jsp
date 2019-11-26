@@ -27,7 +27,7 @@
 						<c:if test="${item.type == 3 }"><div class="orders__list__item--head__del" data-id="<c:out value="${item.id }"></c:out>">删除</div></c:if>
 					</div>
 					<div class="orders__list__item__main">
-						<img class="orders__list__item__main__img" src="//img.alicdn.com/imgextra/i2/3485517560/O1CN01mmDQGw25iWpCMKsot_!!3485517560.jpg_80x80.jpg" />
+						<img class="orders__list__item__main__img" src="<c:out value="${item.imgurl }"></c:out>" />
 						<b class="orders__list__item__main__title"><c:out value="${item.title }"></c:out></b>
 						<span class="orders__list__item__main__count">x<c:out value="${item.count }"></c:out></span>
 						<span class="orders__list__item__main__user"><c:out value="${item.username }"></c:out></span>

@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -135,16 +136,96 @@ public class GoodsController {
 	}
 
 	/**
+	 * 添加购物车
+	 * 
+	 * @param goodsid
+	 * @param count
+	 * @param color
+	 * @param size
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping(value = "/addcar.user", method = RequestMethod.POST)
+	@ResponseBody
+	public Code addcar(@RequestParam long goodsid, @RequestParam int count, @RequestParam String color,
+			@RequestParam String size, HttpServletRequest request) {
+
+		boolean status = goodsManager.addCar(goodsid, userManager.getUser(request).getId(), count, color, size);
+
+		Code code = new Code();
+		if (status) {
+			code.setCode(0);
+		} else {
+			code.setCode(-1);
+		}
+		return code;
+	}
+
+	/**
 	 * 查询当前用户的购物车情况
+	 * 
+	 * @param pageIndex
+	 * @param pageSize
+	 * @param type
+	 * @param request
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping("/carlist")
+	public String list(@RequestParam(defaultValue = "1") int pageIndex, @RequestParam(defaultValue = "8") int pageSize,
+			HttpServletRequest request, Model model) {
+		model.addAttribute("title", "我的购物车 | ");
+
+		long userid = userManager.getUser(request).getId();
+
+		model.addAttribute("list", goodsManager.getAllCar(userid, pageIndex, pageSize));
+		model.addAttribute("pageCount", (goodsManager.getCarCount(userid) + pageSize - 1) / pageSize);
+
+		model.addAttribute("pageIndex", pageIndex);
+		model.addAttribute("pageSize", pageSize);
+
+		return Utils.getBusinessUrl("carlist");
+	}
+	
+	/**
+	 * 根据id删除当前用户的购物车记录
 	 * 
 	 * @param id
 	 * @param model
 	 * @return
 	 */
-	@RequestMapping("/carlist")
-	public String carList(Model model) {
-		model.addAttribute("title", "我的购物车 | ");
+	@RequestMapping("/cardel.user")
+	@ResponseBody
+	public Code cardel(@RequestParam long id) {
+		boolean status = goodsManager.delCar(id);
 
-		return Utils.getBusinessUrl("carlist");
+		Code code = new Code();
+		if (status) {
+			code.setCode(0);
+		} else {
+			code.setCode(-1);
+		}
+		return code;
+	}
+	
+	/**
+	 * 当前用户的购物车结算
+	 * 
+	 * @param ids
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping("/carbuy.user")
+	@ResponseBody
+	public Code carbuy(@RequestParam String ids) {
+		boolean status = goodsManager.carbuy(ids.split(","));
+		
+		Code code = new Code();
+		if (status) {
+			code.setCode(0);
+		} else {
+			code.setCode(-1);
+		}
+		return code;
 	}
 }

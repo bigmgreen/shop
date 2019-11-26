@@ -74,7 +74,7 @@
       </div>
       <div class="modal-body">加入购物车成功~</div>
       <div class="modal-footer">
-        <a href="/shop/carlist.user" class="btn btn-primary">购物车</a>
+        <a href="/shop/carlist.user" class="btn btn-primary">去购物车</a>
       </div>
     </div>
   </div>

@@ -21,4 +21,43 @@
 		select * from goods where
 		id = #{id}
 	</select>
+	<insert id="addCar" parameterType="GoodsOrderOrCar">
+		insert into goods_car
+			(goodsid, count, color,size,userid,ordercode,date,type,username,title,price,imgurl)
+		values
+			(#{goodsid}, #{count}, #{color}, #{size}, #{userid}, #{ordercode}, #{date}, #{type}, #{username}, #{title}, #{price}, #{imgurl})
+	</insert>
+	<select id="getAllCar" resultType="GoodsOrderOrCar">
+		select * from goods_car where userid=#{userid} order by date DESC limit #{start},#{end}
+	</select>
+	<select id="getCarCount" resultType="java.lang.Integer">
+		select count(1) from goods_car where userid=#{userid}
+	</select>
+	<delete id="delCar" parameterType="java.lang.Long">
+		delete from goods_car where id=#{id}
+	</delete>
+	
+	<del id="selectByids" resultType="GoodsOrderOrCar">
+		select * from goods_car where
+		<foreach collection="ids" item="id" index="index" separator="UNION ALL">
+			#{id}
+		</foreach>
+	</del>
+	
+	<select id="delByids" resultType="GoodsOrderOrCar">
+		select * from goods_car where
+		<foreach collection="ids" item="id" index="index" separator="UNION ALL">
+			#{id}
+		</foreach>
+	</select>
+	
+	<insert id="inserts" parameterType="java.util.List">
+		insert into goods_order
+			(goodsid, count, color,size,userid,ordercode,date,type,username,title,price,imgurl)
+		values
+		<foreach collection="list" item="item" index="index"
+			separator="UNION ALL">
+			(#{goodsid}, #{count}, #{color}, #{size}, #{userid}, #{ordercode}, #{date}, #{type}, #{username}, #{title}, #{price}, #{imgurl})
+		</foreach>
+	</insert>
 </mapper>

@@ -2,7 +2,7 @@ package com.shop.model;
 
 import java.sql.Timestamp;
 
-public class GoodsOrder {
+public class GoodsOrderOrCar {
 	public Long id;
 	public Long goodsid;
 	public Long userid;

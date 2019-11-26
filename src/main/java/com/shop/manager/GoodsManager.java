@@ -109,4 +109,83 @@ public class GoodsManager {
 		// TODO 自动生成的方法存根
 		return null;
 	}
+
+	/**
+	 * 添加购物车
+	 * 
+	 * @param goodsid
+	 * @param id
+	 * @param count
+	 * @param color
+	 * @param size
+	 * @return
+	 */
+	public boolean addCar(long goodsid, Long id, int count, String color, String size) {
+		try {
+			goodsService.addCar(goodsid, id, count, color, size);
+			return true;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return false;
+	}
+
+	/**
+	 * 查询当前用户的购物车情况
+	 * 
+	 * @param userid
+	 * @param pageIndex
+	 * @param pageSize
+	 * @return
+	 */
+	@SuppressWarnings("rawtypes")
+	public List getAllCar(long userid, int pageIndex, int pageSize) {
+		List list = goodsService.getAllCar(userid, pageIndex, pageSize);
+		if (null == list || (null != list && list.size() == 0)) {
+			return null;
+		}
+		return list;
+	}
+
+	/**
+	 * 查询当前用户的购物车总数
+	 * 
+	 * @param userid
+	 * @return
+	 */
+	public int getCarCount(long userid) {
+		return goodsService.getCarCount(userid);
+	}
+
+	/**
+	 * 根据id删除当前用户的购物车记录
+	 * 
+	 * @param id
+	 * @return
+	 */
+	public boolean delCar(long id) {
+		try {
+			goodsService.delCar(id);
+			return true;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return false;
+	}
+
+	/**
+	 * 当前用户的购物车结算
+	 * 
+	 * @param ids
+	 * @return
+	 */
+	public boolean carbuy(String[] ids) {
+		try {
+			goodsService.carbuy(ids);
+			return true;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return false;
+	}
 }
