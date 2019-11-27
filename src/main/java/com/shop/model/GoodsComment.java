@@ -1,12 +1,14 @@
 package com.shop.model;
 
+import java.sql.Timestamp;
+
 public class GoodsComment {
 	public Long id;
-	public String name;
-	public String password;
-	public String email;
-	public String address;
-	public String postelcode;
+	public Long goodsid;
+	public Long userid;
+	public String username;
+	public String txt;
+	public Timestamp date;
 
 	public Long getId() {
 		return id;
@@ -16,44 +18,44 @@ public class GoodsComment {
 		this.id = id;
 	}
 
-	public String getName() {
-		return name;
+	public Long getGoodsid() {
+		return goodsid;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setGoodsid(Long goodsid) {
+		this.goodsid = goodsid;
 	}
 
-	public String getPassword() {
-		return password;
+	public Long getUserid() {
+		return userid;
 	}
 
-	public void setPassword(String password) {
-		this.password = password;
+	public void setUserid(Long userid) {
+		this.userid = userid;
 	}
 
-	public String getEmail() {
-		return email;
+	public String getUsername() {
+		return username;
 	}
 
-	public void setEmail(String email) {
-		this.email = email;
+	public void setUsername(String username) {
+		this.username = username;
 	}
 
-	public String getAddress() {
-		return address;
+	public String getTxt() {
+		return txt;
 	}
 
-	public void setAddress(String address) {
-		this.address = address;
+	public void setTxt(String txt) {
+		this.txt = txt;
 	}
 
-	public String getPostelcode() {
-		return postelcode;
+	public Timestamp getDate() {
+		return date;
 	}
 
-	public void setPostelcode(String postelcode) {
-		this.postelcode = postelcode;
+	public void setDate(Timestamp date) {
+		this.date = date;
 	}
 
 }

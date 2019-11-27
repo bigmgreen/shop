@@ -149,7 +149,7 @@ public class GoodsService extends BaseService {
 	@SuppressWarnings("rawtypes")
 	public List getAllCar(long userid, int pageIndex, int pageSize) {
 		List list = getGoodsDao().getAllCar(userid, (pageIndex - 1) * pageSize, pageSize);
-		session.commit();
+
 		session.close();
 
 		return list;
@@ -204,7 +204,6 @@ public class GoodsService extends BaseService {
 	public List selectByids(String[] ids) {
 		List list = getGoodsDao().selectByids(ids);
 
-		session.commit();
 		session.close();
 
 		return list;

@@ -1,10 +1,17 @@
 package com.shop.business.controller;
 
+import javax.servlet.http.HttpServletRequest;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.shop.manager.GoodsCommentManager;
+import com.shop.manager.UserManager;
+import com.shop.utils.Code;
 import com.shop.utils.Utils;
 
 /**
@@ -17,47 +24,57 @@ import com.shop.utils.Utils;
 @RequestMapping("/shop")
 public class GoodsCommentController {
 
-	/**
-	 * 评论列表信息
-	 * 
-	 * @param pageIndex
-	 * @param model
-	 * @return
-	 */
-	@RequestMapping("/comments")
-	public String list(@RequestParam(defaultValue = "1") int pageIndex, Model model) {
-		model.addAttribute("list", null);
-
-		return Utils.getBusinessUrl("list");
-	}
-
-	/**
-	 * 评论信息
-	 * 
-	 * @param id
-	 * @param model
-	 * @return
-	 */
-	@RequestMapping("/comment")
-	public String detail(@RequestParam long id, Model model) {
-		model.addAttribute("comment", null);
-
-		return Utils.getBusinessUrl("detail");
-	}
+	@Autowired
+	private GoodsCommentManager goodsCommentManager;
+	@Autowired
+	private UserManager userManager;
 
 	/**
 	 * 添加评论信息
 	 * 
 	 * @param goodsId
 	 * @param txt
-	 * @param model
+	 * @param request
 	 * @return
 	 */
 	@RequestMapping("/commentadd")
-	public String add(@RequestParam long goodsId, @RequestParam String txt, Model model) {
-		model.addAttribute("comment", null);
+	@ResponseBody
+	public Code add(@RequestParam long goodsId, @RequestParam String txt, HttpServletRequest request) {
+		boolean status = goodsCommentManager.addComment(goodsId, userManager.getUser(request).getId(), txt);
 
-		return Utils.getBusinessUrl("detail");
+		Code code = new Code();
+		if (status) {
+			code.setCode(0);
+		} else {
+			code.setCode(-1);
+		}
+		return code;
+	}
+
+	/**
+	 * 查询商品的评论信息
+	 * 
+	 * @param goodsId
+	 * @param pageIndex
+	 * @param pageSize
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping("/comments")
+	public String list(@RequestParam long goodsId, @RequestParam(defaultValue = "1") int pageIndex,
+			@RequestParam(defaultValue = "8") int pageSize, HttpServletRequest request, Model model) {
+		model.addAttribute("title", "我的评论 | ");
+
+		model.addAttribute("list", goodsCommentManager.getGoodsCommentsById(goodsId, pageIndex, pageSize));
+		model.addAttribute("pageCount", (goodsCommentManager.getGoodsCommentsCount(goodsId) + pageSize - 1) / pageSize);
+
+		model.addAttribute("pageIndex", pageIndex);
+		model.addAttribute("pageSize", pageSize);
+		model.addAttribute("goodsId", goodsId);
+
+		model.addAttribute("user", userManager.getUser(request));
+
+		return Utils.getBusinessUrl("comments");
 	}
 
 	/**
@@ -68,25 +85,38 @@ public class GoodsCommentController {
 	 * @return
 	 */
 	@RequestMapping("/commentdel")
-	public String del(@RequestParam long id, Model model) {
-		return Utils.getBusinessUrl("detail");
+	@ResponseBody
+	public Code del(@RequestParam long id, Model model) {
+		boolean status = goodsCommentManager.delComment(id);
+
+		Code code = new Code();
+		if (status) {
+			code.setCode(0);
+		} else {
+			code.setCode(-1);
+		}
+		return code;
 	}
 
 	/**
 	 * 回复评论信息
 	 * 
-	 * @param goodsId
-	 * @param commentId
-	 * @param index
-	 * @param txt
+	 * @param id
 	 * @param model
 	 * @return
 	 */
 	@RequestMapping("/commentappend")
-	public String append(@RequestParam long goodsId, @RequestParam long commentId, @RequestParam int index,
-			@RequestParam String txt, Model model) {
-		model.addAttribute("comment", null);
+	@ResponseBody
+	public Code append(@RequestParam long id, @RequestParam String txt, HttpServletRequest request, Model model) {
+		boolean status = goodsCommentManager.appendComment(id, txt, userManager.getUser(request).getName());
 
-		return Utils.getBusinessUrl("detail");
+		Code code = new Code();
+		if (status) {
+			code.setCode(0);
+		} else {
+			code.setCode(-1);
+		}
+		return code;
 	}
+
 }

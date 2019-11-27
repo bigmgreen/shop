@@ -99,18 +99,6 @@ public class GoodsManager {
 	}
 
 	/**
-	 * 通过商品id获取商品详情的相关评论
-	 * 
-	 * @param id
-	 * @return
-	 */
-	@SuppressWarnings("rawtypes")
-	public List getGoodsCommentsById(long id) {
-		// TODO 自动生成的方法存根
-		return null;
-	}
-
-	/**
 	 * 添加购物车
 	 * 
 	 * @param goodsid

@@ -1,9 +1,13 @@
 package com.shop.utils;
 
 import java.io.IOException;
+import java.io.StringReader;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
+import javax.swing.text.html.HTMLEditorKit.ParserCallback;
+import javax.swing.text.html.parser.ParserDelegator;
+
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
@@ -62,6 +66,30 @@ public class Utils {
 			}
 		}
 		return userId;
+	}
+
+	/**
+	 * 字符串过滤
+	 * 
+	 * @param str
+	 * @return
+	 */
+	public static String removeHtml(String str) {
+		try {
+			final StringBuilder b = new StringBuilder();
+			ParserDelegator delegator = new ParserDelegator();
+
+			delegator.parse(new StringReader(str), new ParserCallback() {
+				public void handleText(char[] data, int pos) {
+					b.append(data);
+				};
+			}, true);
+			return b.toString();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return str;
 	}
 
 	/**

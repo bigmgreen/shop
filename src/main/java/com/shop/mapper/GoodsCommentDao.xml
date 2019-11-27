@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shop.dao.GoodsCommentDao">
+	<insert id="addComment" parameterType="GoodsComment">
+		insert into goods_comment
+			(goodsid, userid, username, txt, date)
+		values
+			(#{goodsid}, #{userid}, #{username}, #{txt}, #{date})
+	</insert>
+	<select id="getGoodsCommentsById" resultType="GoodsComment">
+		select * from goods_comment where goodsid = #{goodsid} order by date DESC limit #{start},#{end}
+	</select>
+	<select id="getGoodsCommentsCount" resultType="java.lang.Integer">
+		select count(1) from goods_comment where goodsid=#{goodsid}
+	</select>
+	<delete id="delComment" parameterType="java.lang.Long">
+		delete from goods_comment where id=#{id}
+	</delete>
+	<select id="getGoodsCommentById" resultType="GoodsComment">
+		select * from goods_comment where id=#{id}
+	</select>
+	<update id="appendComment"  parameterType="GoodsComment">
+		update goods_comment set txt=#{txt} where id=#{id}
+	</update>
+</mapper>

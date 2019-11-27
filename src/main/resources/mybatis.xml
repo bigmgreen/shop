@@ -9,6 +9,7 @@
 		<typeAlias type="com.shop.model.Banner" alias="Banner" />
 		<typeAlias type="com.shop.model.Goods" alias="Goods" />
 		<typeAlias type="com.shop.model.GoodsOrderOrCar" alias="GoodsOrderOrCar" />
+		<typeAlias type="com.shop.model.GoodsComment" alias="GoodsComment" />
 	</typeAliases>
 	
 	<environments default="development">
@@ -28,5 +29,6 @@
 		<mapper resource="com/shop/mapper/BannerDao.xml" />
 		<mapper resource="com/shop/mapper/GoodsDao.xml" />
 		<mapper resource="com/shop/mapper/GoodsOrderDao.xml" />
+		<mapper resource="com/shop/mapper/GoodsCommentDao.xml" />
 	</mappers>
 </configuration> 

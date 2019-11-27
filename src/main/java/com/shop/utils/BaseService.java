@@ -31,4 +31,9 @@ public class BaseService {
 		session = Utils.openSqlSession();
 		return session.getMapper(GoodsOrderDao.class);
 	}
+	
+	protected GoodsCommentDao getGoodsCommentDao() {
+		session = Utils.openSqlSession();
+		return session.getMapper(GoodsCommentDao.class);
+	}
 }

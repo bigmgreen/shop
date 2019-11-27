@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.shop.manager.GoodsCommentManager;
 import com.shop.manager.GoodsManager;
 import com.shop.manager.UserManager;
 import com.shop.model.User;
@@ -31,6 +32,9 @@ public class GoodsController {
 
 	@Autowired
 	private UserManager userManager;
+
+	@Autowired
+	private GoodsCommentManager goodsCommentManager;
 
 	/**
 	 * 首页页面信息
@@ -78,9 +82,10 @@ public class GoodsController {
 	 * @return
 	 */
 	@RequestMapping("/detail")
-	public String detail(@RequestParam long id, Model model) {
+	public String detail(@RequestParam long id, HttpServletRequest request, Model model) {
 		model.addAttribute("goods", goodsManager.getGoodsById(id));
-		model.addAttribute("comments", goodsManager.getGoodsCommentsById(id));
+		model.addAttribute("list", goodsCommentManager.getGoodsCommentsById(id, 1, 3));
+		model.addAttribute("user", userManager.getUser(request));
 
 		return Utils.getBusinessUrl("detail");
 	}
@@ -186,7 +191,7 @@ public class GoodsController {
 
 		return Utils.getBusinessUrl("carlist");
 	}
-	
+
 	/**
 	 * 根据id删除当前用户的购物车记录
 	 * 
@@ -207,7 +212,7 @@ public class GoodsController {
 		}
 		return code;
 	}
-	
+
 	/**
 	 * 当前用户的购物车结算
 	 * 
@@ -219,7 +224,7 @@ public class GoodsController {
 	@ResponseBody
 	public Code carbuy(@RequestParam String ids) {
 		boolean status = goodsManager.carbuy(ids.split(","));
-		
+
 		Code code = new Code();
 		if (status) {
 			code.setCode(0);
