@@ -27,4 +27,6 @@ mvn jetty:run
 export M2_HOME=/Users/zx/Documents/work/apache-maven-3.6.2
 export PATH=$PATH:$M2_HOME/bin
 
+mysql.server start
+
 评论

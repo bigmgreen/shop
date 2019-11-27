@@ -48,8 +48,8 @@
 </div>
 
 <div class="block commentadd-main">
-	<textarea placeholder="请输入评论"></textarea>
-	<span class="commentadd">添加评论</span>
+	<textarea id="commentVal" placeholder="请输入评论"></textarea>
+	<span id="addComment" class="commentadd">添加评论</span>
 </div>
 
 <div class="modal fade" id="payModal" tabindex="-1">
@@ -75,6 +75,38 @@
       <div class="modal-body">加入购物车成功~</div>
       <div class="modal-footer">
         <a href="/shop/carlist.user" class="btn btn-primary">去购物车</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="delModal" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">提示</h4>
+      </div>
+      <div class="modal-body">确认删除您的这条评论？</div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+        <button type="button" class="btn btn-primary">确认</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="replyModal" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">回复</h4>
+      </div>
+      <div class="modal-body">
+		<textarea id="replyCommentVal" placeholder="请输入您的回复"></textarea>
+	  </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+        <button type="button" class="btn btn-primary">确认</button>
       </div>
     </div>
   </div>
@@ -158,6 +190,8 @@
 					}).done(function (res) {
 						if (res.code === 0) {
 							$('#carModal').modal();
+						} else if(res.code === -1) {
+							$('#errorModal').modal();
 						}
 					}).complete(function (res) {
 						complete(res, $(self));
@@ -166,6 +200,73 @@
 					$('#payModal').modal();
 				}
 			}).complete(function (res) {
+				complete(res, $(self));
+			});
+		});
+	});
+</script>
+
+<script>
+	$(function () {
+		var comment = $('#commentVal');
+		var replyComment = $('#replyCommentVal');
+		
+		$('#addComment').click(function () {
+			if (comment.val() === '') { return; }
+		
+			$(this).attr('disabled', true);
+			var self = this;
+			
+			$.post('/shop/addcomment.user', { 
+				goodsid: '<c:out value="${goods.id}"></c:out>',
+				msg: comment.val(),
+			}).done(function(res) {
+				if (res.code === 0) {
+					location.reload();
+				}
+			}).complete(function (res) {
+				complete(res, $(self));
+			});
+		});
+		
+		$('.comments__item__date [data-del]').click(function(){
+			$('#delModal').find('.btn-primary').attr('data-id', $(this).data('id'));
+			$('#delModal').modal();
+		});
+		
+		$('#delModal').find('.btn-primary').click(function() {
+			$.post('/shop/delcomment.user', {
+				id: $(this).attr('data-id')
+			}).done(function (res) {
+				if (res.code === 0) {
+					location.reload();
+				}
+			}).complete(function (res) {
+				$('#delModal').modal('hide');
+				complete(res, $(self));
+			});
+		});
+		
+		$('.comments__item__date [data-reply]').click(function(){
+			$('#replyModal').find('.btn-primary').attr('data-id', $(this).data('id'));
+			$('#replyModal').modal();
+		});
+		
+		$('#replyModal').find('.btn-primary').click(function() {
+			if (replyComment.val() === '') { return; }
+			
+			$(this).attr('disabled', true);
+			var self = this;
+			
+			$.post('/shop/replycomment.user', {
+				id: $(this).attr('data-id'),
+				msg: replyComment.val()
+			}).done(function (res) {
+				if (res.code === 0) {
+					location.reload();
+				}
+			}).complete(function (res) {
+				$('#replyModal').modal('hide');
 				complete(res, $(self));
 			});
 		});

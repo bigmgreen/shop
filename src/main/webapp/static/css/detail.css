@@ -228,6 +228,16 @@
 	resize: none;
 }
 
+#replyCommentVal{
+	width: 100%;
+	display: block;
+	margin: 0 auto;
+	height: 100px;
+	border-radius: 10px;
+	padding: 20px;
+	resize: none;
+}
+
 .commentadd {
 	display: block;
 	float: left;

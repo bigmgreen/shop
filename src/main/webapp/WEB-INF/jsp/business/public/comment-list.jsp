@@ -8,39 +8,7 @@
 		<span class="pull-left">
 			<span class="comments__item__content">温馨提示：支持7天无理由退货</span>
 			<span>zx 说：温馨提示：支持7天无理由退货</span>
-			<span class="comments__item__date">2019-11-24 12:17 <em>删除</em><em>回复</em></span>
-		</span>
-	</span>
-	<span class="comments__item">
-		<span class="comments__item__author pull-left">zx 说：</span>
-		<span class="pull-left">
-			<span class="comments__item__content">温馨提示：支持7天无理由退货</span>
-			<span>zx 说：温馨提示：支持7天无理由退货</span>
-			<span class="comments__item__date">2019-11-24 12:17 <em>删除</em><em>回复</em></span>
-		</span>
-	</span>
-	<span class="comments__item">
-		<span class="comments__item__author pull-left">zx 说：</span>
-		<span class="pull-left">
-			<span class="comments__item__content">温馨提示：支持7天无理由退货</span>
-			<span>zx 说：温馨提示：支持7天无理由退货</span>
-			<span class="comments__item__date">2019-11-24 12:17 <em>删除</em><em>回复</em></span>
-		</span>
-	</span>
-	<span class="comments__item">
-		<span class="comments__item__author pull-left">zx 说：</span>
-		<span class="pull-left">
-			<span class="comments__item__content">温馨提示：支持7天无理由退货</span>
-			<span>zx 说：温馨提示：支持7天无理由退货</span>
-			<span class="comments__item__date">2019-11-24 12:17 <em>删除</em><em>回复</em></span>
-		</span>
-	</span>
-	<span class="comments__item">
-		<span class="comments__item__author pull-left">zx 说：</span>
-		<span class="pull-left">
-			<span class="comments__item__content">温馨提示：支持7天无理由退货</span>
-			<span>zx 说：温馨提示：支持7天无理由退货</span>
-			<span class="comments__item__date">2019-11-24 12:17 <em>删除</em><em>回复</em></span>
+			<span class="comments__item__date">2019-11-24 12:17 <em data-del>删除</em><em data-reply>回复</em></span>
 		</span>
 	</span>
 	
