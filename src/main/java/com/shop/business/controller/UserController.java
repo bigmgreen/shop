@@ -158,7 +158,7 @@ public class UserController {
 	 * @return
 	 */
 	@RequestMapping("/userlogout.user")
-	public String userlogout(HttpServletRequest request, HttpServletResponse response, Model model) {
+	public String userlogout(HttpServletRequest request, HttpServletResponse response) {
 		userManager.userEixt(request, response);
 		return "redirect:login.html";
 	}

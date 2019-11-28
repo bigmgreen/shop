@@ -80,6 +80,18 @@ public class AdminController {
 	}
 
 	/**
+	 * 管理员登出
+	 * 
+	 * @return
+	 */
+	@RequestMapping("/logout.admin")
+	public String logout(HttpServletRequest request, HttpServletResponse response) {
+		userManager.userAdminEixt(request, response);
+		
+		return "redirect:login.html";
+	}
+
+	/**
 	 * 首页页面信息
 	 * 
 	 * @param pageIndex

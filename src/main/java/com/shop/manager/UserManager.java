@@ -194,6 +194,37 @@ public class UserManager {
 		cookie.setPath("/");
 		response.addCookie(cookie);
 	}
+	
+	/**
+	 * 管理员退出系统
+	 * 
+	 * @param request
+	 *            清理session
+	 * @param response
+	 *            清理cookie
+	 * @return
+	 */
+	public int userAdminEixt(HttpServletRequest request, HttpServletResponse response) {
+		try {
+			Cookie[] cookies = request.getCookies();
+			if (cookies != null) {
+				for (Cookie c : cookies) {
+					if ("adminUserId".equals(c.getName())) {
+						request.getSession().removeAttribute("adminName");
+						request.getSession().removeAttribute("adminId");
+						request.getSession().setAttribute(c.getValue(), "");
+						break;
+					}
+				}
+			}
+			Cookie cookie = new Cookie("adminUserId", null);
+			cookie.setPath("/");
+			response.addCookie(cookie);
+		} catch (Exception e) {
+			return 2;
+		}
+		return 4;
+	}
 
 	/**
 	 * 通过邮箱或者姓名获得用户
