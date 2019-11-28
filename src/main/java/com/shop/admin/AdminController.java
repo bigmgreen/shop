@@ -415,7 +415,7 @@ public class AdminController {
 	 */
 	@RequestMapping("/commentappend.admin")
 	@ResponseBody
-	public Code append(@RequestParam long id, @RequestParam String txt, HttpServletRequest request, Model model) {
+	public Code append(@RequestParam long id, @RequestParam String txt, HttpServletRequest request) {
 		boolean status = goodsCommentManager.appendComment(id, txt, "管理员");
 
 		Code code = new Code();

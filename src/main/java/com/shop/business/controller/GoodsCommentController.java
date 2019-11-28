@@ -60,7 +60,7 @@ public class GoodsCommentController {
 	 * @param model
 	 * @return
 	 */
-	@RequestMapping("/comments.user")
+	@RequestMapping("/comments.html")
 	public String list(@RequestParam long goodsId, @RequestParam(defaultValue = "1") int pageIndex,
 			@RequestParam(defaultValue = "8") int pageSize, HttpServletRequest request, Model model) {
 		model.addAttribute("title", "我的评论 | ");
