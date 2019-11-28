@@ -69,10 +69,10 @@
 	<div class="nav">
 		<div class="block">
 			<a href="/shop/index.html">首页</a>
-			<a href="#">男裤</a>
-			<a href="#">女裤</a>
-			<a href="#">男鞋</a>
-			<a href="#">女鞋</a>
+			<a href="/shop/list.html?type=1">男裤</a>
+			<a href="/shop/list.html?type=2">女裤</a>
+			<a href="/shop/list.html?type=3">男鞋</a>
+			<a href="/shop/list.html?type=4">女鞋</a>
 		</div>
 	</div>
 </header>

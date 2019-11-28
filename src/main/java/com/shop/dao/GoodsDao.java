@@ -31,6 +31,25 @@ public interface GoodsDao {
 	public List<Goods> getGoodsListByType(@Param("type") int type, @Param("pageSize") int pageSize);
 
 	/**
+	 * 通过类型获取对于类型的商品列表
+	 * 
+	 * @param pageIndex
+	 * @param pageIndex
+	 * @param kw
+	 * @return
+	 */
+	@SuppressWarnings("rawtypes")
+	public List getGoodsListByTypePage(@Param("type") int type, @Param("start") int start, @Param("end") int end);
+
+	/**
+	 * 通过类型获取对于类型的商品列表长度
+	 * 
+	 * @param kw
+	 * @return
+	 */
+	public int getGoodsCountByType(@Param("type") int type);
+
+	/**
 	 * 根据搜索的条件显示结果集
 	 * 
 	 * @param pageIndex
@@ -39,7 +58,7 @@ public interface GoodsDao {
 	 * @return
 	 */
 	@SuppressWarnings("rawtypes")
-	public List getGoodsListBykw(@Param("kw") String kw, @Param("start") int start, @Param("end") int end);
+	public List getGoodsListByKw(@Param("kw") String kw, @Param("start") int start, @Param("end") int end);
 
 	/**
 	 * 根据搜索的条件显示结果集长度
@@ -47,7 +66,7 @@ public interface GoodsDao {
 	 * @param kw
 	 * @return
 	 */
-	public int getGoodsCountBykw(String kw);
+	public int getGoodsCountByKw(String kw);
 
 	/**
 	 * 通过商品id获取商品详情

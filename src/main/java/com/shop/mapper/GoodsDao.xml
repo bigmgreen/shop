@@ -5,17 +5,23 @@
 	<select id="getHotGoods" resultType="Goods">
 		select * from goods limit 2
 	</select>
+	<select id="getGoodsListByKw" resultType="Goods">
+		select * from goods
+		where title like "%"#{kw,jdbcType=VARCHAR}"%" limit #{start},#{end}
+	</select>
+	<select id="getGoodsCountByKw" resultType="java.lang.Integer">
+		select count(1) from
+		goods where title like "%"#{kw,jdbcType=VARCHAR}"%"
+	</select>
 	<select id="getGoodsListByType" parameterType="java.lang.Integer"
 		resultType="Goods">
 		select * from goods where type=#{type} limit #{pageSize}
 	</select>
-	<select id="getGoodsListBykw" resultType="Goods">
-		select * from goods
-		where title like "%"#{kw,jdbcType=VARCHAR}"%" limit #{start},#{end}
+	<select id="getGoodsListByTypePage" resultType="Goods">
+		select * from goods where type=#{type} limit #{start},#{end}
 	</select>
-	<select id="getGoodsCountBykw" resultType="java.lang.Integer">
-		select count(1) from
-		goods where title like "%"#{kw,jdbcType=VARCHAR}"%"
+	<select id="getGoodsCountByType" resultType="java.lang.Integer">
+		select count(1) from goods where type=#{type}
 	</select>
 	<select id="getGoodsById" parameterType="java.lang.Long" resultType="Goods">
 		select * from goods where

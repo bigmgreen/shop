@@ -67,25 +67,42 @@ public class GoodsService extends BaseService {
 	 * 
 	 * @param pageIndex
 	 * @param pageIndex
+	 * @param type
 	 * @param kw
 	 * @return
 	 */
 	@SuppressWarnings("rawtypes")
-	public List getGoodsListBykw(String kw, int pageIndex, int pageSize) {
-		List list = getGoodsDao().getGoodsListBykw(kw, (pageIndex - 1) * pageSize, pageSize);
+	public List getGoodsListBykw(String kw, int type, int pageIndex, int pageSize) {
+		List list = null;
+
+		System.out.println(!"".equals(kw));
+		System.out.println(type == 0);
+		
+		if (!"".equals(kw) || type == 0) {
+			list = getGoodsDao().getGoodsListByKw(kw, (pageIndex - 1) * pageSize, pageSize);
+		} else {
+			list = getGoodsDao().getGoodsListByTypePage(type, (pageIndex - 1) * pageSize, pageSize);
+		}
 
 		session.close();
 		return list;
 	}
-
+	
 	/**
 	 * 根据搜索的条件显示结果集长度
 	 * 
 	 * @param kw
+	 * @param type
 	 * @return
 	 */
-	public int getGoodsCountBykw(String kw) {
-		int pageCount = getGoodsDao().getGoodsCountBykw(kw);
+	public int getGoodsCountBykw(String kw, int type) {
+		int pageCount = 0;
+
+		if (!"".equals(kw) || type == 0) {
+			pageCount = getGoodsDao().getGoodsCountByKw(kw);
+		} else {
+			pageCount = getGoodsDao().getGoodsCountByType(type);
+		}
 
 		session.close();
 		return pageCount;

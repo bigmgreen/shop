@@ -63,13 +63,15 @@ public class GoodsManager {
 	/**
 	 * 根据搜索的条件显示结果集
 	 * 
-	 * @param pageIndex
 	 * @param kw
+	 * @param type
+	 * @param pageIndex
+	 * @param pageSize
 	 * @return
 	 */
 	@SuppressWarnings({ "rawtypes" })
-	public List getGoodsList(String kw, int pageIndex, int pageSize) {
-		List list = goodsService.getGoodsListBykw(kw, pageIndex, pageSize);
+	public List getGoodsList(String kw, int type, int pageIndex, int pageSize) {
+		List list = goodsService.getGoodsListBykw(kw, type, pageIndex, pageSize);
 
 		if (null == list || (null != list && list.size() == 0)) {
 			list = null;
@@ -82,10 +84,11 @@ public class GoodsManager {
 	 * 根据搜索的条件显示结果集个数
 	 * 
 	 * @param kw
+	 * @param type
 	 * @return
 	 */
-	public int getGoodsCountBykw(String kw) {
-		return goodsService.getGoodsCountBykw(kw);
+	public int getGoodsCountBykw(String kw, int type) {
+		return goodsService.getGoodsCountBykw(kw, type);
 	}
 
 	/**

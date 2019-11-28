@@ -11,7 +11,7 @@
 		  	    <li 
 		  	    	class='<c:if test="${pageIndex eq count}">active</c:if>'
 		  	    >
-		  	    	<a href="/shop/list.html?kw=<c:out value="${kw }"></c:out>&pageSize=<c:out value="${pageSize }"></c:out>&pageIndex=<c:out value="${count }"></c:out>"><c:out value="${count }"></c:out></a>
+		  	    	<a href="/shop/list.html?type=<c:out value="${type }"></c:out>&kw=<c:out value="${kw }"></c:out>&pageSize=<c:out value="${pageSize }"></c:out>&pageIndex=<c:out value="${count }"></c:out>"><c:out value="${count }"></c:out></a>
 		  	    </li>
 		  	</c:forEach>
 		  </ul>

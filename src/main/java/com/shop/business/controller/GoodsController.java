@@ -64,12 +64,13 @@ public class GoodsController {
 	 */
 	@RequestMapping("/list.html")
 	public String list(@RequestParam(defaultValue = "1") int pageIndex, @RequestParam(defaultValue = "8") int pageSize,
-			@RequestParam(defaultValue = "") String kw, Model model) {
+			@RequestParam(defaultValue = "") String kw, @RequestParam(defaultValue = "0") int type, Model model) {
 		model.addAttribute("kw", kw);
-		model.addAttribute("list", goodsManager.getGoodsList(kw, pageIndex, pageSize));
-		model.addAttribute("pageCount", (goodsManager.getGoodsCountBykw(kw) + pageSize - 1) / pageSize);
+		model.addAttribute("list", goodsManager.getGoodsList(kw, type, pageIndex, pageSize));
+		model.addAttribute("pageCount", (goodsManager.getGoodsCountBykw(kw, type) + pageSize - 1) / pageSize);
 		model.addAttribute("pageIndex", pageIndex);
 		model.addAttribute("pageSize", pageSize);
+		model.addAttribute("type", type);
 
 		return Utils.getBusinessUrl("list");
 	}
