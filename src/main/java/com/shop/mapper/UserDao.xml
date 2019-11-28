@@ -25,6 +25,9 @@
 		from
 		user
 	</select>
+	<select id="getAllCount" resultType="java.lang.Integer">
+		select count(1) from user
+	</select>
 	<select id="getAll" parameterType="java.lang.Integer" resultType="User">
 		select * from user order by date DESC limit #{start},#{end}
 	</select>
@@ -67,11 +70,7 @@
 		where id=#{id}
 	</update>
 	<delete id="deleteUser" parameterType="java.lang.Long">
-		delete
-		from
-		user
-		where
-		id=#{id}
+		delete from user where id=#{id}
 	</delete>
 	<insert id="insert" parameterType="User">
 		insert into user (id,

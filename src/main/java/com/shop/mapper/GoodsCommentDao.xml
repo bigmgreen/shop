@@ -11,6 +11,9 @@
 	<select id="getAll" resultType="GoodsComment">
 		select * from goods_comment order by date DESC limit #{start},#{end}
 	</select>
+	<select id="getAllCount" resultType="java.lang.Integer">
+		select count(1) from goods_comment
+	</select>
 	<select id="getGoodsCommentsById" resultType="GoodsComment">
 		select * from goods_comment where goodsid = #{goodsid} order by date DESC limit #{start},#{end}
 	</select>

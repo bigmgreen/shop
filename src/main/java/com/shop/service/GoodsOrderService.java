@@ -70,7 +70,7 @@ public class GoodsOrderService extends BaseService {
 	}
 
 	/**
-	 * 获取所有订单总数
+	 * 获取用户所有订单总数
 	 * 
 	 * @param userid
 	 * 
@@ -94,7 +94,7 @@ public class GoodsOrderService extends BaseService {
 	@SuppressWarnings("rawtypes")
 	public List getOrderByType(long userid, int type, int pageIndex, int pageSize) {
 		List list = getGoodsOrderDao().getOrderByType(userid, type, (pageIndex - 1) * pageSize, pageSize);
-		
+
 		session.close();
 
 		return list;
@@ -111,7 +111,7 @@ public class GoodsOrderService extends BaseService {
 	@SuppressWarnings("rawtypes")
 	public List getAllOrder(long userid, int pageIndex, int pageSize) {
 		List list = getGoodsOrderDao().getOrderByUserId(userid, (pageIndex - 1) * pageSize, pageSize);
-		
+
 		session.close();
 
 		return list;
@@ -126,7 +126,7 @@ public class GoodsOrderService extends BaseService {
 	@SuppressWarnings("rawtypes")
 	public List getAllOrder(int pageIndex, int pageSize) {
 		List list = getGoodsOrderDao().getAllOrder((pageIndex - 1) * pageSize, pageSize);
-		
+
 		session.close();
 
 		return list;
@@ -138,8 +138,8 @@ public class GoodsOrderService extends BaseService {
 	 * @param id
 	 * @return
 	 */
-	public void updateOrder(long id) {
-		getGoodsOrderDao().updateOrder(id);
+	public void updateOrder(long id, int type) {
+		getGoodsOrderDao().updateOrder(id, type);
 
 		session.commit();
 		session.close();
@@ -156,6 +156,18 @@ public class GoodsOrderService extends BaseService {
 
 		session.commit();
 		session.close();
+	}
+
+	/**
+	 * 获取所有订单总数
+	 * 
+	 * @return
+	 */
+	public int getAllOrderCount() {
+		int pageCount = getGoodsOrderDao().getAllOrderCount();
+
+		session.close();
+		return pageCount;
 	}
 
 }

@@ -93,7 +93,7 @@ public class GoodsOrderManager {
 	}
 
 	/**
-	 * 获取所有订单总数
+	 * 获取用户所有订单总数
 	 * 
 	 * @param userid
 	 * 
@@ -109,9 +109,9 @@ public class GoodsOrderManager {
 	 * @param id
 	 * @return
 	 */
-	public boolean updateOrder(long id) {
+	public boolean updateOrder(long id, int type) {
 		try {
-			goodsOrderService.updateOrder(id);
+			goodsOrderService.updateOrder(id, type);
 			return true;
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -133,5 +133,14 @@ public class GoodsOrderManager {
 			e.printStackTrace();
 		}
 		return false;
+	}
+
+	/**
+	 * 获取所有订单总数
+	 * 
+	 * @return
+	 */
+	public int getAllOrderCount() {
+		return goodsOrderService.getAllOrderCount();
 	}
 }

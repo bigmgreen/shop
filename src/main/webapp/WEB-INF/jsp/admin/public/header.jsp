@@ -61,7 +61,7 @@
 	<div class="container-fluid">
 		<div class="row">
 			<div class="col-md-2 col-sm-2">
-				<div class="panel panel-primary">
+				<div class="panel panel-primary" id="menu">
 					<div class="panel-heading">
 					  <h3 class="panel-title">系统菜单</h3>
 					</div>

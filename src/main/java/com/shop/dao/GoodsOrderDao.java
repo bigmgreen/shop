@@ -77,7 +77,7 @@ public interface GoodsOrderDao {
 	 * @param id
 	 * @return
 	 */
-	public void updateOrder(long id);
+	public void updateOrder(@Param("id") long id, @Param("type") int type);
 
 	/**
 	 * 根据id删除当前用户的订单
@@ -86,4 +86,11 @@ public interface GoodsOrderDao {
 	 * @return
 	 */
 	public void delOrder(long id);
+
+	/**
+	 * 获取所有订单总数
+	 * 
+	 * @return
+	 */
+	public int getAllOrderCount();
 }

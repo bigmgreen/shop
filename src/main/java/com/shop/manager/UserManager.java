@@ -306,8 +306,15 @@ public class UserManager {
 	 * 
 	 * @param id
 	 */
-	public void delete(long id) {
-		userService.delete(id);
+	public boolean delete(long id) {
+		try {
+			userService.delete(id);
+			return true;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return false;
 	}
 
 	/**
@@ -324,6 +331,15 @@ public class UserManager {
 			return null;
 		}
 		return list;
+	}
+
+	/**
+	 * 获取所有注册用户总数
+	 * 
+	 * @return
+	 */
+	public int getAllCount() {
+		return userService.getAllCount();
 	}
 
 }

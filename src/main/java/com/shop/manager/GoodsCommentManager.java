@@ -104,4 +104,13 @@ public class GoodsCommentManager {
 		return false;
 	}
 
+	/**
+	 * 获取所有评论总数
+	 * 
+	 * @return
+	 */
+	public int getAllCount() {
+		return goodsCommentService.getAllCount();
+	}
+
 }

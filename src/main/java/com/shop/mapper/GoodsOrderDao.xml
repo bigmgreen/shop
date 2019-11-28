@@ -17,14 +17,17 @@
 	<select id="getAllOrder" resultType="GoodsOrderOrCar">
 		select * from goods_order order by date DESC limit #{start},#{end}
 	</select>
+	<select id="getAllOrderCount" resultType="java.lang.Integer">
+		select count(1) from goods_order
+	</select>
 	<select id="getOrderCountByType" resultType="java.lang.Integer">
 		select count(1) from goods_order where type = #{type} and userid=#{userid}
 	</select>
 	<select id="getOrderCount" resultType="java.lang.Integer">
 		select count(1) from goods_order where userid=#{userid}
 	</select>
-	<update id="updateOrder"  parameterType="java.lang.Long">
-		update goods_order set type=3 where id=#{id}
+	<update id="updateOrder">
+		update goods_order set type=#{type} where id=#{id}
 	</update>
 	<update id="delOrder" parameterType="java.lang.Long">
 		update goods_order set type=-1 where id=#{id}

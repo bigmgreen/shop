@@ -37,7 +37,7 @@ public interface UserDao {
 	 * @return
 	 */
 	public List<User> getAllUser();
-	
+
 	/**
 	 * 获取所有用户
 	 * 
@@ -100,4 +100,11 @@ public interface UserDao {
 	 * @return
 	 */
 	public User getAdmin(@Param("username") String username, @Param("password") String password);
+
+	/**
+	 * 获取所有用户总数
+	 * 
+	 * @return
+	 */
+	public int getAllCount();
 }

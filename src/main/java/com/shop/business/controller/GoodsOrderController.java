@@ -96,7 +96,7 @@ public class GoodsOrderController {
 	@RequestMapping("/orderupdate.user")
 	@ResponseBody
 	public Code orderupdate(@RequestParam long id) {
-		boolean status = goodsOrderManager.updateOrder(id);
+		boolean status = goodsOrderManager.updateOrder(id, 3);
 
 		Code code = new Code();
 		if (status) {

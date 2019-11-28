@@ -116,6 +116,7 @@ public class UserService extends BaseService {
 	 */
 	public void delete(long id) {
 		getUserDao().deleteUser(id);
+		
 		session.commit();
 		session.close();
 	}
@@ -148,6 +149,18 @@ public class UserService extends BaseService {
 		session.close();
 
 		return list;
+	}
+
+	/**
+	 * 获取所有用户总数
+	 * 
+	 * @return
+	 */
+	public int getAllCount() {
+		int pageCount = getUserDao().getAllCount();
+
+		session.close();
+		return pageCount;
 	}
 
 }

@@ -137,4 +137,16 @@ public class GoodsCommentService extends BaseService {
 		session.close();
 	}
 
+	/**
+	 * 获取所有评论总数
+	 * 
+	 * @return
+	 */
+	public int getAllCount() {
+		int pageCount = getGoodsCommentDao().getAllCount();
+
+		session.close();
+		return pageCount;
+	}
+
 }

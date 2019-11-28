@@ -41,6 +41,13 @@ public interface GoodsCommentDao {
 	public List getAll(@Param("start") int start, @Param("end") int end);
 
 	/**
+	 * 获取所有评论总数
+	 * 
+	 * @return
+	 */
+	public int getAllCount();
+
+	/**
 	 * 通过商品id获取商品详情的相关评论总数
 	 * 
 	 * @param goodsid
