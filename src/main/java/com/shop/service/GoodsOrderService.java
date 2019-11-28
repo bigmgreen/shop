@@ -38,7 +38,7 @@ public class GoodsOrderService extends BaseService {
 		goodsOrderOrCar.setUserid(userid);
 		goodsOrderOrCar.setOrdercode(UUID.randomUUID().toString().replaceAll("-", ""));
 		goodsOrderOrCar.setType(1); // 1待发货 2待收货 3 已收货
-		
+
 		Date date = new Date();
 		goodsOrderOrCar.setDate(new Timestamp(date.getTime()));
 
@@ -94,14 +94,14 @@ public class GoodsOrderService extends BaseService {
 	@SuppressWarnings("rawtypes")
 	public List getOrderByType(long userid, int type, int pageIndex, int pageSize) {
 		List list = getGoodsOrderDao().getOrderByType(userid, type, (pageIndex - 1) * pageSize, pageSize);
-		session.commit();
+		
 		session.close();
 
 		return list;
 	}
 
 	/**
-	 * 获取所有订单
+	 * 获取当前用户所有订单
 	 * 
 	 * @param userid
 	 * 
@@ -110,8 +110,23 @@ public class GoodsOrderService extends BaseService {
 	 */
 	@SuppressWarnings("rawtypes")
 	public List getAllOrder(long userid, int pageIndex, int pageSize) {
-		List list = getGoodsOrderDao().getAllOrder(userid, (pageIndex - 1) * pageSize, pageSize);
-		session.commit();
+		List list = getGoodsOrderDao().getOrderByUserId(userid, (pageIndex - 1) * pageSize, pageSize);
+		
+		session.close();
+
+		return list;
+	}
+
+	/**
+	 * 获取所有订单
+	 * 
+	 * @param type
+	 * @return
+	 */
+	@SuppressWarnings("rawtypes")
+	public List getAllOrder(int pageIndex, int pageSize) {
+		List list = getGoodsOrderDao().getAllOrder((pageIndex - 1) * pageSize, pageSize);
+		
 		session.close();
 
 		return list;

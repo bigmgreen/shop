@@ -11,8 +11,11 @@
 	<select id="getOrderByType" resultType="GoodsOrderOrCar">
 		select * from goods_order where type = #{type} and userid=#{userid} order by date DESC limit #{start},#{end}
 	</select>
-	<select id="getAllOrder" resultType="GoodsOrderOrCar">
+	<select id="getOrderByUserId" resultType="GoodsOrderOrCar">
 		select * from goods_order where type != -1 and userid=#{userid} order by date DESC limit #{start},#{end}
+	</select>
+	<select id="getAllOrder" resultType="GoodsOrderOrCar">
+		select * from goods_order order by date DESC limit #{start},#{end}
 	</select>
 	<select id="getOrderCountByType" resultType="java.lang.Integer">
 		select count(1) from goods_order where type = #{type} and userid=#{userid}

@@ -37,6 +37,16 @@ public interface UserDao {
 	 * @return
 	 */
 	public List<User> getAllUser();
+	
+	/**
+	 * 获取所有用户
+	 * 
+	 * @param pageIndex
+	 * @param pageSize
+	 * @return
+	 */
+	@SuppressWarnings("rawtypes")
+	public List getAll(@Param("start") int start, @Param("end") int end);
 
 	/**
 	 * 更新用户数据

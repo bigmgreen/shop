@@ -255,3 +255,12 @@ footer .footer-hd em {
 .container-fluid {
 	min-width: 960px;
 }
+
+.nowrap{
+	white-space: nowrap;
+	overflow: hidden;
+	-ms-text-overflow: ellipsis;
+	text-overflow: ellipsis;
+	width: 300px;
+	display: block;
+}

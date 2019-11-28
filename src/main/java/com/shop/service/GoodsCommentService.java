@@ -62,6 +62,22 @@ public class GoodsCommentService extends BaseService {
 	}
 
 	/**
+	 * 获取所有评论
+	 * 
+	 * @param pageIndex
+	 * @param pageSize
+	 * @return
+	 */
+	@SuppressWarnings("rawtypes")
+	public List getAll(int pageIndex, int pageSize) {
+		List list = getGoodsCommentDao().getAll((pageIndex - 1) * pageSize, pageSize);
+		
+		session.close();
+
+		return list;
+	}
+
+	/**
 	 * 通过商品id获取商品详情的相关评论总数
 	 * 
 	 * @param goodsid

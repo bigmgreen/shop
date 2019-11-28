@@ -134,4 +134,20 @@ public class UserService extends BaseService {
 		return user;
 	}
 
+	/**
+	 * 获取所有用户
+	 * 
+	 * @param pageIndex
+	 * @param pageSize
+	 * @return
+	 */
+	@SuppressWarnings("rawtypes")
+	public List getAll(int pageIndex, int pageSize) {
+		List list = getUserDao().getAll((pageIndex - 1) * pageSize, pageSize);
+
+		session.close();
+
+		return list;
+	}
+
 }

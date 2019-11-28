@@ -49,16 +49,32 @@ public class GoodsOrderManager {
 	}
 
 	/**
-	 * 获取所有订单
+	 * 获取当前用户所有订单
 	 * 
 	 * @param userid
-	 * 
-	 * @param type
+	 * @param pageIndex
+	 * @param pageSize
 	 * @return
 	 */
 	@SuppressWarnings("rawtypes")
 	public List getAllOrder(long userid, int pageIndex, int pageSize) {
 		List list = goodsOrderService.getAllOrder(userid, pageIndex, pageSize);
+		if (null == list || (null != list && list.size() == 0)) {
+			return null;
+		}
+		return list;
+	}
+
+	/**
+	 * 获取所有订单
+	 * 
+	 * @param pageIndex
+	 * @param pageSize
+	 * @return
+	 */
+	@SuppressWarnings("rawtypes")
+	public List getAllOrder(int pageIndex, int pageSize) {
+		List list = goodsOrderService.getAllOrder(pageIndex, pageSize);
 		if (null == list || (null != list && list.size() == 0)) {
 			return null;
 		}

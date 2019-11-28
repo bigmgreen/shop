@@ -78,4 +78,9 @@
 		<servlet-name>shop</servlet-name>
 		<url-pattern>*.user</url-pattern>
 	</servlet-mapping>
+	<!-- 管理端请求配置 -->
+	<servlet-mapping>
+		<servlet-name>shop</servlet-name>
+		<url-pattern>*.admin</url-pattern>
+	</servlet-mapping>
 </web-app>

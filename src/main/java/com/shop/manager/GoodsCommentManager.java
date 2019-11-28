@@ -42,6 +42,22 @@ public class GoodsCommentManager {
 	public List getGoodsCommentsById(long goodsid, int pageIndex, int pageSize) {
 		return goodsCommentService.getGoodsCommentsById(goodsid, pageIndex, pageSize);
 	}
+	
+	/**
+	 * 获取所有评论
+	 * 
+	 * @param pageIndex
+	 * @param pageSize
+	 * @return
+	 */
+	@SuppressWarnings("rawtypes")
+	public List getAll(int pageIndex, int pageSize) {
+		List list = goodsCommentService.getAll(pageIndex, pageSize);
+		if (null == list || (null != list && list.size() == 0)) {
+			return null;
+		}
+		return list;
+	}
 
 	/**
 	 * 通过商品id获取商品详情的相关评论总数

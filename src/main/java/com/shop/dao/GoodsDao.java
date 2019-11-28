@@ -31,6 +31,16 @@ public interface GoodsDao {
 	public List<Goods> getGoodsListByType(@Param("type") int type, @Param("pageSize") int pageSize);
 
 	/**
+	 * 获取所有商品
+	 * 
+	 * @param pageIndex
+	 * @param pageSize
+	 * @return
+	 */
+	@SuppressWarnings("rawtypes")
+	public List getAll(@Param("start") int start, @Param("end") int end);
+
+	/**
 	 * 通过类型获取对于类型的商品列表
 	 * 
 	 * @param pageIndex

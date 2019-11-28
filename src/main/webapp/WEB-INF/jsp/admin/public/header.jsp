@@ -61,18 +61,26 @@
 	<div class="container-fluid">
 		<div class="row">
 			<div class="col-md-2 col-sm-2">
-				<ul class="nav nav-pills nav-stacked">
-				  <li role="presentation" <c:if test="${pageId eq 1}">class="active"</c:if>><a href="/shop/index.admin">首页</a></li>
-				  <li role="presentation" <c:if test="${pageId eq 2}">class="active"</c:if>><a href="/shop/index.admin">用户列表</a></li>
-				  <li role="presentation" <c:if test="${pageId eq 3}">class="active"</c:if>><a href="/shop/index.admin">商品列表</a></li>
-				  <li role="presentation" <c:if test="${pageId eq 4}">class="active"</c:if>><a href="/shop/index.admin">评价列表</a></li>
-				</ul>
+				<div class="panel panel-primary">
+					<div class="panel-heading">
+					  <h3 class="panel-title">系统菜单</h3>
+					</div>
+					<div class="panel-body">
+					  	<ul class="nav nav-pills nav-stacked">
+						  <li role="presentation" <c:if test="${pageId eq 1}">class="active"</c:if>><a href="/admin/index.admin">首页</a></li>
+						  <li role="presentation" <c:if test="${pageId eq 5}">class="active"</c:if>><a href="/admin/orders.admin">订单列表</a></li>
+						  <li role="presentation" <c:if test="${pageId eq 4}">class="active"</c:if>><a href="/admin/comments.admin">评价列表</a></li>
+						  <li role="presentation" <c:if test="${pageId eq 3}">class="active"</c:if>><a href="/admin/goodses.admin">商品列表</a></li>
+						  <li role="presentation" <c:if test="${pageId eq 2}">class="active"</c:if>><a href="/admin/users.admin">用户列表</a></li>
+						</ul>
+					</div>
+				</div>
 			</div>
 			<div class="col-md-10 col-sm-10">
 				<header>
 					<ol class="breadcrumb">
-					  <li><a href="/shop/index.admin">首页</a></li>
-					  <li class="active"><c:out value="${title}"></c:out></li>
+					  <li>当前位置</li>
+					  <c:if test="${title ne null}"><li class="active"><a href=""><c:out value="${title}"></c:out></a></li></c:if>
 					</ol>
 				</header>
 

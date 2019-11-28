@@ -1,5 +1,7 @@
 package com.shop.model;
 
+import java.sql.Timestamp;
+
 public class User {
 	public Long id;
 	public String name;
@@ -7,6 +9,15 @@ public class User {
 	public String email;
 	public String address;
 	public String postelcode;
+	public Timestamp date;
+
+	public Timestamp getDate() {
+		return date;
+	}
+
+	public void setDate(Timestamp date) {
+		this.date = date;
+	}
 
 	public Long getId() {
 		return id;

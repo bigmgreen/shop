@@ -25,6 +25,9 @@
 		from
 		user
 	</select>
+	<select id="getAll" parameterType="java.lang.Integer" resultType="User">
+		select * from user order by date DESC limit #{start},#{end}
+	</select>
 	<select id="getAdmin" resultType="User">
 		select * from admin where username=#{username} and password=#{password}
 	</select>

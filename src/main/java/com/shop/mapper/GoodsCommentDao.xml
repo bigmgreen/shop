@@ -8,6 +8,9 @@
 		values
 			(#{goodsid}, #{userid}, #{username}, #{txt}, #{date})
 	</insert>
+	<select id="getAll" resultType="GoodsComment">
+		select * from goods_comment order by date DESC limit #{start},#{end}
+	</select>
 	<select id="getGoodsCommentsById" resultType="GoodsComment">
 		select * from goods_comment where goodsid = #{goodsid} order by date DESC limit #{start},#{end}
 	</select>

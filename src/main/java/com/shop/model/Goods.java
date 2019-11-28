@@ -1,5 +1,7 @@
 package com.shop.model;
 
+import java.sql.Timestamp;
+
 public class Goods {
 	public Long id;
 	public String imgurl;
@@ -13,6 +15,15 @@ public class Goods {
 	public Integer oldprice;
 	public Integer salecount;
 	public Integer count;
+	public Timestamp date;
+
+	public Timestamp getDate() {
+		return date;
+	}
+
+	public void setDate(Timestamp date) {
+		this.date = date;
+	}
 
 	public Integer getCount() {
 		return count;

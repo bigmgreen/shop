@@ -33,15 +33,25 @@ public interface GoodsOrderDao {
 			@Param("end") int end);
 
 	/**
-	 * 获取所有订单
+	 * 获取当前用户所有订单
 	 * 
 	 * @param userid
-	 * 
-	 * @param type
+	 * @param start
+	 * @param end
 	 * @return
 	 */
 	@SuppressWarnings("rawtypes")
-	public List getAllOrder(@Param("userid") long userid, @Param("start") int start, @Param("end") int end);
+	public List getOrderByUserId(@Param("userid") long userid, @Param("start") int start, @Param("end") int end);
+
+	/**
+	 * 获取所有订单
+	 * 
+	 * @param start
+	 * @param end
+	 * @return
+	 */
+	@SuppressWarnings("rawtypes")
+	public List getAllOrder(@Param("start") int start, @Param("end") int end);
 
 	/**
 	 * 获取某一类订单总数

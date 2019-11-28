@@ -47,6 +47,22 @@ public class GoodsService extends BaseService {
 	}
 
 	/**
+	 * 获取所有商品
+	 * 
+	 * @param pageIndex
+	 * @param pageSize
+	 * @return
+	 */
+	@SuppressWarnings("rawtypes")
+	public List getAll(int pageIndex, int pageSize) {
+		List list = getGoodsDao().getAll((pageIndex - 1) * pageSize, pageSize);
+
+		session.close();
+
+		return list;
+	}
+
+	/**
 	 * 通过类型获取对于类型的商品列表
 	 * 
 	 * @param type
@@ -77,7 +93,7 @@ public class GoodsService extends BaseService {
 
 		System.out.println(!"".equals(kw));
 		System.out.println(type == 0);
-		
+
 		if (!"".equals(kw) || type == 0) {
 			list = getGoodsDao().getGoodsListByKw(kw, (pageIndex - 1) * pageSize, pageSize);
 		} else {
@@ -87,7 +103,7 @@ public class GoodsService extends BaseService {
 		session.close();
 		return list;
 	}
-	
+
 	/**
 	 * 根据搜索的条件显示结果集长度
 	 * 

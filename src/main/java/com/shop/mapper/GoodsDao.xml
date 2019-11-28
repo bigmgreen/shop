@@ -13,6 +13,10 @@
 		select count(1) from
 		goods where title like "%"#{kw,jdbcType=VARCHAR}"%"
 	</select>
+	<select id="getAll" parameterType="java.lang.Integer"
+		resultType="Goods">
+		select * from goods order by date DESC limit #{start},#{end}
+	</select>
 	<select id="getGoodsListByType" parameterType="java.lang.Integer"
 		resultType="Goods">
 		select * from goods where type=#{type} limit #{pageSize}

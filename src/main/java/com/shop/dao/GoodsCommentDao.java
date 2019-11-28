@@ -31,6 +31,16 @@ public interface GoodsCommentDao {
 	public List getGoodsCommentsById(@Param("goodsid") long goodsid, @Param("start") int start, @Param("end") int end);
 
 	/**
+	 * 获取所有评论
+	 * 
+	 * @param pageIndex
+	 * @param pageSize
+	 * @return
+	 */
+	@SuppressWarnings("rawtypes")
+	public List getAll(@Param("start") int start, @Param("end") int end);
+
+	/**
 	 * 通过商品id获取商品详情的相关评论总数
 	 * 
 	 * @param goodsid

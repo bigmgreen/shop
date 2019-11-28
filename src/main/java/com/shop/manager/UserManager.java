@@ -310,4 +310,20 @@ public class UserManager {
 		userService.delete(id);
 	}
 
+	/**
+	 * 获取所有注册用户
+	 * 
+	 * @param pageIndex
+	 * @param pageSize
+	 * @return
+	 */
+	@SuppressWarnings("rawtypes")
+	public List getAll(int pageIndex, int pageSize) {
+		List list = userService.getAll(pageIndex, pageSize);
+		if (null == list || (null != list && list.size() == 0)) {
+			return null;
+		}
+		return list;
+	}
+
 }
