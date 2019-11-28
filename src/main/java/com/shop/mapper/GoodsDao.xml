@@ -34,6 +34,28 @@
 		select * from goods where
 		id = #{id}
 	</select>
+	<insert id="addGoods" parameterType="Goods">
+		insert into goods
+			(imgurl, imgs, sizes, colors, title, ispost, type, price, oldprice, salecount, count, date)
+		values
+			(#{imgurl}, #{imgs}, #{sizes}, #{colors}, #{title}, #{ispost}, #{type}, #{price}, #{oldprice}, #{salecount}, #{count}, #{date})
+	</insert>
+	<update id="updateGoods" parameterType="Goods">
+		update goods set
+			imgurl=#{imgurl}, 
+			imgs=#{imgs}, 
+			sizes=#{sizes}, 
+			colors=#{colors}, 
+			title=#{title}, 
+			ispost=#{ispost}, 
+			type=#{type}, 
+			price=#{price}, 
+			oldprice=#{oldprice}, 
+			salecount=#{salecount}, 
+			count=#{count}, 
+			date=#{date}
+		where id=#{id}
+	</update>
 	<insert id="addCar" parameterType="GoodsOrderOrCar">
 		insert into goods_car
 			(goodsid, count, color,size,userid,ordercode,date,type,username,title,price,imgurl)

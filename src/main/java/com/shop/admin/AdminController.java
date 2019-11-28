@@ -1,5 +1,11 @@
 package com.shop.admin;
 
+import java.io.File;
+import java.io.IOException;
+import java.sql.Timestamp;
+import java.util.Date;
+import java.util.UUID;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -10,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.shop.manager.GoodsCommentManager;
 import com.shop.manager.GoodsManager;
@@ -247,6 +254,135 @@ public class AdminController {
 			code.setCode(-1);
 		}
 		return code;
+	}
+
+	/**
+	 * 修改商品
+	 * 
+	 * @param goods
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping("/goodsupdate.admin")
+	@ResponseBody
+	public Code goodsupdate(Goods goods) {
+		goods.setImgurl(this.upload(goods.getGoodsimgurl()));
+
+		String path = "";
+		for (MultipartFile file : goods.getGoodsimgs()) {
+			path += this.upload(file) + ",";
+		}
+
+		goods.setImgs(path);
+
+		Date date = new Date();
+		goods.setDate(new Timestamp(date.getTime()));
+
+		goods.setSizes(this.contact(goods.getGoodssizes()));
+
+		goods.setColors(this.contact(goods.getGoodscolors()));
+
+		boolean status = goodsManager.updateGoods(goods);
+
+		Code code = new Code();
+		if (status) {
+			code.setCode(0);
+		} else {
+			code.setCode(-1);
+		}
+		return code;
+	}
+
+	/**
+	 * 添加商品
+	 * 
+	 * @param goods
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping("/goodsadd.admin")
+	@ResponseBody
+	public Code goodsadd(Goods goods) {
+		goods.setImgurl(this.upload(goods.getGoodsimgurl()));
+
+		String path = "";
+		for (MultipartFile file : goods.getGoodsimgs()) {
+			path += this.upload(file) + ",";
+		}
+
+		goods.setImgs(path);
+
+		Date date = new Date();
+		goods.setDate(new Timestamp(date.getTime()));
+
+		goods.setSizes(this.contact(goods.getGoodssizes()));
+
+		goods.setColors(this.contact(goods.getGoodscolors()));
+
+		boolean status = goodsManager.addGoods(goods);
+
+		Code code = new Code();
+		if (status) {
+			code.setCode(0);
+		} else {
+			code.setCode(-1);
+		}
+		return code;
+	}
+
+	/**
+	 * 合并字符串数组
+	 * 
+	 * @param strs
+	 * @return
+	 */
+	private String contact(String[] strs) {
+		String str = "";
+
+		for (int i = 0; i < strs.length; i++) {
+			str += strs[i] + ",";
+		}
+
+		return str;
+	}
+
+	/**
+	 * 文件上传
+	 * 
+	 * @param file
+	 * @return
+	 */
+	private String upload(MultipartFile file) {
+		try {
+			// 获取上传文件的名称
+			String fileName = file.getOriginalFilename();
+
+			// 截取参数之后剩余的字符串并返回（返回文件名中“.”的索引值），获取上传图片的后缀名
+			String ext = fileName.substring(fileName.indexOf("."));
+
+			String importPath = "src/main/webapp/upload/";
+
+			// 根据指定存储路径新建file对象
+			File flist = new File(importPath);
+
+			if (!importPath.isEmpty()) {
+				// 检查指定路径下是否有文件夹，没有创建相应文件夹
+				flist.mkdir();
+			}
+
+			String name = UUID.randomUUID().toString() + ext;
+
+			// 图片上传的路径和上传后的名称+原始后缀名
+			file.transferTo(new File(importPath, name));
+
+			return "/upload/" + name;
+		} catch (IllegalStateException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
+		return "";
 	}
 
 	/**

@@ -134,6 +134,8 @@ public class GoodsService extends BaseService {
 	public Goods getGoodsById(long id) {
 		Goods goods = getGoodsDao().getGoodsById(id);
 
+		goods.setImgs(goods.getImgs().replaceAll(";", ","));
+
 		session.close();
 		return goods;
 	}
@@ -316,6 +318,30 @@ public class GoodsService extends BaseService {
 	 */
 	public void bannerDelete(long id) {
 		getBannerDao().bannerDelete(id);
+
+		session.commit();
+		session.close();
+	}
+
+	/**
+	 * 添加商品
+	 * 
+	 * @param goods
+	 */
+	public void addGoods(Goods goods) {
+		getGoodsDao().addGoods(goods);
+
+		session.commit();
+		session.close();
+	}
+
+	/**
+	 * 修改商品
+	 * 
+	 * @param goods
+	 */
+	public void updateGoods(Goods goods) {
+		getGoodsDao().updateGoods(goods);
 
 		session.commit();
 		session.close();

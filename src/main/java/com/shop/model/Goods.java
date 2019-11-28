@@ -2,12 +2,16 @@ package com.shop.model;
 
 import java.sql.Timestamp;
 
+import org.springframework.web.multipart.MultipartFile;
+
 public class Goods {
 	public Long id;
 	public String imgurl;
 	public String imgs;
 	public String sizes;
 	public String colors;
+	public String[] goodssizes;
+	public String[] goodscolors;
 	public String title;
 	public Integer ispost;
 	public Integer type;
@@ -16,6 +20,41 @@ public class Goods {
 	public Integer salecount;
 	public Integer count;
 	public Timestamp date;
+	public MultipartFile goodsimgurl;
+
+	public String[] getGoodssizes() {
+		return goodssizes;
+	}
+
+	public void setGoodssizes(String[] goodssizes) {
+		this.goodssizes = goodssizes;
+	}
+
+	public String[] getGoodscolors() {
+		return goodscolors;
+	}
+
+	public void setGoodscolors(String[] goodscolors) {
+		this.goodscolors = goodscolors;
+	}
+
+	public MultipartFile getGoodsimgurl() {
+		return goodsimgurl;
+	}
+
+	public void setGoodsimgurl(MultipartFile goodsimgurl) {
+		this.goodsimgurl = goodsimgurl;
+	}
+
+	public MultipartFile[] getGoodsimgs() {
+		return goodsimgs;
+	}
+
+	public void setGoodsimgs(MultipartFile[] goodsimgs) {
+		this.goodsimgs = goodsimgs;
+	}
+
+	public MultipartFile[] goodsimgs;
 
 	public Timestamp getDate() {
 		return date;
@@ -33,35 +72,20 @@ public class Goods {
 		this.count = count;
 	}
 
-	/**
-	 * 需要把长字符串转为数组
-	 * 
-	 * @return
-	 */
-	public String[] getImgs() {
-		return imgs.split(";");
+	public String getImgs() {
+		return imgs;
 	}
 
-	/**
-	 * 需要把长字符串转为数组
-	 * 
-	 * @return
-	 */
-	public String[] getSizes() {
-		return sizes.split(",");
+	public String getSizes() {
+		return sizes;
 	}
 
 	public void setSizes(String sizes) {
 		this.sizes = sizes;
 	}
 
-	/**
-	 * 需要把长字符串转为数组
-	 * 
-	 * @return
-	 */
-	public String[] getColors() {
-		return colors.split(",");
+	public String getColors() {
+		return colors;
 	}
 
 	public void setColors(String colors) {

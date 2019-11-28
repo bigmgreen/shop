@@ -47,7 +47,7 @@
       </div>
       <div class="modal-body">您没有登录或登录超时，请重新登录~</div>
       <div class="modal-footer">
-        <a href="/shop/login.html" class="btn btn-primary">去登录</a>
+        <a href="/admin/login.html" class="btn btn-primary">去登录</a>
       </div>
     </div>
   </div>

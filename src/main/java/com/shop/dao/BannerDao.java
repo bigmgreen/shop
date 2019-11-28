@@ -3,6 +3,7 @@ package com.shop.dao;
 import java.util.List;
 
 import com.shop.model.Banner;
+import com.shop.model.Goods;
 
 /**
  * 焦点图

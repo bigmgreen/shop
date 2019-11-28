@@ -158,4 +158,17 @@ public interface GoodsDao {
 	 */
 	public void delete(long id);
 
+	/**
+	 * 添加商品
+	 * 
+	 * @param goods
+	 */
+	public void addGoods(Goods goods);
+
+	/**
+	 * 修改商品
+	 * 
+	 * @param goods
+	 */
+	public void updateGoods(Goods goods);
 }

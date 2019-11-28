@@ -5,6 +5,28 @@
 
 <%@ include file="./public/header.jsp"%>
 
+<script src="/static/lib/jquery1.9.1/jquery.validate.min.js"></script>
+<script>
+	$.extend($.validator.messages, { required: "这是必填项.", number: "请输入数字" });
+</script>
+
+<style>
+form .form-group{
+	margin-bottom: 20px;
+}
+form label.error{
+	position: absolute;
+	white-space: nowrap;
+	color: #f00;
+}
+
+form label.radio-inline label.error,
+form label.checkbox-inline label.error{
+	top: 27px;
+	left: 0;
+}
+</style>
+
 <div class="row">
 	<div class="col-md-12 col-sm-12">
 		<div class="panel panel-info">
@@ -50,7 +72,7 @@
 			</div>
 			<div class="panel-body">
 				<div class="btn-group pull-right">
-				  <button type="button" class="btn btn-primary btn-lg">添加</button>
+				  <button type="button" id="addModalBtn" class="btn btn-primary btn-lg">添加</button>
 				</div>
 				<c:if test="${list ne null }">
 					<table class="table table-hover">
@@ -85,7 +107,21 @@
 					          </td>
 					          <td data-id="<c:out value="${item.id }"></c:out>">
 								  <button type="button" data-banner class="btn btn-info">设为焦点图</button>
-								  <button type="button" data-update class="btn btn-success">修改</button>
+								  <button 
+									  type="button" 
+									  data-update 
+									  class="btn btn-success"
+									  data-id="<c:out value="${item.id }"></c:out>"
+									  data-title="<c:out value="${item.title }"></c:out>"
+									  data-price="<c:out value="${item.price }"></c:out>"
+									  data-oldprice="<c:out value="${item.oldprice }"></c:out>"
+									  data-salecount="<c:out value="${item.salecount }"></c:out>"
+									  data-count="<c:out value="${item.count }"></c:out>"
+									  data-type="<c:out value="${item.type }"></c:out>"
+									  data-colors="<c:out value="${item.colors }"></c:out>"
+									  data-sizes="<c:out value="${item.sizes }"></c:out>"
+									  data-ispost="<c:out value="${item.ispost }"></c:out>"
+								  >修改</button>
 								  <button type="button" data-del class="btn btn-danger">删除</button>
 					          </td>
 					        </tr>
@@ -249,28 +285,9 @@
 		});
 	});
 </script>
-<!-- <script>
-	$(function() {
-		$('[data-del]').click(function(){
-			$('#delModal').find('.btn-primary').attr('data-id', $(this).parent().data('id'));
-			$('#delModal').modal();
-		});
-		
-		$('#delModal').find('.btn-primary').click(function() {
-			var self = this;
-			
-			$.post('/admin/goodsdel.admin', {
-				id: $(this).attr('data-id')
-			}).done(function (res) {
-				if (res.code === 0) {
-					location.reload();
-				}
-			}).complete(function (res) {
-				$('#delModal').modal('hide');
-				complete(res, $(self));
-			});
-		});
-	});
-</script> -->
+
+<%@ include file="./public/addGoodsModal.jsp"%>
+
+<%@ include file="./public/updateGoodsModal.jsp"%>
 
 <%@ include file="./public/footer.jsp"%>

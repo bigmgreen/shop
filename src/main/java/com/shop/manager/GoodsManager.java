@@ -253,7 +253,41 @@ public class GoodsManager {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
+
+		return false;
+	}
+
+	/**
+	 * 添加商品
+	 * 
+	 * @param goods
+	 * @return
+	 */
+	public boolean addGoods(Goods goods) {
+		try {
+			goodsService.addGoods(goods);
+			return true;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return false;
+	}
+
+	/**
+	 * 修改商品
+	 * 
+	 * @param goods
+	 * @return
+	 */
+	public boolean updateGoods(Goods goods) {
+		try {
+			goodsService.updateGoods(goods);
+			return true;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
 		return false;
 	}
 }
