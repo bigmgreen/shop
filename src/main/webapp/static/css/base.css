@@ -164,6 +164,15 @@ footer .footer-hd p {
 	margin-bottom: 0;
 }
 
+footer .footer__right {
+	color: #9c9c9c;
+	margin: 0 4px;
+	font-size: 12px;
+	display: block;
+	text-align: center;
+	margin-top: 20px;
+}
+
 footer .footer-hd b {
 	margin: 0 3px;
 	font-weight: 400;
@@ -195,8 +204,7 @@ footer .footer-hd em {
 	color: #3d3d3d;
 }
 
-.pagination>.active>a:hover,
-.pagination>.active>a {
+.pagination>.active>a:hover, .pagination>.active>a {
 	border-color: #f40;
 	background: #f40;
 	color: #fff;
@@ -237,4 +245,13 @@ footer .footer-hd em {
 
 .empty i:after {
 	right: -70px;
+}
+
+.page-title {
+	text-align: center;
+	margin-bottom: 20px;
+}
+
+.container-fluid {
+	min-width: 960px;
 }

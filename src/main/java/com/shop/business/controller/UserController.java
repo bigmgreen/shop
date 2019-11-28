@@ -34,14 +34,14 @@ public class UserController {
 	 * 
 	 * @return
 	 */
-	@RequestMapping("/login")
+	@RequestMapping("/login.html")
 	public String login(Model model) {
 		model.addAttribute("title", "用户登录 | ");
 		return Utils.getBusinessUrl("login");
 	}
 
 	/**
-	 * 用户登录页面
+	 * 用户登录
 	 * 
 	 * @return
 	 */
@@ -73,7 +73,7 @@ public class UserController {
 	 * 
 	 * @return
 	 */
-	@RequestMapping("/register")
+	@RequestMapping("/register.html")
 	public String register(Model model) {
 		model.addAttribute("title", "注册 | ");
 		return Utils.getBusinessUrl("register");
@@ -120,7 +120,7 @@ public class UserController {
 	 * 
 	 * @return
 	 */
-	@RequestMapping("/resetpwd")
+	@RequestMapping("/resetpwd.html")
 	public String resetPwd(HttpServletRequest request, Model model) {
 
 		model.addAttribute("title", "密码重置 | ");
@@ -168,7 +168,7 @@ public class UserController {
 	 * 
 	 * @return
 	 */
-	@RequestMapping("/userinfo")
+	@RequestMapping(value = "/userinfo.user", method = RequestMethod.GET)
 	public String userinfo(HttpServletRequest request, Model model) {
 		model.addAttribute("title", "用户信息 | ");
 
@@ -183,7 +183,7 @@ public class UserController {
 	 * 
 	 * @return
 	 */
-	@RequestMapping(value = "/userinfo.do", method = RequestMethod.POST)
+	@RequestMapping(value = "/userinfo.user", method = RequestMethod.POST)
 	@ResponseBody
 	public Code userinfoDo(@RequestParam("postcode") String postcode, @RequestParam("address") String address,
 			HttpServletRequest request, HttpServletResponse response, Model model) {

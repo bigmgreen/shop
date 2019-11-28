@@ -86,7 +86,7 @@ public class UserService extends BaseService {
 	 * 获取所有用户
 	 * 
 	 * @param user
-	 *            管理员
+	 * 
 	 * @return
 	 */
 	public List<User> getAllUser() {
@@ -118,11 +118,20 @@ public class UserService extends BaseService {
 		getUserDao().deleteUser(id);
 		session.commit();
 		session.close();
-//		users = getUserDao().getAllUser();
-//		
-//		getOrderDao().delOrderById(id);
-//		session.commit();
-//		session.close();
+	}
+
+	/**
+	 * 获取管理员
+	 * 
+	 * @param userName
+	 * @param password
+	 * @return
+	 */
+	public User getAdmin(String userName, String password) {
+		User user = getUserDao().getAdmin(userName, password);
+
+		session.close();
+		return user;
 	}
 
 }

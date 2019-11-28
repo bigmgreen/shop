@@ -148,7 +148,7 @@ public class UserManager {
 	}
 
 	/**
-	 * 用户的登陆验证
+	 * 用户的登录验证
 	 * 
 	 * @param user
 	 *            被验证的用户
@@ -164,6 +164,35 @@ public class UserManager {
 			}
 		}
 		return 1;
+	}
+
+	/**
+	 * 管理员的登录验证
+	 * 
+	 * @param userName
+	 * @param password
+	 * @return
+	 */
+	public User validateLoginAdmin(String userName, String password) {
+		return userService.getAdmin(userName, password);
+	}
+
+	/**
+	 * 管理员登录操作
+	 * 
+	 * @param user
+	 *            登录用户
+	 * 
+	 * @return 3 成功 2 后台报错
+	 */
+	public void loginAdmin(User user, HttpServletRequest request, HttpServletResponse response) {
+		request.getSession().setAttribute("adminName", user.getName());
+		request.getSession().setAttribute("adminId", user.getId());
+
+		request.getSession().setAttribute("adminUserId", user.getId());
+		Cookie cookie = new Cookie("adminUserId", user.getId().toString());
+		cookie.setPath("/");
+		response.addCookie(cookie);
 	}
 
 	/**
@@ -280,4 +309,5 @@ public class UserManager {
 	public void delete(long id) {
 		userService.delete(id);
 	}
+
 }

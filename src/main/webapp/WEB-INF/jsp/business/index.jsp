@@ -1,5 +1,5 @@
 <%@ page pageEncoding="UTF-8" contentType="text/html;charset=UTF-8"%>
-<%@ include file="../public/header.jsp"%>
+<%@ include file="./public/header.jsp"%>
 
 <link href="/static/css/index.css" rel="stylesheet" type="text/css" media="all" />
 
@@ -56,4 +56,4 @@
 
 <c:if test="${list != null}"><div class="end"><i>END</i></div></c:if>
 
-<%@ include file="../public/footer.jsp"%>
+<%@ include file="./public/footer.jsp"%>

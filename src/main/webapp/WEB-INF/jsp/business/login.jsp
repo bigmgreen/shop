@@ -1,5 +1,5 @@
 <%@ page pageEncoding="UTF-8" contentType="text/html;charset=UTF-8"%>
-<%@ include file="../public/header.jsp"%>
+<%@ include file="./public/header.jsp"%>
 
 <link href="/static/css/login.css" rel="stylesheet" type="text/css"
 	media="all" />
@@ -45,6 +45,7 @@
 			}
 			
 			submit.attr('disabled', true);
+			var self = this;
 			$.post('/shop/login.do', {
 				username: $('#username').val(),
 				password: $('#password').val(),
@@ -54,11 +55,11 @@
 				} else {
 					error.html(res.msg);	
 				}
-			}).complete(function() {
-				submit.attr('disabled', false);
+			}).complete(function (res) {
+				complete(res, $(self));
 			});
 		});
 	});
 </script>
 
-<%@ include file="../public/footer.jsp"%>
+<%@ include file="./public/footer.jsp"%>

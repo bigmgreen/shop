@@ -63,7 +63,7 @@ public class GoodsOrderController {
 	 * @param model
 	 * @return
 	 */
-	@RequestMapping("/orders")
+	@RequestMapping("/orders.user")
 	public String list(@RequestParam(defaultValue = "1") int pageIndex, @RequestParam(defaultValue = "8") int pageSize,
 			@RequestParam(defaultValue = "0") int type, HttpServletRequest request, Model model) {
 		model.addAttribute("title", "我的订单 | ");
@@ -93,7 +93,7 @@ public class GoodsOrderController {
 	 * @param model
 	 * @return
 	 */
-	@RequestMapping("/orderupdate")
+	@RequestMapping("/orderupdate.user")
 	@ResponseBody
 	public Code orderupdate(@RequestParam long id) {
 		boolean status = goodsOrderManager.updateOrder(id);
@@ -114,7 +114,7 @@ public class GoodsOrderController {
 	 * @param model
 	 * @return
 	 */
-	@RequestMapping("/orderdel")
+	@RequestMapping("/orderdel.user")
 	@ResponseBody
 	public Code orderdel(@RequestParam long id) {
 		boolean status = goodsOrderManager.delOrder(id);

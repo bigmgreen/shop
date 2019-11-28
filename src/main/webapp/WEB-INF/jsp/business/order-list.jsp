@@ -1,5 +1,5 @@
 <%@ page pageEncoding="UTF-8" contentType="text/html;charset=UTF-8"%>
-<%@ include file="../public/header.jsp"%>
+<%@ include file="./public/header.jsp"%>
 
 <link href="/static/css/order-list.css" rel="stylesheet" type="text/css" media="all" />
 
@@ -104,6 +104,8 @@
 		});
 		
 		$('#goodsModal').find('.btn-primary').click(function() {
+			var self = this;
+			
 			$.post('/shop/orderupdate.user', {
 				id: $(this).attr('data-id')
 			}).done(function (res) {
@@ -121,6 +123,8 @@
 		});
 		
 		$('#delModal').find('.btn-primary').click(function() {
+			var self = this;
+			
 			$.post('/shop/orderdel.user', {
 				id: $(this).attr('data-id')
 			}).done(function (res) {
@@ -134,4 +138,4 @@
 	});
 </script>
 
-<%@ include file="../public/footer.jsp"%>
+<%@ include file="./public/footer.jsp"%>

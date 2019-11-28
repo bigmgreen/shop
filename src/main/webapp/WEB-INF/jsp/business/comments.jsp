@@ -1,5 +1,5 @@
 <%@ page pageEncoding="UTF-8" contentType="text/html;charset=UTF-8"%>
-<%@ include file="../public/header.jsp"%>
+<%@ include file="./public/header.jsp"%>
 
 <%@ include file="./public/comment-list.jsp"%>
 
@@ -19,4 +19,4 @@
 	</div>
 </c:if>
 
-<%@ include file="../public/footer.jsp"%>
+<%@ include file="./public/footer.jsp"%>

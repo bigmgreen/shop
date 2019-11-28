@@ -1,5 +1,5 @@
 <%@ page pageEncoding="UTF-8" contentType="text/html;charset=UTF-8"%>
-<%@ include file="../public/header.jsp"%>
+<%@ include file="./public/header.jsp"%>
 
 <link href="/static/css/userinfo.css" rel="stylesheet" type="text/css"
 	media="all" />
@@ -103,7 +103,7 @@
 			}
 			if (!password_againFn()) {
 				confirmpassword.focus();
-				error.html('确认密码不能为空');
+				error.html('确认密码错误');
 				return;
 			}
 			if (!codeFn()) {
@@ -130,16 +130,18 @@
 						} else {
 							error.html(res.msg);
 						}
-					}).complete(function() {
-						submit.attr('disabled', false);
+					}).complete(function (res) {
+						complete(res, $(self));
 					});
 				} else {
 					submit.attr('disabled', false);
 					error.html(res.msg);	
 				}
+			}).complete(function (res) {
+				complete(res, $(self));
 			});
 		});
 	});
 </script>
 
-<%@ include file="../public/footer.jsp"%>
+<%@ include file="./public/footer.jsp"%>

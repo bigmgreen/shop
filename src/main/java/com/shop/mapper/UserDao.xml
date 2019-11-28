@@ -25,6 +25,9 @@
 		from
 		user
 	</select>
+	<select id="getAdmin" resultType="User">
+		select * from admin where username=#{username} and password=#{password}
+	</select>
 	<select id="getUserByEmail" parameterType="java.lang.String"
 		resultType="User">
 		select

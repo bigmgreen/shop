@@ -37,7 +37,7 @@ public class GoodsCommentController {
 	 * @param request
 	 * @return
 	 */
-	@RequestMapping("/commentadd")
+	@RequestMapping("/commentadd.user")
 	@ResponseBody
 	public Code add(@RequestParam long goodsId, @RequestParam String txt, HttpServletRequest request) {
 		boolean status = goodsCommentManager.addComment(goodsId, userManager.getUser(request).getId(), txt);
@@ -60,7 +60,7 @@ public class GoodsCommentController {
 	 * @param model
 	 * @return
 	 */
-	@RequestMapping("/comments")
+	@RequestMapping("/comments.user")
 	public String list(@RequestParam long goodsId, @RequestParam(defaultValue = "1") int pageIndex,
 			@RequestParam(defaultValue = "8") int pageSize, HttpServletRequest request, Model model) {
 		model.addAttribute("title", "我的评论 | ");
@@ -84,7 +84,7 @@ public class GoodsCommentController {
 	 * @param model
 	 * @return
 	 */
-	@RequestMapping("/commentdel")
+	@RequestMapping("/commentdel.user")
 	@ResponseBody
 	public Code del(@RequestParam long id, Model model) {
 		boolean status = goodsCommentManager.delComment(id);
@@ -105,7 +105,7 @@ public class GoodsCommentController {
 	 * @param model
 	 * @return
 	 */
-	@RequestMapping("/commentappend")
+	@RequestMapping("/commentappend.user")
 	@ResponseBody
 	public Code append(@RequestParam long id, @RequestParam String txt, HttpServletRequest request, Model model) {
 		boolean status = goodsCommentManager.appendComment(id, txt, userManager.getUser(request).getName());

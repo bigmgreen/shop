@@ -13,7 +13,7 @@ import org.springframework.web.filter.OncePerRequestFilter;
  * 
  * @author admin
  */
-public class LoginFilter extends OncePerRequestFilter {
+public class AdminLoginFilter extends OncePerRequestFilter {
 
 	@Override
 	protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
@@ -23,16 +23,16 @@ public class LoginFilter extends OncePerRequestFilter {
 		Cookie cookie = null;
 		if (null != cookies) {
 			for (Cookie c : cookies) {
-				if ("userId".equals(c.getName())) {
+				if ("adminUserId".equals(c.getName())) {
 					cookie = c;
 					break;
 				}
 			}
 		}
 		if (cookie == null) {
-			response.sendRedirect("/shop/login.html");
-		} else if (null == request.getSession().getAttribute(cookie.getValue())) {
-			response.sendRedirect("/shop/login.html");
+			response.sendRedirect("/admin/login.html");
+		} else if (null == request.getSession().getAttribute(cookie.getName())) {
+			response.sendRedirect("/admin/login.html");
 		} else {
 			filterChain.doFilter(request, response);
 		}

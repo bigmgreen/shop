@@ -2,6 +2,8 @@ package com.shop.dao;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
+
 import com.shop.model.User;
 
 /**
@@ -79,4 +81,13 @@ public interface UserDao {
 	 *            地址信息
 	 */
 	public void address(User user) throws Exception;
+
+	/**
+	 * 获取管理员
+	 * 
+	 * @param username
+	 * @param password
+	 * @return
+	 */
+	public User getAdmin(@Param("username") String username, @Param("password") String password);
 }

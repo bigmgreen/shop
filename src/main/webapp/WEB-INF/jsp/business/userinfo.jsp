@@ -1,5 +1,5 @@
 <%@ page pageEncoding="UTF-8" contentType="text/html;charset=UTF-8"%>
-<%@ include file="../public/header.jsp"%>
+<%@ include file="./public/header.jsp"%>
 
 <link href="/static/css/userinfo.css" rel="stylesheet" type="text/css"
 	media="all" />
@@ -139,12 +139,13 @@
 			}
 			
 			submit.attr('disabled', true);
+			var self = this;
 			$.post('/shop/check.code', {
 				code: code.val(),
 			}).done(function (res) {
 				if (res.code === 0) {
 					submit.attr('disabled', true);
-					$.post('/shop/userinfo.do', {
+					$.post('/shop/userinfo.user', {
 						postcode: postcode.val(),
 						address: address.val(),
 					}).done(function (res) {
@@ -153,16 +154,18 @@
 						} else {
 							error.html(res.msg);
 						}
-					}).complete(function() {
-						submit.attr('disabled', false);
+					}).complete(function(res) {
+						complete(res, $(self));
 					});
 				} else {
 					submit.attr('disabled', false);
 					error.html(res.msg);	
 				}
+			}).complete(function (res) {
+				complete(res, $(self));
 			});
 		});
 	});
 </script>
 
-<%@ include file="../public/footer.jsp"%>
+<%@ include file="./public/footer.jsp"%>

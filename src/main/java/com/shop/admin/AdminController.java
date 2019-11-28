@@ -1,6 +1,7 @@
-package com.shop.business.controller;
+package com.shop.admin;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -18,14 +19,14 @@ import com.shop.utils.Code;
 import com.shop.utils.Utils;
 
 /**
- * 处理业务端商品逻辑
+ * 处理管理端逻辑
  * 
  * @author Administrator
  *
  */
 @Controller
-@RequestMapping("/shop")
-public class GoodsController {
+@RequestMapping("/admin")
+public class AdminController {
 
 	@Autowired
 	private GoodsManager goodsManager;
@@ -37,13 +38,49 @@ public class GoodsController {
 	private GoodsCommentManager goodsCommentManager;
 
 	/**
+	 * 管理员登录页面
+	 * 
+	 * @return
+	 */
+	@RequestMapping("/login.html")
+	public String login(Model model) {
+		model.addAttribute("title", "登录 ");
+		return Utils.getAdminUrl("login");
+	}
+
+	/**
+	 * 管理员登录
+	 * 
+	 * @return
+	 */
+	@RequestMapping(value = "/login.do", method = RequestMethod.POST)
+	@ResponseBody
+	public Code loginDo(@RequestParam("username") String username, @RequestParam("password") String password,
+			Model model, HttpServletRequest request, HttpServletResponse response) {
+		User user = userManager.validateLoginAdmin(username, password);
+
+		Code code = new Code();
+
+		if (null != user) {
+			userManager.loginAdmin(user, request, response);
+			code.setCode(0);
+			code.setMsg("登录成功");
+			return code;
+		}
+
+		code.setCode(-1);
+		code.setMsg("用户名或者密码错误");
+		return code;
+	}
+
+	/**
 	 * 首页页面信息
 	 * 
 	 * @param pageIndex
 	 * @param model
 	 * @return
 	 */
-	@RequestMapping("/index.html")
+	@RequestMapping("/index")
 	public String index(Model model) {
 		model.addAttribute("banner", goodsManager.getBanners());
 
@@ -62,7 +99,7 @@ public class GoodsController {
 	 * @param model
 	 * @return
 	 */
-	@RequestMapping("/list.html")
+	@RequestMapping("/list")
 	public String list(@RequestParam(defaultValue = "1") int pageIndex, @RequestParam(defaultValue = "8") int pageSize,
 			@RequestParam(defaultValue = "") String kw, Model model) {
 		model.addAttribute("kw", kw);
@@ -81,7 +118,7 @@ public class GoodsController {
 	 * @param model
 	 * @return
 	 */
-	@RequestMapping("/detail.html")
+	@RequestMapping("/detail")
 	public String detail(@RequestParam long id, HttpServletRequest request, Model model) {
 		model.addAttribute("goods", goodsManager.getGoodsById(id));
 		model.addAttribute("list", goodsCommentManager.getGoodsCommentsById(id, 1, 3));
@@ -96,7 +133,7 @@ public class GoodsController {
 	 * @param model
 	 * @return
 	 */
-	@RequestMapping("/getpay.user")
+	@RequestMapping("/getpay")
 	@ResponseBody
 	public Code getpay(HttpServletRequest request) {
 		Code code = new Code();
@@ -127,7 +164,7 @@ public class GoodsController {
 	 * @param model
 	 * @return
 	 */
-	@RequestMapping("/pay.user")
+	@RequestMapping("/pay")
 	public String pay(@RequestParam long goodsid, @RequestParam int count, @RequestParam String color,
 			@RequestParam String size, Model model) {
 		model.addAttribute("title", "支付 | ");
@@ -176,7 +213,7 @@ public class GoodsController {
 	 * @param model
 	 * @return
 	 */
-	@RequestMapping("/carlist.user")
+	@RequestMapping("/carlist")
 	public String list(@RequestParam(defaultValue = "1") int pageIndex, @RequestParam(defaultValue = "8") int pageSize,
 			HttpServletRequest request, Model model) {
 		model.addAttribute("title", "我的购物车 | ");
