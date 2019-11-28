@@ -144,4 +144,18 @@ public interface GoodsDao {
 	@SuppressWarnings("rawtypes")
 	public void inserts(@Param("list") List list);
 
+	/**
+	 * 获取所有商品总数
+	 * 
+	 * @return
+	 */
+	public int getAllCount();
+
+	/**
+	 * 商品删除
+	 * 
+	 * @param id
+	 */
+	public void delete(long id);
+
 }

@@ -17,4 +17,18 @@ public interface BannerDao {
 	 * @return
 	 */
 	public List<Banner> getBanner();
+
+	/**
+	 * 商品焦点图设置
+	 * 
+	 * @param banner
+	 */
+	public void setBanner(Banner banner);
+
+	/**
+	 * 根据id删除焦点图
+	 * 
+	 * @param id
+	 */
+	public void bannerDelete(long id);
 }

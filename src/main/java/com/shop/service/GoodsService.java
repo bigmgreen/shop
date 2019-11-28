@@ -7,6 +7,7 @@ import java.util.UUID;
 
 import org.springframework.stereotype.Service;
 
+import com.shop.model.Banner;
 import com.shop.model.Goods;
 import com.shop.model.GoodsOrderOrCar;
 import com.shop.utils.BaseService;
@@ -267,6 +268,57 @@ public class GoodsService extends BaseService {
 		session.close();
 
 		this.delByids(ids);
+	}
+
+	/**
+	 * 获取所有商品总数
+	 * 
+	 * @return
+	 */
+	public int getAllCount() {
+		int pageCount = getGoodsDao().getAllCount();
+
+		session.close();
+		return pageCount;
+	}
+
+	/**
+	 * 商品删除
+	 * 
+	 * @param id
+	 */
+	public void delete(long id) {
+		getGoodsDao().delete(id);
+
+		session.commit();
+		session.close();
+	}
+
+	/**
+	 * 商品焦点图设置
+	 * 
+	 * @param banner
+	 */
+	public void setBanner(Banner banner) {
+		Date date = new Date();
+		banner.setDate(new Timestamp(date.getTime()));
+
+		getBannerDao().setBanner(banner);
+
+		session.commit();
+		session.close();
+	}
+
+	/**
+	 * 根据id删除焦点图
+	 * 
+	 * @param id
+	 */
+	public void bannerDelete(long id) {
+		getBannerDao().bannerDelete(id);
+
+		session.commit();
+		session.close();
 	}
 
 }

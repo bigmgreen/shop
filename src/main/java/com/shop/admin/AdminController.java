@@ -1,7 +1,5 @@
 package com.shop.admin;
 
-import java.util.List;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -17,6 +15,8 @@ import com.shop.manager.GoodsCommentManager;
 import com.shop.manager.GoodsManager;
 import com.shop.manager.GoodsOrderManager;
 import com.shop.manager.UserManager;
+import com.shop.model.Banner;
+import com.shop.model.Goods;
 import com.shop.model.User;
 import com.shop.utils.Code;
 import com.shop.utils.Utils;
@@ -87,7 +87,7 @@ public class AdminController {
 	@RequestMapping("/logout.admin")
 	public String logout(HttpServletRequest request, HttpServletResponse response) {
 		userManager.userAdminEixt(request, response);
-		
+
 		return "redirect:login.html";
 	}
 
@@ -135,7 +135,7 @@ public class AdminController {
 	}
 
 	/**
-	 * 回复评论信息
+	 * 用户删除
 	 * 
 	 * @param id
 	 * @param model
@@ -167,15 +167,86 @@ public class AdminController {
 	public String goodses(@RequestParam(defaultValue = "1") int pageIndex,
 			@RequestParam(defaultValue = "8") int pageSize, Model model) {
 		model.addAttribute("title", "商品列表");
-		// model.addAttribute("kw", kw);
-		// model.addAttribute("list", goodsManager.getGoodsList(kw, pageIndex,
-		// pageSize));
-		// model.addAttribute("pageCount", (goodsManager.getGoodsCountBykw(kw) +
-		// pageSize - 1) / pageSize);
-		// model.addAttribute("pageIndex", pageIndex);
-		// model.addAttribute("pageSize", pageSize);
+
+		model.addAttribute("banner", goodsManager.getBanners());
+
+		model.addAttribute("list", goodsManager.getAll(pageIndex, pageSize));
+		model.addAttribute("pageCount", (goodsManager.getAllCount() + pageSize - 1) / pageSize);
+		model.addAttribute("pageIndex", pageIndex);
+		model.addAttribute("pageSize", pageSize);
 
 		return Utils.getAdminUrl("goodses");
+	}
+
+	/**
+	 * 商品删除
+	 * 
+	 * @param id
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping("/goodsdel.admin")
+	@ResponseBody
+	public Code goodsdel(@RequestParam long id) {
+		boolean status = goodsManager.delete(id);
+
+		Code code = new Code();
+		if (status) {
+			code.setCode(0);
+		} else {
+			code.setCode(-1);
+		}
+		return code;
+	}
+
+	/**
+	 * 商品焦点图设置
+	 * 
+	 * @param id
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping("/goodsbanner.admin")
+	@ResponseBody
+	public Code goodsbanner(@RequestParam long id, @RequestParam String imgurl) {
+		Goods goods = goodsManager.getGoodsById(id);
+		Banner banner = new Banner();
+
+		banner.setGoodsid(id);
+		banner.setImgurl(imgurl);
+		banner.setTitle(goods.getTitle());
+
+		boolean status = goodsManager.setBanner(banner);
+
+		Code code = new Code();
+		if (status) {
+			code.setCode(0);
+		} else {
+			code.setCode(-1);
+		}
+		return code;
+	}
+
+	/**
+	 * 根据id删除焦点图
+	 * 
+	 * @param id
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping("/goodsbannerdel.admin")
+	@ResponseBody
+	public Code goodsbannerdel(@RequestParam long id) {
+
+		boolean status = goodsManager.bannerDelete(id);
+
+		Code code = new Code();
+		if (status) {
+			code.setCode(0);
+		} else {
+			code.setCode(-1);
+		}
+		return code;
 	}
 
 	/**

@@ -17,6 +17,9 @@
 		resultType="Goods">
 		select * from goods order by date DESC limit #{start},#{end}
 	</select>
+	<select id="getAllCount" resultType="java.lang.Integer">
+		select count(1) from goods
+	</select>
 	<select id="getGoodsListByType" parameterType="java.lang.Integer"
 		resultType="Goods">
 		select * from goods where type=#{type} limit #{pageSize}
@@ -45,6 +48,10 @@
 	</select>
 	<delete id="delCar" parameterType="java.lang.Long">
 		delete from goods_car where id=#{id}
+	</delete>
+	
+	<delete id="delete" parameterType="java.lang.Long">
+		delete from goods where id=#{id}
 	</delete>
 	
 	<delete id="delByids" parameterType="java.lang.String">

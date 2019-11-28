@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import com.shop.model.Banner;
 import com.shop.model.Goods;
 import com.shop.service.GoodsService;
 
@@ -194,5 +195,65 @@ public class GoodsManager {
 			return null;
 		}
 		return list;
+	}
+
+	/**
+	 * 获取所有商品总数
+	 * 
+	 * @return
+	 */
+	public int getAllCount() {
+		return goodsService.getAllCount();
+	}
+
+	/**
+	 * 商品删除
+	 * 
+	 * @param id
+	 * @return
+	 */
+	public boolean delete(long id) {
+		try {
+			goodsService.delete(id);
+			return true;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return false;
+	}
+
+	/**
+	 * 商品焦点图设置
+	 * 
+	 * @param banner
+	 * @return
+	 */
+	public boolean setBanner(Banner banner) {
+		try {
+			goodsService.setBanner(banner);
+			return true;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return false;
+	}
+
+	/**
+	 * 根据id删除焦点图
+	 * 
+	 * @param id
+	 * @return
+	 */
+	public boolean bannerDelete(long id) {
+		try {
+			goodsService.bannerDelete(id);
+			return true;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return false;
 	}
 }
